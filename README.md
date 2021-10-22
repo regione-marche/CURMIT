@@ -6,20 +6,20 @@ E' altresì già parametrizzato per recepire facilmente le varie Leggi Regionali
 
 Principali funzioni:
 
--Portale cittadini-manutentori-aut.competenti-ispettori
+- Portale cittadini-manutentori-aut.competenti-ispettori
 
--Registrazione ditte di manutenzione
+- Registrazione ditte di manutenzione
 
--Registrazione operatori
+- Registrazione operatori
 
--Registrazioni distributori
+- Registrazioni distributori
 
--Gestione del portafoglio per manutentore
+- Gestione del portafoglio per manutentore
 
--Registrazione Impianti con gestione della Targa e del Bollino Virtuale
+- Registrazione Impianti con gestione della Targa e del Bollino Virtuale
 
--Gestione documenti collegati all'impianto (RCEE, DAM, Ispezioni)
+- Gestione documenti collegati all'impianto (RCEE, DAM, Ispezioni)
 
--Gestione Ispezioni ed ispettori con eventuali esiti
+- Gestione Ispezioni ed ispettori con eventuali esiti
 
--Statistiche varie
+- Statistiche varie
