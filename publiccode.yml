@@ -1,0 +1,118 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: CURMIT
+categories:
+  - business-process-management
+  - document-management
+dependsOn:
+  open:
+    - name: TCL
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: 8.6.8
+    - name: PSQL
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: 9.5.16
+    - name: Naviserver
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: '4.99'
+description:
+  it:
+    features:
+      - Portale cittadini-manutentori-aut.competenti-ispettori
+      - Registrazione ditte di manutenzione
+      - Registrazione operatori
+      - Registrazioni distributori
+      - Gestione del portafoglio per manutentore
+      - Registrazionie Impianti con gestione della Targa e del Bollino Virtuale
+      - 'Gestione documenti collegati all''''impianto (RCEE, DAM, Ispezioni)'
+      - Gestione Ispezioni ed ispettori con eventuali esiti
+      - Statistiche varie
+    genericName: CURMIT
+    localisedName: CURMIT
+    longDescription: |
+      CURMIT: Gestione del Catasto regionale Impianti termici
+
+
+
+      ​
+
+             Il software permette la creazione e la gestione del catasto degli impianti termici installati nel territorio e il controllo delle verifiche effettuate sugli stessi, come previsto dalla L. 10/91, D.P.R. 412/93, D.P.R. 551/99, DGLs 192/05, 311/06 e D.P.R. 74/2013.
+
+            E' altresì già parametrizzato per recepire facilmente le varie Leggi
+
+            Regionali. 
+
+            Principali funzioni:
+
+            -Portale cittadini-manutentori-aut.competenti-ispettori
+
+            -Registrazione ditte di manutenzione
+
+            -Registrazione operatori
+
+            -Registrazioni distributori
+
+            -Gestione del portafoglio per manutentore
+
+            -Registrazione Impianti con gestione della Targa e del Bollino Virtuale
+
+            -Gestione documenti collegati all'impianto (RCEE, DAM, Ispezioni)
+
+            -Gestione Ispezioni ed ispettori con eventuali esiti
+
+            -Statistiche varie
+    shortDescription: |-
+      Il CURMIT è lo strumento informativo per la gestione del Catasto degli
+
+      Impianti Termici della Regione Marche.
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - it
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: true
+    spid: true
+legal:
+  authorsFile: |-
+    https://raw.githubusercontent.com/regione-marche/CURMIT/master/AUTHORS.txt
+  license: OSL-2.0
+  mainCopyrightOwner: Regione Marche
+  repoOwner: Regione Marche
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - affiliation: OASI software S.r.l.
+      email: assistenza@oasisoftware.it
+      name: Simone Pesci
+  contractors:
+    - name: OASI software S.r.l.
+      until: '2021-12-24'
+      website: 'https://www.oasisoftware.com/'
+  type: contract
+name: CURMIT
+platforms:
+  - web
+releaseDate: '2021-10-19'
+softwareType: standalone/mobile
+url: 'https://github.com/regione-marche/CURMIT'
