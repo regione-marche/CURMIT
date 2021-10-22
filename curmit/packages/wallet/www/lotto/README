@@ -1,0 +1,19 @@
+CONTENUTI
+
+carichi
+    La cartella 'carichi' contiene l'archivio di tutti i file di carico inviati da Cestec a Lottomatica 
+    (file con estensione DLD) e di tutte le risposte ricevute da Lottomatica (file con estensione DRS).
+
+movimenti
+    La cartella 'movimenti' contiene l'archivio di tutti i file riepilogativi dei pagamenti ricevuti da 
+    Lottomatica (file con estensione RGN)  e di tutte le risposte di presa in consegna inviate da Cestec
+    (file con estensione RRS)
+
+tmp
+    La cartella 'tmp' viene usata come area temporanea di transito.
+
+move.tcl
+    Web Service in stile REST per caricare un movimento in wal_transactions.
+
+wscaller.tcl
+    Esempio di caller del web service da usare in un'altra istanza!

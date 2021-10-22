@@ -1,0 +1,73 @@
+livello|scelta_1|scelta_2|scelta_3|scelta_4|tipo|descrizione|nome_funz
+2|22|37|0|0|funzione|Stampa Bollini usati da Manutentore|stat-boll
+2|16|29|0|0|funzione|Consuntivo verificatori|veta
+2|16|28|0|0|funzione|Stampa rapporto totale controlli|stat4
+2|16|27|0|0|funzione|Stampa riepilogo appuntamenti effet./riserve|stat3
+2|12|13|0|0|funzione|Gestione terzi responsabili|trsp
+2|18|25|0|0|funzione|Gestione enti competenti per anomalie|enti
+2|18|35|0|0|funzione|Scarico tabelle ristrette|scar-small
+2|18|27|0|0|funzione|Scarica impianti|scar-aimp
+2|18|28|0|0|funzione|Scarico rapporti di verifica|scar-cimp
+2|18|29|0|0|funzione|Scarico autocertificazioni|scar-dimp
+2|18|31|0|0|funzione|Scarico tabelle globali|scar-file
+2|22|24|0|0|funzione|Stampa Solleciti di pagamento|stso
+2|22|25|0|0|funzione|Stampa Impianti inseriti|stat10
+2|22|26|0|0|funzione|Stampa comunicazioni utenti|stcu
+2|22|27|0|0|funzione|Stampa Modelli con assenza dichiarazioni di Conformità|st_dimp_nc
+2|22|17|0|0|funzione|Statistica Incontri|stat5
+2|18|37|0|0|funzione|Gestione manutentori|opma
+2|16|30|0|0|funzione|Caricamento impianti/incontri da file esterno (nuovo tracciato)|inco-cari2
+2|16|33|0|0|funzione|Richiesta documentazione|strd
+2|22|28|0|0|funzione|Stampa statistica ispettori|stpm-stat-opve
+2|17|20|0|0|funzione|Stampa lista bollini non pagati|sta8
+2|18|14|0|0|funzione|Selezione stampa|stpm-da-app
+3|11|55|20|0|funzione|Creazione distinta consegna modelli H/I|docu-dist-all
+3|11|55|15|0|funzione|Creazione distinta consegna modelli L|ammi-dist-all
+3|11|66|11|0|funzione|Inserimento allegato E3|tele
+2|22|29|0|0|funzione|Stampa statistica Amministrativa|stpm-cimp-tar
+2|18|50|0|0|funzione|assunzioni responsabilita|asresp
+2|22|33|0|0|funzione|Statistiche dich. per campagna|stco1
+2|22|23|0|0|funzione|Conta modelli manutentori|stat-manu
+2|22|30|0|0|funzione|Stampa mancate ispezioni|stpm-stat-ma
+2|16|34|0|0|funzione|Caricamento controlli da file esterno (cod_fisc)|inco_cari3
+2|18|73|0|0|funzione|Anomalie da dichiarazioni|anom_d
+2|22|36|0|0|funzione|Stampa riepilogativa art. 284|stat284
+2|22|38|0|0|funzione|Stampa Bollini non usati|stat-boll-non
+3|23|41|18|0|funzione|Bonifica Impianti|bimp
+3|31|14|31|0|funzione|Tariffe|listini-test
+2|22|40|0|0|funzione|Riepilogo Dichiarazioni|stpm-dich
+shell2|22|41|0|0|funzione|Stampa Targa|targa
+2|22|42|0|0|funzione|Statistiche per Regioni|stat-reg
+2|11|30|0|0|funzione|Inserimento scheda tecnica impianto-Riscaldamento|isrt_veloce
+3|11|55|11|0|funzione|Inserimento ass. resp. minore di 35 kW (allegato H)|insmodh-manu
+3|11|71|54|0|funzione|Gestione distinte di consegna dichiarazioni (CAIT)|cait-dist
+3|11|55|12|0|funzione|Inserimento ass. resp. >= 35 (allegato I)|insmodi-manu
+3|11|55|13|0|funzione|Lista schede non associate a impianto|asresp-admin
+3|11|55|14|0|funzione|Inserimento ass. resp. amministratore (allegato L)|insmodl-manu
+3|11|66|12|0|funzione|Inserimento allegato E4|pdc
+3|23|11|32|0|funzione|Allineamento verificatori|valid-inco
+3|23|21|24|0|funzione|Scarico rapporti di verifica|scar-cimp
+3|23|21|25|0|funzione|Scarico autocertificazioni|scar-dimp
+3|23|11|43|0|funzione|Caricamento schede impianto|cari_sche
+3|23|11|44|0|funzione|Caricamento anomalie mod. G|carianomg
+3|23|21|22|0|funzione|Scarico dati per verificatore|scar-aimp
+3|23|21|26|0|funzione|Scarico dati per connettori|scar-all
+3|23|21|51|0|funzione|Scarico anomalie da dichiarazioni|coimscar-anom
+3|23|31|12|0|funzione|Scansionati non associati|coimalle
+3|23|41|35|0|funzione|Bonifica costruttori|bcos
+3|23|41|36|0|funzione|Bonifica combustibili|bcom
+3|23|51|72|0|funzione|Messaggi inviati|tmsg
+3|23|51|73|0|funzione|Messaggi ricevuti|dmsg
+3|31|14|44|0|funzione|Gestione tipi condizionatori|tpco
+3|31|14|45|0|funzione|Gestione fluido refrigerante|flre
+3|31|31|18|0|funzione|Associazione Comuni agli Utenti|cout
+3|31|14|37|0|funzione|Stati impianto|imst
+3|31|14|29|0|funzione|Motivi annullamento incontro|noin
+3|31|14|36|0|funzione|Tipi bollino|tpbl
+3|31|14|38|0|funzione|Gestione tipi di pagamento|tp_pag
+3|31|14|40|0|funzione|Gestione Protocollo|prot
+3|31|14|41|0|funzione|Gestione tipi anomalie da dichiarazioni|tano_d
+3|31|14|42|0|funzione|Gestione causali di pagamento|caus
+3|31|14|43|0|funzione|Gestione struttura file caricamenti massivi|coimtabs
+2|17|18|0|0|funzione|Selezione riferimento bollino|rife
+(71 rows)

@@ -1,0 +1,6 @@
+bman-imp|Bonifica manuten. senza agg. dich.|primario|coimbman-aimp-filter|src/|
+bman-imp|Bonifica manuten. senza agg. dich.|secondario|coimbman-aimp-gest|src/|
+bman-imp|Bonifica manuten. senza agg. dich.|secondario|coimbman-aimp-list|src/|
+coimdimp-dest|Spostemento dichiarazione|primario|coimdimp-dest|src/|
+impianti|Storico|secondario|coimgend-st-gest|src/|
+impianti|Storico|secondario|coimgend-st-list|src/|

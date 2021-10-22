@@ -1,0 +1,523 @@
+ad_library {
+
+    Transactions Procs.
+
+    @author claudio.pasolini@comune.mantova.it
+    @cvs-id $Id:
+
+}
+
+namespace eval wal {}
+
+ad_proc -public wal::process_transactions_file {
+    -processor
+    -filename
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+
+    Elabora un file di movimenti ricevuto da Lottomatica o Sisal
+    Registra i pagamenti su wal_transactions.
+    Registra i pagamenti su wal_log_transactions.
+
+    @author Claudio Pasolini
+
+} {
+
+    # imposto i caratteri CR e LF di terminazione riga
+    set CRLF \x0d\x0a
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/$processor/tmp
+
+    cd $wrkdir
+
+    # decomprimo file
+    if {$processor eq "lotto"} {
+        exec "unzip" "-o" "$filename.zip.RUN"
+    } else {
+        exec "unzip" "-o" "$filename.zip"
+    }
+
+    # apro file
+    set fd [open $wrkdir/$filename r]
+
+    db_transaction {
+
+	# cancello preliminarmente eventuali righe di wal_transactions e wal_log_payments
+	# generate dal file di carico: in questo modo mi assicuro la possibilità di
+	# rieseguire la procedura in caso di necessità
+	db_dml del_transactions     "delete from wal_transactions where filename = :filename"
+	db_dml del_log_transactions "delete from wal_log_payments where filename = :filename"
+
+	# imposto contatore e totale
+	set ctr            0
+        set running_amount 0
+
+	foreach line [split [read $fd ] $CRLF]  {
+
+	    # decodifico
+            set rectype [string range $line 0 0]
+
+	    if {$rectype eq "0"} {
+		# header
+		continue
+	    } elseif {$rectype eq "9"} {
+		# footer
+		set footer_ctr    [string trimleft [string range $line  9 17] 0]
+		set footer_amount [string trimleft [string range $line 18 32] 0]
+
+		if {$footer_amount eq ""} {
+		    set footer_amount "0"
+		}
+
+		break
+	    }
+			   
+            # decodifico record di dettaglio
+	    set body_header      [string range $line   1  24]
+	    set body_header_2    [string range $line  25  48]
+	    set amount           [string trimleft [string range $line  49  59] 0]
+	    set wallet_id        [string range $line  60  77]
+	    set cust_header      [string range $line  78 101]
+	    set cust_header_2    [string range $line 102 125]	
+	    set cust_header_3    [string range $line 126 149]	
+	    set cust_header_4    [string range $line 150 173]
+	    set fiscal_code      [string range $line 174 189]
+	    set payment_date     [string range $line 190 197]
+	    set pos              [string range $line 198 202]
+	    set payment_type     [string range $line 203 203]
+	    set reference        [string range $line 204 213]
+
+            #ns_log notice "\ndetail body_header=$body_header body_header_2=$body_header_2 \namount=$amount wallet_id=$wallet_id \n fiscal_code=$fiscal_code payment_date=$payment_date \npos=$pos payment_type=$payment_type"
+
+	    incr ctr
+            set running_amount [expr $running_amount + $amount]
+
+            # ottengo titolare da codice portafoglio
+	    set holder_id [db_string holder "select holder_id from wal_holders where wallet_id = :wallet_id"]
+
+            # ottengo tipo movimento
+	    set tran_type_id [parameter::get_from_package_key -package_key wallet -parameter tran_type_plus]
+
+            # ottengo tipo pagamento
+	    set pay_type_id  [parameter::get_from_package_key -package_key wallet -parameter cash_pay_type]
+
+            # determino la data valuta al mercoledì successivo alla data pagamento
+            set currency_date [wal::get_currency_date -payment_date $payment_date]
+
+	    # registro pagamento su tabella movimenti
+	    db_dml transaction_new "
+            insert into wal_transactions (
+                tran_id       
+               ,holder_id     
+               ,body_id       
+               ,tran_type_id  
+               ,pay_type_id   
+               ,payment_date  
+               ,creation_date 
+               ,currency_date
+               ,description   
+               ,reference     
+               ,amount        
+               ,currency      
+               ,currency_amount
+               ,filename  
+            ) values (
+                nextval('wal_transactions_seq')
+               ,:holder_id     
+               ,null
+               ,:tran_type_id        
+               ,:pay_type_id   
+               ,to_date(:payment_date, 'YYYYMMDD')  
+               ,:shipping_date
+               ,to_date(:currency_date, 'YYYYMMDD')  
+               ,null
+               ,:reference
+               ,:amount / 100.00        
+               ,null
+               ,null
+               ,:filename  
+            )"
+
+	    # registro movimento su tabella di log
+	    db_dml log_new "
+            insert into wal_log_payments (
+                log_id
+               ,filename      
+               ,creation_date 
+               ,body_header   
+               ,body_header_2 
+               ,amount        
+               ,wallet_id     
+               ,cust_header   
+               ,cust_header_2 
+               ,cust_header_3 
+               ,cust_header_4 
+               ,fiscal_code   
+               ,payment_date  
+               ,pos           
+               ,payment_type
+               ,reference
+            ) values (
+                nextval('wal_log_payments_seq')
+               ,:filename      
+               ,:shipping_date 
+               ,:body_header   
+               ,:body_header_2 
+               ,:amount / 100.00        
+               ,:wallet_id     
+               ,:cust_header   
+               ,:cust_header_2 
+               ,:cust_header_3 
+               ,:cust_header_4 
+               ,:fiscal_code   
+               ,to_date(:payment_date, 'YYYYMMDD')  
+               ,:pos           
+               ,:payment_type
+               ,:reference  
+            )"
+	    
+	}
+
+        # controllo numero rec e importo
+        incr ctr 2 ; # devo conteggiare anche i record di testa e di coda
+        if {$footer_ctr != $ctr || $footer_amount != $running_amount} {
+	    ns_log notice "\nProc process_transactions_file fallita :Numero record dettaglio ($ctr) diverso da quello atteso ($footer_ctr) oppure somma importi ($running_amount) diversa da quella attesa ($footer_amount)"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp pagamenti" "Proc process_transactions_file fallita :Numero record dettaglio ($ctr) diverso da quello atteso ($footer_ctr) oppure somma importi ($running_amount) diversa da quella attesa ($footer_amount)"
+
+	    # provoco abend della transazione
+            nonsense
+	}
+
+    }
+
+    # chiudo file dei movimenti
+    close $fd
+
+    return $ctr
+
+}
+
+ad_proc -public wal::get_transactions_file_lotto {
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Riceve file giornaliero Curit da Lottomatica.
+    Riceve file giornaliero CENED da Lottomatica.
+
+    @author Claudio Pasolini
+
+    @param shipping_date  Data ricezione in formato YYYYMMDD
+    @param shipping_no    Progressivo invio nella giornata
+
+} {
+
+    if {$shipping_date eq ""} {
+        set shipping_date [clock format [clock seconds] -format %Y%m%d]
+    }
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/lotto/tmp
+
+    # imposto archivio movimenti
+    set archive [ah::package_root -package_key wallet]/lotto/movimenti
+
+    # ottengo dati connessione da parametri
+    set ip       [parameter::get_from_package_key -package_key wallet -parameter ftp_ip]
+    set user     [parameter::get_from_package_key -package_key wallet -parameter ftp_user]
+    set password [parameter::get_from_package_key -package_key wallet -parameter ftp_password]
+
+    # devo ricevere due files 
+    set file_headers [list LOTTO          LOTTD]
+    set folders      [list PerCESTEC      PerCESTEC]
+    set ips          [list $ip            $ip]
+    set users        [list $user          $user]
+    set passwords    [list $password      $password]
+
+    foreach file_header $file_headers folder $folders ip $ips user $users password $passwords {
+
+	set filename "$file_header${shipping_date}_${shipping_no}.RGN"
+
+        ns_log notice "\n ... processing file $filename"
+
+	# rimuovo per cautela eventuali file residui dall'ultima elaborazione
+	ns_unlink -nocomplain $wrkdir/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip.RUN
+
+	cd $wrkdir
+
+	# preparo script di ftp per ricevere il file 
+	set fd [open "$wrkdir/ftp_rgn.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\nbinary\nget $filename.zip.RUN\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_rgn.tmp"
+	    #ns_log notice "\nFtp movimenti $file_header\nftp OK"
+	} {
+	    ns_log notice "\nFtp movimenti $file_header\nProc get_transactions_file fallita durante ftp:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file fallita durante ftp:Errore: $errmsg"
+
+	    #return FTP_ERROR
+	    continue
+	}
+
+	if {![file exists $filename.zip.RUN]} {
+	    # il file dovrebbe esistere sempre!
+	    ns_log notice "\nFtp movimenti $filename.zip.RUN at [pwd] - Proc get_transactions_file non ha trovato il file atteso!"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file non ha trovato il file atteso!"
+
+	    #return NO_EXPECTED_FILE
+	    continue
+	}
+
+	# elaboro file movimenti
+	with_catch errmsg {
+	    wal::process_transactions_file \
+		-processor     lotto \
+		-filename      $filename \
+		-shipping_date $shipping_date
+	} {
+	    ns_log notice "\nFtp movimenti $file_header\nProc process_transactions_file fallita :Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc process_transactions_file fallita :Errore: $errmsg"
+
+	    #return ERROR_PROCESSING_FILE
+	    continue
+	}
+
+	# faccio pulizia e archivio il file dei movimenti
+	ns_unlink -nocomplain $wrkdir/ftp_rgn.tmp
+	ns_unlink -nocomplain $wrkdir/$filename.zip.RUN
+	ns_rename $wrkdir/$filename $archive/$filename
+
+	# preparo script di ftp per cancellare il file dal ftp server 
+	set fd [open "$wrkdir/ftp_rgn.tmp" w]
+	puts $fd "user $user $password\ncd $folder\ndelete $filename.zip.RUN\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_rgn.tmp"
+	} {
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file fallita durante delete:Errore: $errmsg"
+
+	    #return FTP_DELETE_ERROR
+	    continue
+	}
+
+	# la ricezione è andata a buon fine e quindi posso inviare immediatamente
+	# il file di avvenuta ricezione (RRS)
+	regsub {RGN} $filename {RRS} filename
+
+	# creo un file vuoto con identico nome, ma suffissato RRS
+	set fd [open "$wrkdir/$filename" w]
+	puts -nonewline ""
+	close $fd
+
+	cd $wrkdir
+
+	# comprimo il file
+	exec "zip" "$filename.zip.RUN" "$filename"
+
+	# preparo script di ftp 
+	set fd [open "$wrkdir/ftp_rrs.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\nbinary\nput $filename.zip.RUN\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_rrs.tmp"
+	    ns_log notice "\nFtp movimenti $file_header\nftp OK"
+	} {
+	    ns_log notice "\nFtp movimenti $file_header\nProc get_transactions_file fallita durante spedizione risposta:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file fallita durante spedizione risposta :Errore: $errmsg"
+	}
+
+	# faccio pulizia e archivio il file di risposta
+	ns_unlink -nocomplain $wrkdir/ftp_rgn.tmp
+	ns_unlink -nocomplain $wrkdir/ftp_rrs.tmp
+	ns_rename $wrkdir/$filename $archive/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip.RUN
+
+	ns_log notice "\nFtp ftp $file_header\nProc get_transactions_file_lotto terminata correttamente."
+
+    }
+
+    return OK
+
+}
+
+ad_proc -public wal::get_transactions_file_sisal {
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Riceve file giornaliero Curit + CENED da Sisal.
+
+    @author Claudio Pasolini
+
+    @param shipping_date  Data ricezione in formato YYYYMMDD
+    @param shipping_no    Progressivo invio nella giornata
+
+} {
+
+    if {$shipping_date eq ""} {
+        set shipping_date [clock format [clock seconds] -format %Y%m%d]
+    }
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/sisal/tmp
+
+    # imposto archivio movimenti
+    set archive [ah::package_root -package_key wallet]/sisal/movimenti
+
+    set sisal_ip       [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_ip]
+    set sisal_user     [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_user]
+    set sisal_password [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_password]
+
+    # devo ricevere un file
+    set file_headers [list CESTCS]
+    set folders      [list .]
+    set ips          [list $sisal_ip]
+    set users        [list $sisal_user]
+    set passwords    [list $sisal_password]
+
+    foreach file_header $file_headers folder $folders ip $ips user $users password $passwords {
+
+	set filename "$file_header${shipping_date}_${shipping_no}.RGN"
+
+        ns_log notice "\n ... processing file $filename"
+
+	# rimuovo per cautela eventuali file residui dall'ultima elaborazione
+	ns_unlink -nocomplain $wrkdir/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+
+	cd $wrkdir
+
+	# preparo script di ftp per ricevere il file 
+	set fd [open "$wrkdir/ftp_rgn.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\nbinary\nget $filename.zip\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_rgn.tmp"
+	    #ns_log notice "\nFtp movimenti $file_header\nftp OK"
+	} {
+	    ns_log notice "\nFtp movimenti $file_header\nProc get_transactions_file fallita durante ftp:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file fallita durante ftp:Errore: $errmsg"
+
+	    #return FTP_ERROR
+	    continue
+	}
+
+	if {![file exists $filename.zip]} {
+	    # il file dovrebbe esistere sempre!
+	    ns_log notice "\nFtp movimenti $filename.zip at [pwd] - Proc get_transactions_file non ha trovato il file atteso!"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file non ha trovato il file atteso!"
+
+	    #return NO_EXPECTED_FILE
+	    continue
+	}
+
+	# elaboro file movimenti
+	with_catch errmsg {
+	    wal::process_transactions_file \
+		-processor     sisal \
+		-filename      $filename \
+		-shipping_date $shipping_date
+	} {
+	    ns_log notice "\nFtp movimenti $file_header\nProc process_transactions_file fallita :Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc process_transactions_file fallita :Errore: $errmsg"
+
+	    #return ERROR_PROCESSING_FILE
+	    continue
+	}
+
+	# faccio pulizia e archivio il file dei movimenti
+	ns_unlink -nocomplain $wrkdir/ftp_rgn.tmp
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+	ns_rename $wrkdir/$filename $archive/$filename
+
+	# preparo script di ftp per cancellare il file dal ftp server 
+	set fd [open "$wrkdir/ftp_rgn.tmp" w]
+	puts $fd "user $user $password\ncd $folder\ndelete $filename.zip\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_rgn.tmp"
+	} {
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file fallita durante delete:Errore: $errmsg"
+
+	    #return FTP_DELETE_ERROR
+	    continue
+	}
+
+	# la ricezione è andata a buon fine e quindi posso inviare immediatamente
+	# il file di avvenuta ricezione (RRS)
+	regsub {RGN} $filename {RRS} filename
+
+	# creo un file vuoto con identico nome, ma suffissato RRS
+	set fd [open "$wrkdir/$filename" w]
+	puts -nonewline ""
+	close $fd
+
+	cd $wrkdir
+
+	# comprimo il file
+	exec "zip" "$filename.zip" "$filename"
+
+	# preparo script di ftp 
+	set fd [open "$wrkdir/ftp_rrs.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\nbinary\nput $filename.zip\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_rrs.tmp"
+	    ns_log notice "\nFtp movimenti $file_header\nftp OK"
+	} {
+	    ns_log notice "\nFtp movimenti $file_header\nProc get_transactions_file fallita durante spedizione risposta:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp movimenti $file_header" "Proc get_transactions_file fallita durante spedizione risposta :Errore: $errmsg"
+	}
+
+	# faccio pulizia e archivio il file di risposta
+	ns_unlink -nocomplain $wrkdir/ftp_rgn.tmp
+	ns_unlink -nocomplain $wrkdir/ftp_rrs.tmp
+	ns_rename $wrkdir/$filename $archive/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+
+	ns_log notice "\nFtp ftp $file_header\nProc get_transactions_file_sisal terminata correttamente."
+
+    }
+
+    return OK
+
+}
+
+ad_proc -public wal::get_currency_date {
+    -payment_date
+} { 
+    Determina la data valuta in funzione della data di pagamento.
+
+    @author Claudio Pasolini
+
+} {
+
+    # imposto array per determinare quanti gg devo sommare alla data di
+    # pagamento per arrivare al mercoledì della settimana successiva (1=domenica)
+    set days(1) 9
+    set days(2) 8
+    set days(3) 7
+    set days(4) 13
+    set days(5) 12
+    set days(6) 11
+    set days(7) 10   
+
+    # determino la data valuta al mercoledì successivo alla data pagamento
+    set daynum [db_string day "select to_char(to_date(:payment_date, 'YYYYMMDD'), 'D')"]
+    set currency_date [db_string next_wed "select to_char(to_date(:payment_date, 'YYYYMMDD') + $days($daynum), 'YYYYMMDD')"]
+
+   return $currency_date
+}
+

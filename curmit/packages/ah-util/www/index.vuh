@@ -1,0 +1,51 @@
+ad_page_contract {
+    This page gets the object_id from the XML file from the maps
+    
+    @author Landim Landim	
+    @creation-date 2007-12-07
+} {    
+}
+
+# Get the paths and find the XML file
+set the_url [ad_conn path_info]
+set splitted [split $the_url "/"]
+set xml_file [lsearch -inline $splitted "*.xml"]
+
+# Get the object_id from the file name
+regexp {^(.+)\.xml$} $xml_file match object_id
+
+if {[acs_object_type $object_id] eq "mis_party"} {
+    # get the adresses
+    set addresses [db_list addresses "select object_id from mis_addresses where party_id = :object_id and object_id is not null"]
+    set where_clause "mp.object_id in ([join $addresses ,])"
+} else {
+    set where_clause "mp.position_id = $object_id"
+}
+
+set temp [ns_mktemp "/tmp/data-xml-XXXXXXXXXXX"]
+set fd [open $temp "w"]
+
+set code "<?xml version=\"1.0\"?>"
+append code "<markers>"
+db_foreach position "
+    select mp.lat, mp.lng, mp.text_info, mp.type, m.package_id 
+    from maps_position mp, maps m 
+    where mp.map_id = m.map_id 
+      and $where_clause " {
+	  # Get type color
+	  set color [maps::get_color -object_type $type -package_id $package_id]
+	  append code "<marker> <lat>$lat</lat><lng>$lng</lng><name>[lang::util::localize $text_info]</name><color>$color</color></marker>"
+      }
+
+append code "</markers>"
+
+puts $fd [encoding convertto utf-8 $code]
+close $fd      
+
+ns_set update [ns_conn outputheaders] Content-Disposition "attachment; filename=\"${object_id}\"" 
+ns_returnfile 200 text/plain $temp
+
+file delete -force -- $temp
+
+ad_script_abort
+

@@ -1,0 +1,6 @@
+begin;
+
+--02/11/2020 ROM
+alter table coimdimp_stn add column co_fumi_secchi_ppm decimal(10,4);
+
+end;

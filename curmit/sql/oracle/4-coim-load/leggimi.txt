@@ -1,0 +1,133 @@
+In questa directory sono contenuti gli script di caricamento dati
+iter-2.0 da db postgres versione originale verso db oracle.
+
+Per fare questo si usa l'utility di oracle sqlldr (sql*loader).
+La sua documentazione si trova sul cd di oracle, 
+sottodirectory doc, index.html.
+Sezione Doc Ora/server&sql/utilities.
+
+Per prima cosa bisogna originare i file ctl che contengono le specifiche
+per caricare i dati.
+Per fare questo bisogna aprire una sessione sqlplus e lanciare
+@ creactl-lancia.
+(questo script richiama il generatore di ctl creactl.sql una volta per ogni
+tabella).
+
+Ora da prompt dei comandi linux fare cd .. e lanciare:
+./4-coim-load.bat
+
+I file da caricare hanno la formattazione di postgres, le colonne sono separate
+da un pipe ('|').
+
+Per caricare tali dati nei file ctl ho messo quesi parametri.
+
+LOAD DATA
+CHARACTERSET UTF8
+INTO TABLE coimpote
+REPLACE
+FIELDS TERMINATED BY '|'
+TRAILING NULLCOLS
+(COD_POTENZA                   CHAR(8) NULLIF (COD_POTENZA = BLANKS)
+,DESCR_POTENZA                 CHAR(35) NULLIF (DESCR_POTENZA = BLANKS)
+,POTENZA                       DECIMAL EXTERNAL(8) NULLIF (POTENZA = BLANKS)
+,UM                            CHAR(5) NULLIF (UM = BLANKS)
+,RENDI1                        DECIMAL EXTERNAL(8) NULLIF (RENDI1 = BLANKS)
+,RENDI2                        DECIMAL EXTERNAL(8) NULLIF (RENDI2 = BLANKS)
+,DATA_INS                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_INS = BLANKS)
+,DATA_MOD                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_MOD = BLANKS)
+,UTENTE                        CHAR(10) NULLIF (UTENTE = BLANKS)
+,POTENZA_MIN                   DECIMAL EXTERNAL(8) NULLIF (POTENZA_MIN = BLANKS)
+)
+
+CHARACTERSET UTF8 specifica che il file di input ha tale codifica e quindi
+                  converte i carattere nel formato del db (iso-latin-1).
+                  questo perchè sappiamo che i dati del db postgres sono
+                  memorizzati in utf8.
+
+REPLACE           cancella i record della tabella prima di caricare.
+                  Si può usare anche APPEND, TRUNCATE, INSERT.
+                  APPEND accoda.
+                  TRUNCATE cancella i record ignorando i constraint prima del
+                  caricamento.
+                  INSERT inserisce i record e presuppone che la tabella sia
+                  vuota.
+
+FIELDS TERMINATED Indica che le colonne hanno lunghezza variabile e sono
+BY '|'            separate da '|'.
+
+TRAILING NULLCOLS Postgresql non mette il '|' dopo l'ultima colonna,
+                  se quest'ultima è null, oracle non la vede.
+                  Con questa opzione, le colonne che oracle non trova sul
+                  file vengono valorizzate con null.
+
+COD_POTENZA       CHAR(8) NULLIF (COD_POTENZA = BLANKS)
+                  Con char(8) si indica il formato dei primi 8 caratteri del
+                  file sequenziale.
+                  Con l'istruzione nullif, se il valore risulta vuoto o spazi
+                  valorizziamo la colonna a null.
+
+POTENZA           DECIMAL EXTERNAL(8) NULLIF (POTENZA = BLANKS)
+                  Potenza è un numeric (6,2).
+                  La parola external dice ad oracle che il numero si trova 
+                  sul sequenziale in formato carattere. Non capisco perchè
+                  genera 8 al posto di 6.
+
+DATA_MOD          DATE(10) "YYYY-MM-DD" NULLIF (DATA_MOD = BLANKS)
+                  Con questa sintassi si dice ad oracle che sul sequenziale
+                  si trova una date in formato yyyy-mm-dd.
+
+NULLIF            Se la stringa contiene spazi, viene trasformata a null.
+
+RTRIM             Se non si mette la clausola PRESERVE BLANKS, oracle fa trim
+                  dei campi char (che sul db sono definiti come char).
+                  
+
+Nella directory di load/ctl-pos-da-tenere, sono stati memorizzati staticamente
+alcuni ctl perchè sono stati personalizzati per il caricamento da pos ad ora.
+
+Riporto quello degli utenti perchè è il più complesso.
+
+--OPTIONS(DIRECT=TRUE)
+LOAD DATA
+CHARACTERSET UTF8
+INTO TABLE coimuten
+REPLACE
+FIELDS TERMINATED BY '|'
+TRAILING NULLCOLS
+(ID_UTENTE                     CHAR(10) NULLIF (ID_UTENTE = BLANKS)
+,COGNOME                       CHAR(40) NULLIF (COGNOME = BLANKS)
+,NOME                          CHAR(40) NULLIF (NOME = BLANKS)
+,PASSWORD                      CHAR(15) NULLIF (PASSWORD = BLANKS)
+,ID_SETTORE                    CHAR(20) NULLIF (ID_SETTORE = BLANKS)
+,ID_RUOLO                      CHAR(20) NULLIF (ID_RUOLO = BLANKS)
+,LINGUA                        CHAR(2) NULLIF (LINGUA = BLANKS)
+,E_MAIL                        CHAR(100) NULLIF (E_MAIL = BLANKS)
+,ROWS_PER_PAGE                 DECIMAL EXTERNAL(9) NULLIF (ROWS_PER_PAGE = BLANKS)
+,"DATA"                        CHAR(29) NULLIF ("DATA" = BLANKS) "TO_DATE(SUBSTR(:\"DATA\",1,10),'YYYY-MM-DD')"
+,LIVELLO                       DECIMAL EXTERNAL(2) NULLIF (LIVELLO = BLANKS)
+,ORA                           NULLIF (ORA = BLANKS) "SUBSTR(:\"DATA\",12,8)"
+)
+
+
+Per questo file la colonna data è stata indicata tra "" perchè è una parola
+riservata di sql*loader.
+E' stata applicata una function alla colonna data perchè sul file era presente
+come lo scarico di un timestamp:
+
+2004-01-07 16:00:50.666049+01
+
+Tale dato non corrisponde a nessun campo date valido.
+Per questo motivo abbiamo applicato la function to_date(substr...
+Notare che per riferirsi al valore cui applicare la function abbiamo usato i :
+Notare che la function è stata scritta tra "".
+In sequenza sqlloader esegue; nullif, function, insert sul db.
+
+Notare che la colonna ora non era presente sul sequenziale, ma è stata ricavata
+dalla colonna data del sequenziale. Tali colonne devono essere messe in fondo
+al file ctl.
+
+Per un successivo scarico e ricarico da oracle vanno modificate:
+1) omettere characterset utf8, viene acquisito in automatico quello
+   della sessione.
+2) aggiungere rtrim per ogni campo varchar perche' oracle fa rtrim in
+   automatico solo dei campi char.

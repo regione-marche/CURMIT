@@ -1,0 +1,92 @@
+ad_library {
+
+    Holders Procs.
+
+    @author claudio.pasolini@comune.mantova.it
+    @cvs-id $Id:
+
+}
+
+namespace eval wal {}
+
+ad_proc -public wal::prepare {
+    {-shipping_date "20081120"}
+    {-shipping_no "001"}
+} { 
+} {
+
+    # imposto i caratteri CR e LF di terminazione riga
+    set CRLF \x0d\x0a
+
+    # imposto intestazione Cestec
+    set body_header   [ah::rpad {Cestec S.p.A.} 24 { }]
+    set body_header_2 [string repeat " " 24]
+
+    # imposto provenienza
+    set source_id [db_string source "select source_id from wal_sources where source_name = 'CURIT MAN'"]
+
+    # imposto nome file di carico
+    set filename "CESTC${shipping_date}_${shipping_no}.DLD"
+
+    # preparo record di testa (header)
+    set header "0[ah::rpad $filename 32 { }]$shipping_date$CRLF"
+
+    # apro file e scrivo header
+    set fd [open [ah::package_root -package_key wallet]/lotto/tmp/$filename w]
+    puts -nonewline $fd $header
+
+	# imposto contatore
+	set ctr 0
+
+	# individuo i titolari da ricaricare
+	set holders [db_list query "select holder_id from wal_holders where filename='CESTC20081120_001.DLD'"]
+         
+	set changed_holders [db_list_of_lists -dbn curit changed "
+        select 
+            maintainer_id
+           ,rpad(substr(name,  1, 24), 24, ' ')
+           ,rpad(substr(name, 25, 24), 24, ' ')
+           ,rpad(substr(name, 49, 24), 24, ' ') 
+           ,rpad(substr(name, 73, 24), 24, ' ')
+           ,case 
+             when iva_code is not null then rpad(iva_code, 16, ' ')
+             else fiscal_code
+            end 
+           ,wallet_id
+           ,name
+           ,fiscal_code as fc
+           ,iva_code as ic
+           ,city
+        from iter_maintainers
+        where maintainer_id in ([join $holders ,])"]
+
+	foreach changed_holder $changed_holders {
+
+	    incr ctr
+
+	    # decodifico
+	    util_unlist $changed_holder maintainer_id name1 name2 name3 name4 fiscal_code wallet_id name fc ic city
+
+	    # preparo record di dettaglio per Lottomatica
+	    set detail "R$body_header$body_header_2${wallet_id}M$name1$name2$name3$name4$fiscal_code$CRLF"
+
+	    # scrivo record dettaglio
+	    puts -nonewline $fd $detail
+	    
+	}
+
+
+    # preparo record di coda (footer)
+    incr ctr 2 ; # devo contare anche i record di testa e di coda
+    set footer "9$shipping_date[ah::lpad $ctr 9 0][string repeat { } 51]$CRLF"
+
+    # scrivo footer
+    puts -nonewline $fd $footer
+
+    # chiudo file di carico
+    close $fd
+
+    return $ctr
+
+}
+

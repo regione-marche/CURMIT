@@ -1,0 +1,43 @@
+-- Ho dovuto usare rtrim perchè postgres non accettava che sottraessi 1 quando si mette la view
+-- in join con la tabella coimprof
+create view coimuten as
+select id_utente
+     , cognome
+     , nome
+     , password
+     , rtrim(substr(group_name,1,pos_primo_spazio))::varchar(20)                       as id_settore
+     , rtrim(substr(group_name,pos_primo_spazio + 1,lun_seconda_stringa))::varchar(20) as id_ruolo
+     , lingua
+     , e_mail
+     , rows_per_page
+     , data
+     , substr(group_name,pos_primo_spazio + lun_seconda_stringa + 1)::numeric(1) as livello
+  from (
+    select a.username       as id_utente
+         , c.last_name      as cognome
+         , c.first_names    as nome
+         , a.password       as password
+         , lower(e.group_name)     as group_name
+	 , instr(e.group_name,' ') as pos_primo_spazio
+         , instr(substr(e.group_name
+                       ,instr(e.group_name,' ') + 1
+                       )
+                ,' ')              as lun_seconda_stringa
+         , 'it'::varchar(2) as lingua        -- non serve
+         , b.email          as e_mail
+         , 30::numeric(8)   as rows_per_page -- bisogna attivare un nuovo campo
+         , date(a.password_changed_date) + 91 as data -- ora non è più usata
+    
+      from users    a
+         , parties  b
+         , persons  c
+         , acs_rels d
+         , groups   e
+     where b.party_id      = a.user_id
+       and c.person_id     = b.party_id
+       and d.rel_type      = 'membership_rel'
+       and d.object_id_two = a.user_id
+       and d.object_id_one > 0
+       and e.group_id      = d.object_id_one
+) result_table1
+;

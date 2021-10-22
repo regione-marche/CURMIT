@@ -1,0 +1,31 @@
+--OPTIONS(DIRECT=TRUE)
+LOAD DATA
+CHARACTERSET UTF8
+INTO TABLE coimcitt
+REPLACE
+FIELDS TERMINATED BY '|'
+TRAILING NULLCOLS
+(COD_CITTADINO                 CHAR(8) NULLIF (COD_CITTADINO = BLANKS)
+,NATURA_GIURIDICA              CHAR(1) NULLIF (NATURA_GIURIDICA = BLANKS)
+,COGNOME                       CHAR(100) NULLIF (COGNOME = BLANKS)
+,NOME                          CHAR(100) NULLIF (NOME = BLANKS)
+,INDIRIZZO                     CHAR(40) NULLIF (INDIRIZZO = BLANKS)
+,NUMERO                        CHAR(8) NULLIF (NUMERO = BLANKS)
+,CAP                           CHAR(5) NULLIF (CAP = BLANKS)
+,LOCALITA                      CHAR(40) NULLIF (LOCALITA = BLANKS)
+,COMUNE                        CHAR(40) NULLIF (COMUNE = BLANKS)
+,PROVINCIA                     CHAR(4) NULLIF (PROVINCIA = BLANKS)
+,COD_FISCALE                   CHAR(16) NULLIF (COD_FISCALE = BLANKS)
+,COD_PIVA                      CHAR(16) NULLIF (COD_PIVA = BLANKS)
+,TELEFONO                      CHAR(15) NULLIF (TELEFONO = BLANKS)
+,CELLULARE                     CHAR(15) NULLIF (CELLULARE = BLANKS)
+,FAX                           CHAR(15) NULLIF (FAX = BLANKS)
+,EMAIL                         CHAR(35) NULLIF (EMAIL = BLANKS)
+,DATA_NAS                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_NAS = BLANKS)
+,COMUNE_NAS                    CHAR(40) NULLIF (COMUNE_NAS = BLANKS)
+,UTENTE                        CHAR(10) NULLIF (UTENTE = BLANKS)
+,DATA_INS                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_INS = BLANKS)
+,DATA_MOD                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_MOD = BLANKS)
+,UTENTE_ULT                    CHAR(10) NULLIF (UTENTE_ULT = BLANKS)
+,NOTE                          CHAR(4000) NULLIF (NOTE = BLANKS)
+)

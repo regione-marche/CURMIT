@@ -1,0 +1,55 @@
+D/admin////
+D/docu_dump////
+D/javascript////
+D/logo////
+D/maps////
+D/palm////
+D/regione////
+D/resources////
+D/src////
+D/srcpers////
+D/tabgen////
+D/temp////
+D/utenti////
+D/doc////
+/active-pages.tcl/1.2/Thu Aug 29 12:31:21 2019//
+/coimaimp-help.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/coimaimp-help.tcl/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/dynamic-menu-html.tcl/1.2/Thu Aug 29 12:31:21 2019//
+/dynamic-menu-yui.tcl/1.3/Thu Aug 29 12:31:21 2019//
+/dynamic-menu.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/dynamic-menu.tcl/1.3/Thu Aug 29 12:31:21 2019//
+/dynamic-menu.xql/1.1/Thu Aug 29 12:31:21 2019//
+/echo.html/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/ga.code/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/header.css/1.6/Thu Aug 29 12:31:21 2019//
+/header.css.prmn/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/index-oracle.xql/1.1/Thu Aug 29 12:31:21 2019//
+/index-postgresql.xql/1.1/Thu Aug 29 12:31:21 2019//
+/index.adp/1.1/Thu Aug 29 12:31:21 2019//
+/index.tcl/1.3/Thu Aug 29 12:31:21 2019//
+/logout.tcl/1.3/Thu Aug 29 12:31:21 2019//
+/main-oracle.xql/1.2/Thu Aug 29 12:31:21 2019//
+/main-postgresql.xql/1.2/Thu Aug 29 12:31:21 2019//
+/main.adp/1.8/Thu Aug 29 12:31:21 2019//
+/master-cmantova.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/master-cmantova.adp.20100419/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/master-cmantova_old.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/master-rlo.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/master-rlo.adp.20100419/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/master-single-sign-on.adp/1.1/Thu Aug 29 12:31:21 2019//
+/master-single-sign-on.tcl/1.1/Thu Aug 29 12:31:21 2019//
+/master.tcl/1.6/Thu Aug 29 12:31:21 2019//
+/save-coimtgen.dat/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/scheduled-procs.tcl/1.2/Thu Aug 29 12:31:21 2019//
+/selective-restore.tcl/1.2/Thu Aug 29 12:31:21 2019//
+/single-sign-on.adp/1.1/Thu Aug 29 12:31:21 2019//
+/stampe-help.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/stampe-help.tcl/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/standard-error.adp/1.1.1.1/Thu Aug 29 12:31:21 2019//
+/toggle-contrasto.tcl/1.1/Thu Aug 29 12:31:21 2019//
+/toggle-menu.tcl/1.2/Thu Aug 29 12:31:21 2019//
+/main.tcl/1.7/Thu Oct 22 14:22:30 2020//
+/master.adp/1.11/Thu Oct 22 14:23:51 2020//
+/single-sign-on.tcl/1.2/Thu Oct 22 14:24:25 2020//
+/standard-error.tcl/1.2/Mon Oct 26 13:42:09 2020//

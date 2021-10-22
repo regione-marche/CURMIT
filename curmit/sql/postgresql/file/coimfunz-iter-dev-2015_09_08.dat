@@ -1,0 +1,536 @@
+tdoc|gestione tipo documenti|secondario|coimtdoc-gest|tabgen/|
+tgen|Tabella dati generali|primario|coimtgen-gest|tabgen/|
+todo|Gestione scadenziario attivita'|secondario|coimtodo-gest|src/|
+todo|lista scadenziario attivita'|secondario|coimtodo-list|src/|
+todo|Scadenziario attivita'|primario|coimtodo-filter|src/|
+todo|stampa attivita' sospese|secondario|coimtodo-layout|src/|
+topo|gestione toponimo|primario|coimtopo-list|tabgen/|
+topo|gestione toponimo|secondario|coimtopo-gest|tabgen/|
+tpdo|tipologie to do|primario|coimtpdo-list|tabgen/|
+tpdo|tipologie to do|secondario|coimtpdo-gest|tabgen/|
+tpdu|Tipi uso edifici|primario|coimtpdu-list|tabgen/|
+tpdu|tipo uso edifici|secondario|coimtpdu-gest|tabgen/|
+user|Gestione utenti|primario|coimuten-list|utenti/|
+user|Gestione utenti|secondario|coimuten-gest|utenti/|
+utar|relazione aree utenti|primario|coimutar-list|tabgen/|
+utar|relazione aree utenti|secondario|coimutar-gest|tabgen/|
+viae|gestione viario|primario|coimviae-filter|tabgen/|
+viae|gestione viario|secondario|coimviae-gest|tabgen/|
+viae|gestione viario|secondario|coimviae-list|tabgen/|
+viar|relazione aree vie|primario|coimviar-list|tabgen/|
+viar|relazione aree vie|secondario|coimviar-gest|tabgen/|
+movi|Lista movimenti contabili|primario|coimmovi-list|src/|
+mtar|relazione area manutentori|primario|coimmtar-list|tabgen/|
+mtar|relazione aree manutentori|secondario|coimmtar-gest|tabgen/|
+opdi|disponibilita' verificatori|primario|coimopdi-list|src/|
+opdi|disponibilita' verificatori|secondario|coimopdi-gest|src/|
+opve|Gestione operatori verificatori|primario|coimopve-list|src/|
+opve|Gestione operatori verificatori|secondario|coimopve-gest|src/|
+paga|stampa pagamenti|primario|coimpaga-filter|src/|
+paga|stampa pagamenti|secondario|coimpaga-layout|src/|
+potenza|Gestiome potenza nominale|secondario|coimpote-gest|tabgen/|
+potenza|Lista potenza nominale|primario|coimpote-list|tabgen/|
+profili|Gestione profili|primario|coimprof-list|utenti/|
+profili|Gestione profili|secondario|coimprof-gest|utenti/|
+prog|gest progettisti|secondario|coimprog-gest|src/|
+prog|Lista progettisti|primario|coimprog-list|src/|
+prov|Gestione province|primario|coimprov-list|tabgen/|
+prov|Gestione province|secondario|coimprov-gest|tabgen/|
+prvv|Gestione provvedimenti|secondario|coimprvv-gest|src/|
+prvv|Lista provvedimenti|primario|coimprvv-list|src/|
+prvv|Stampa notifica provvedimento|secondario|coimprvv-docu|src/|
+qrar|relazione comuni vie|primario|coimqrar-list|tabgen/|
+qrar|relazione quartieri aree|secondario|coimqrar-gest|tabgen/|
+regi|Gestione regioni|primario|coimregi-list|tabgen/|
+regi|Gestione regioni|secondario|coimregi-gest|tabgen/|
+relg|Gestione relazione biennale|secondario|coimrelg-gest|src/|
+relg|gestione scheda tecnica del rapporto biennale|secondario|coimrelt-gest|src/|
+relg|gestione scheda tecnica del rapporto biennale|secondario|coimrelt-list|src/|
+relg|Lista relazione biennale|primario|coimrelg-list|src/|
+relg|Scarico scheda generale della relazione biennale|secondario|coimrelg-scar|src/|
+relg|Scarico scheda tecnica della relazione biennale|secondario|coimrelt-scar|src/|
+relg|stampa-Gestione relazione biennale|secondario|coimrelg-layout|src/|
+rgen|gestione ragruppamenti enti responsabili|secondario|coimrgen-gest|tabgen/|
+rgen|lista ragruppamenti enti responsabili|primario|coimrgen-list|tabgen/|
+rifs|storico soggetti interessati|primario|coimrifs-list|src/|
+rifs|storico soggetti interessati|secondario|coimrifs-gest|src/|
+rift|storico tecnici coinvolti|primario|coimrift-list|src/|
+rift|storico tecnici coinvolti|secondario|coimrift-gest|src/|
+ruoli|Gestione Ruoli|primario|coimruol-list|utenti/|
+ruoli|Gestione Ruoli|secondario|coimruol-gest|utenti/|
+settori|Gestione settori|primario|coimsett-list|utenti/|
+settori|Gestione settori|secondario|coimsett-gest|utenti/|
+stat2|statistiche periodiche|primario|coimsta2-filter|src/|
+stat2|statistiche report periodici|secondario|coimsta2-layout|src/|
+stat-aimp|statistica impianti per applicazioni locali|primario|coimstat-aimp-filter|src/|
+stat-aimp|statistica impianti per applicazioni locali|secondario|coimstat-aimp-gest|src/|
+stat-cimp|statistiche rapporti di verifica|primario|coimstat-cimp-filter|src/|
+stat-cimp|statistiche rapporti di verifica|secondario|coimstat-cimp-gest|src/|
+stat-dimp|statistica modelli h per applicazioni locali|primario|coimstat-dimp-filter|src/|
+stat-dimp|statistica modelli h per applicazioni locali|secondario|coimstat-dimp-gest|src/|
+stat-veri|Stampa statistica verifiche|primario|coimstat-veri-gest|src/|
+stav|Stampa avvisi di verifica|primario|coimstav-filter|src/|
+stes|Riepilogo situazione incontri|primario|coimstes-filter|src/|
+stes|Riepilogo situazione incontri|secondario|coimstes-gest|src/|
+stev|Stampa esiti delle verifiche|primario|coimstev-filter|src/|
+stev|Stampa esiti delle verifiche|secondario|coimstev-layout|src/|
+stin|Stampa elenco appuntamenti|primario|coimstin-filter|src/|
+stin|Stampa elenco appuntamenti|secondario|coimstin-layout|src/|
+stpm2|Selezione Stampa|primario|coimstpm-menu|src/|
+stpm2|Stampa Documento|secondario|coimstpm-prnt|src/|
+stpm|Gestione Modelli di Stampa|secondario|coimstpm-gest|src/|
+stpm|Modelli di Stampa|primario|coimstpm-list|src/|
+stub|storico ubicazioni|primario|coimstub-list|src/|
+stub|storico ubicazioni|secondario|coimstub-gest|src/|
+tano|Gestione tipo anomalie|primario|coimtano-list|tabgen/|
+tano|Gestione tipo anomalie|secondario|coimtano-gest|tabgen/|
+tari|gestione tariffe|secondario|coimtari-gest|tabgen/|
+tari|lista tariffe|primario|coimtari-list|tabgen/|
+tcar|relazione aree tecnici|primario|coimtcar-list|tabgen/|
+tcar|relazione aree tecnici|secondario|coimtcar-gest|tabgen/|
+tdoc|gestione tipo documenti|primario|coimtdoc-list|tabgen/|
+gage|gestione agenda manutentori|secondario|coimgage-list|src/|
+gage-palm|Gestione agenda manutentori su palmari|primario|coimgage-list-palm|palm/|
+gage-palm|Gestione agenda manutentori su palmari|secondario|coimgage-gest-palm|palm/|
+impianti|filtro impianti|primario|coimaimp-filter|src/|
+enti|gestione enti competenti|secondario|coimenti-layout|tabgen/|
+enti|gestione enti competenti|secondario|coimenti-list|tabgen/|
+impianti|Gestione Impianti|secondario|coimaimp-gest|src/|
+impianti|gestione soggetti di impianto|secondario|coimaimp-sogg|src/|
+impianti|gestione soggetti|secondario|coimaimp-tecn|src/|
+impianti|gestione ubicazione impianti|secondario|coimaimp-ubic|src/|
+impianti|Lista impianti|secondario|coimaimp-list|src/|
+impianti|scarico lista impianti|secondario|coimaimp-list-csv|src/|
+impianti|Scheda tecnica impianto|secondario|coimaimp-sche|src/|
+impianti-ver|gestione contratti per verificatori|secondario|coimaimp-cont-gest|src/|
+enve|Gestione enti verificatori|primario|coimenve-list|src/|
+impianti-ver|gestione impianti per verificatori|secondario|coimaimp-gest|src/|
+impianti-ver|gestione impianti per verificatori|secondario|coimaimp-sche|src/|
+impianti-ver|gestione impianti per verificatori|secondario|coimaimp-sogg|src/|
+impianti-ver|gestione impianti per verificatori|secondario|coimaimp-tecn|src/|
+impianti-ver|gestione impianti per verificatori|secondario|coimaimp-ubic|src/|
+inco-cari|Caricamento controlli/impianti da file esterno|primario|coiminco-cari-gest|src/|
+incontro|Gestione appuntamenti|primario|coiminco-filter|src/|
+incontro|Gestione appuntamenti|secondario|coiminco-gest|src/|
+incontro|Gestione appuntamenti|secondario|coiminco-list|src/|
+inco-stav|Stampa multipla avvisi di verifica|primario|coimstav-filter|src/|
+inco-stav|Stampa multipla avvisi di verifica|secondario|coimstav-layout|src/|
+inco-stav|Stampa multipla avvisi di verifica|secondario|coimstav-list|src/|
+ins-funz|Inserimento nuove funzioni|primario|coimfunz-list|utenti/|
+ins-funz|Inserimento nuove funzioni|secondario|coimfunz-gest|utenti/|
+insmodf|inserimento modello F|primario|coimdimp-ins-filter|src/|flag_tracciato=F
+insmodf|inserimento modello F|secondario|coimdimp-ins-gest|src/|
+insmodf|inserimento modello F|secondario|coimdimp-ins-list|src/|
+insmodg|inserimento modello G|primario|coimdimp-ins-filter|src/|flag_tracciato=G
+insmodg|inserimento modello G|secondario|coimdimp-ins-gest|src/|
+insmodg|inserimento modello G|secondario|coimdimp-ins-list|src/|
+insmodhbis|inserimento modello h bis|primario|coimdimp-ins-filter|src/|flag_tracciato=HB
+insmodhbis|inserimento modello H bis|secondario|coimdimp-ins-gest|src/|
+insmodhbis|inserimento modello H bis|secondario|coimdimp-ins-list|src/|
+insmodh|Inserimento modello H|primario|coimdimp-ins-filter|src/|flag_tracciato=H
+insmodh|inserimento mod H lista per fusione|secondario|coimdimp-ins-gest|src/|
+insmodh|inserimento mod H lista per fusione|secondario|coimdimp-ins-list|src/|
+ins-ogge|Inserimento nuovi oggetti|primario|coimogge-list|utenti/|
+ins-ogge|Inserimento nuovi oggetti|secondario|coimogge-gest|utenti/|
+insrapp|Inserimento rapporto di verifica|primario|coimcimp-ins-filter|src/|
+insrapp|lista ins rapporti di verifica + bonifica impianti|secondario|coimcimp-ins-gest|src/|
+enti|gestione enti competenti|secondario|coimenti-gest|tabgen/|
+insrapp|lista ins rapporti di verifica + bonifica impianti|secondario|coimcimp-ins-list|src/|
+isrt2|Inserimento nuovo impianto (semplificato)|primario|coimaimp-isrt2|src/|
+conn-file|Connettori|primario|coimcari-all-file|src/|
+logout|Logout|primario|logout|./|
+mai2|selezione per aquisizione impianto esistente (per manutentore)|primario|coimmai2-filter|src/|
+maim|lista impianti per manutentori|secondario|coimmaim-list|src/|
+maim|selezione impianti per manutentori|primario|coimmaim-filter|src/|
+main|cambio password|secondario|coimcpwd-gest|utenti/|
+main|Menu principale|primario|main|./|
+manutentori|Gestione Ditte Manutentrici|secondario|coimmanu-gest|src/|
+manutentori|Gestione manutentori|primario|coimmanu-filter|src/|
+manutentori|Lista Ditte Manutentori|secondario|coimmanu-list|src/|
+manutentori|scarico lista manutentori|secondario|coimmanu-list-csv|src/|
+mnu|Gestione Menu|primario|coimmenu-list|utenti/|
+mnu|Gestione Menu|secondario|coimmenu-gest|utenti/|
+mov2|Gestione pagamenti|primario|coimmov2-filter|src/|
+mov2|gestione pagamenti - scarico csv|secondario|coimmov2-scar|src/|
+mov2|Gestione pagamenti|secondario|coimmov2-gest|src/|
+mov2|Gestione pagamenti|secondario|coimmov2-list|src/|
+mov2|Gestione pagamenti - stampa|secondario|coimmov2-layout|src/|
+movi|Gestione movimenti contabili|secondario|coimmovi-gest|src/|
+cimp|Gestione rapporti di verifica: mancata verifica|secondario|coimcimp-manc-gest|src/|
+cimp|Gestione rapporti di verifica|primario|coimcimp-filter|src/|
+cimp|Gestione rapporti di verifica|secondario|coimcimp-gest|src/|
+cimp|Gestione rapporti di verifica|secondario|coimcimp-layout|src/|
+cimp|Gestione rapporti di verifica|secondario|coimcimp-list|src/|
+cimp|selezione generatore per inserimento Rapporto di Verifica|secondario|coimcimp-gend-list|src/|
+cinc|Campagne di controllo|primario|coimcinc-list|src/|
+cinc|campagne di controllo|secondario|coimcinc-gest|src/|
+cittadini|Gestione cittadini|primario|coimcitt-filter|src/|
+cittadini|Gestione cittadini|secondario|coimcitt-gest|src/|
+cittadini|Lista|secondario|coimcitt-list|src/|
+citt-isrt|inserimento soggetti|primario|coimcitt-isrt|src/|
+combustibile|Tipi di combustibile|primario|coimcomb-list|tabgen/|
+combustibile|Tipi di combustibile|secondario|coimcomb-gest|tabgen/|
+comuni|Gestione comuni|primario|coimcomu-list|tabgen/|
+comuni|Gestione comuni|secondario|coimcomu-gest|tabgen/|
+costruttori|Gestione costruttori|secondario|coimcost-gest|tabgen/|
+costruttori|Lista costruttori|primario|coimcost-list|tabgen/|
+cuar|relazione aree aree-urbane|primario|coimcuar-list|tabgen/|
+cuar|relazione aree aree-urbane|secondario|coimcuar-gest|tabgen/|
+cvie|compattamento vie|secondario|coimcvie-gest|src/|
+cvie|filtro compattazione vie|primario|coimcvie-filter|src/|
+cvie|filtro compattazione vie|secondario|coimcvie-list|src/|
+datigen|Dati generatore|primario|coimgend-list|src/|
+datigen|Dati generatore|secondario|coimgend-gest|src/|
+desc|gestione dat dell'ente competente|primario|coimdesc-gest|tabgen/|
+dimp|dati impianto|primario|coimdimp-list|src/|
+dimp|dati impianto|secondario|coimdimp-gest|src/|
+dimp|gestione modello F|secondario|coimdimp-f-gest|src/|
+dimp|gestione modello G|secondario|coimdimp-g-gest|src/|
+dimp|gestione modello H Bis|secondario|coimdimp-hb-gest|src/|
+dimp|gestione modello H|secondario|coimdimp-h-gest|src/|
+dimp-palm|gestione modelli h per palmare|secondario|coimdimp-gest-palm|palm/|
+dimp-palm|gestione modelli h per palmare|secondario|coimdimp-layout-palm|palm/|
+dimp|selezione generatori|secondario|coimdimp-gend-list|src/|
+dimp|Stampa modello H|secondario|coimdimp-layout|src/|
+dispo|gestione disponibilita verificatore|primario|coimdisp-filter|src/|
+dispo|gestione disponibilita verificatore|secondario|coimdisp-list|src/|
+distributori|Gestione distributori|secondario|coimdist-gest|src/|
+distributori|Lista Distributori|primario|coimdist-list|src/|
+docu|filtro sui documenti|primario|coimdocu-filter|src/|
+docu|Gestione documenti|secondario|coimdocu-gest|src/|
+docu|Gestione documenti|secondario|coimdocu-list|src/|
+docu-ins|Inserimento documenti|primario|coimdocu-gest|src/|funzione=I
+enre|gestione enti responsabili|secondario|coimenre-gest|tabgen/|
+enre|lista enti responsabili|primario|coimenre-list|tabgen/|
+enrg|Relazione Raggruppamenti / Enti|primario|coimenrg-list|tabgen/|
+enrg|Relazione Raggruppamenti / Enti|secondario|coimenrg-gest|tabgen/|
+stat3|stampa statistica|primario|coimsta3-filter|src/|
+docu-dist|Lista distinte di consegna modelli H|primario|coimdocu-dist-list|src/|
+docu-dist|Lista Modelli H per Creazione distinta|secondario|coimdocu-dist-dimp-list|src/|
+docu-dist|Stampa distinta di consegna modelli H|secondario|coimdocu-dist-layout|src/|
+enve|Gestione enti verificatori|secondario|coimenve-gest|src/|
+esit|Consultazione lavori terminati|primario|coimesit-list|src/|
+esit|Gestione lavori terminati|secondario|coimesit-gest|src/|
+essi|Estrazione singolo impianto per controllo|primario|coimaimp-filter|src/|
+essi|Estrazione singolo impianto per controllo|secondario|coimessi-gest|src/|
+estr|Estrazione impianti per controlli|primario|coimestr-filter|src/|
+estr|Estrazione impianti per controlli|secondario|coimestr-gest|src/|
+estr|Estrazione impianti per controlli|secondario|coimestr-list|src/|
+fatt_csv|Scarico Fatture in csv|primario|coimfatt-csv-filter|src/|
+fatt_csv|Scarico Fatture in csv|secondario|coimfatt-csv|src/|
+fatt|fattura bollini|primario|coimfatt-filter|src/|
+fatt|fattura bollini|secondario|coimfatt-gest|src/|
+fatt|fattura bollini|secondario|coimfatt-list|src/|
+fatt|stampa fattura bollini|secondario|coimfatt-layout|src/|
+gage|gestione agenda manutentori|primario|coimgage-filter|src/|
+gage|gestione agenda manutentori|secondario|coimgage-gest|src/|
+gage|gestione agenda manutentori|secondario|coimgage-isrt|src/|
+dimp|stammpa allegato F|secondario|coimdimp-f-layout|src/|
+dimp|stammpa allegato G|secondario|coimdimp-g-layout|src/|
+scar-aimp|Scarico impianti|primario|coimscar-aimp-filter|src/|
+trsp|gestione terzo responsabile|primario|coimtrsp-filter|src/|
+stat3|stampa statistica|secondario|coimsta3-layout|src/|
+stev|Stampa esiti delle verifiche|secondario|coimstev-list|src/|
+stat4|stampa statistica|primario|coimsta4-filter|src/|
+cimp|scheda rilievo per centrali metano|secondario|coimsrcm-gest|srcpers/PTN|
+cimp|scheda rilievo per depositi di gasolio|secondario|coimsrcg-gest|srcpers/PTN|
+stat4|stampa statistica|secondario|coimsta4-layout|src/|
+trsp|gestione terzo responsabile|secondario|coimtrsp-gest|src/|
+trsp|gestione terzo responsabile|secondario|coimtrsp-list|src/|
+anom|Gestione anomalie|primario|coimanom-list|src/|
+anom|Gestione anomalie|secondario|coimanom-gest|src/|
+anrg|Relazione Anomalie / Raggruppamenti Enti|primario|coimanrg-list|tabgen/|
+aree|Gestione aree geografiche|primario|coimarea-list|tabgen/|
+aree|Gestione aree geografiche|secondario|coimarea-gest|tabgen/|
+aree|gestione comuni correlati all'area|secondario|coimcmar-gest|tabgen/|
+asse|assegnazione multipla appuntamenti|primario|coiminco-asse-filter|src/|
+asse|assegnazione multipla appuntamenti|secondario|coiminco-asse-gest|src/|
+batc|Consultazione coda lavori|primario|coimbatc-list|src/|
+batc|Gestione coda lavori|secondario|coimbatc-gest|src/|
+bimp|bonifica impianti|primario|coimbimp-filter|src/|
+bimp|bonifica impianti|secondario|coimbimp-gest|src/|
+bimp|bonifica impianti|secondario|coimbimp-list|src/|
+bman|bonifica manutentori|primario|coimbman-filter|src/|
+bman|bonifica manutentori|secondario|coimbman-gest|src/|
+bman|bonifica manutentori|secondario|coimbman-list|src/|
+bollini|Filtro bollini per amministrazione|primario|coimboll-filter|src/|
+bollini|Gestione bollini manutentore|secondario|coimboll-gest|src/|
+bollini|gestione bollini - scarico csv|secondario|coimboll-scar|src/|
+bollini|gestione bollini - stampa|secondario|coimboll-layout|src/|
+bollini|Lista bollini manutentore|secondario|coimboll-list|src/|
+boll-ins|inserimento bollini|primario|coimboll-gest|src/|funzione=I
+bsog|bonifica soggetti|primario|coimbsog-filter|src/|
+bsog|bonifica soggetti|secondario|coimbsog-gest|src/|
+bsog|bonifica soggetti|secondario|coimbsog-list|src/|
+car4|Caricamento dati|primario|coimcar4-gest|src/|
+scar-parm|Scarica parametri|primario|coimscar-parm-filter|src/|
+listini-test|Testate listini vendita|secondario|coimlist-gest|tabgen/|
+listini-test|Testate listini vendita|primario|coimlist-list|tabgen/|
+scar-aimp|Scarico impianti|secondario|coimscar-aimp-gest|src/|
+veta|tariffe verificatori|primario|coimveta-filter|src/|
+veta|tariffe verificatori|secondario|coimveta-layout|src/|
+scar-parm|Scarica parametri|secondario|coimscar-parm-gest|src/|
+scar-cimp|Scarico rapporti|primario|coimscar-cimp-filter|src/|
+scar-cimp|Scarico rapporti|secondario|coimscar-cimp-gest|src/|
+scar-dimp|Scarico autocertificazioni|primario|coimscar-dimp-filter|src/|
+scar-dimp|Scarico autocertificazioni|secondario|coimscar-dimp-gest|src/|
+curb|gestione unita urbane|primario|coimcurb-list|tabgen/|
+scar-file|Scarico tabelle completo|secondario|coimscar-file|src/|
+regsub-file|RegSub file connettori|primario|coimcari-regsub-file|src/|
+scar-all|Scarico tabelle|primario|coimscar-all-filter|src/|
+cari-files|Caricamento connettori|primario|coimcari-files|src/|
+cari-report|Report connettori|primario|coimcari-report|src/|
+coimcari-bonif|Bonifica dati connettori|primario|coimcari-bonifica|src/|
+dati-contr|Analisi dati|primario|coimcari-dati|src/|
+accesso-enti|Login automatico al sito dell'ente della regione|secondario|accesso-enti-gest|regione/|
+accesso-enti|Accesso agli enti della regione|primario|accesso-enti-list|regione/|
+report-dat|Report caricamento|primario|coimcari-report-dat|src/|
+aimp-cari|Caricamento impianti da file esterno|primario|coimaimp-cari-gest|src/|
+rife|Selezione riferimento bollino|primario|coimrife-filter|src/|
+rife|Selezione riferimento bollino|secondario|coimrife-gest|src/|
+sobo|Stampa sollecito bollettini|secondario|coimsobo-layout|src/|
+sobo|Stampa sollecito bollettini|primario|coimsobo-list|src/|
+isrt_veloce|inserimento veloce scheda tecnica|primario|coimaimp-ins-filter|src/|
+isrt_veloce|inserimento veloce scheda tecnica|secondario|coimaimp-ins-gest|src/|
+isrt_veloce|inserimento veloce scheda tecnica|secondario|coimaimp-ins-list|src/|
+isrt_veloce|inserimento veloce scheda tecnica|secondario|coimaimp-isrt-veloce|src/|
+curb|gestione unita urbane|secondario|coimcurb-gest|tabgen/|
+cqua|gestione quartieri|secondario|coimcqua-gest|tabgen/|
+cqua|gestione quartieri|primario|coimcqua-list|tabgen/|
+valid-inco|Verifica dati relativi ai verificatori|primario|coimcari-inco|src/|
+scar-small|Scarico di coimimpr|secondario|coimscar-small|src/|
+impianti|Collegamento con Google Maps|secondario|coimaimp-maps|src/|
+dimp|gestione allegato IX|secondario|coimnove-gest|src/|
+dimp|gestione allegato IX|secondario|coimnove-layout|src/|
+noin|Lista motivi annullamento incontro|primario|coimnoin-list|tabgen/|
+noin|Gestione motivi annullamento incontro|secondario|coimnoin-gest|tabgen/|
+stat5|Statistica incontri|primario|coimsta5-filter|src/|
+stat5|Statistica incontri|secondario|coimsta5-layout|src/|
+incontro|modifica veloce data e ora incontro|secondario|coiminco-data-ora|src/|
+incontro|storico incontro|secondario|coiminco-st-list|src/|
+incontro|storico incontro|secondario|coiminco-st-gest|src/|
+opma|Gestione manutentori|primario|coimopma-list|src/|
+opma|Gestione manutentori|secondario|coimopma-gest|src/|
+ragr|Funzione raggruppamenti per i pesi dei modelli|primario|coimragr-list|tabgen/|
+ragr|Gestione Raggruppamenti per pesi|secondario|coimragr-gest|tabgen/|
+pesi|Gestione pesi|primario|coimpesi-list|tabgen/|
+pesi|gestione pesi|secondario|coimpesi-gest|tabgen/|
+sta6|stampa pesi|primario|coimsta6-filter|src/|
+sta6|stampa pesi|secondario|coimsta6-layout|src/|
+sta8|Stampa lista bollini non pagati|primario|coimsta8-filter|src/|
+sta8|Stampa lista bollini non pagati|secondario|coimsta8-layout|src/|
+stpm-da-app|Selezione Stampa|primario|coimstpm-menu-da-app|src/|
+stpm-da-app|Selezione Stampa|secondario|coimstpm-prnt-da-app|src/|
+tpbl|Tipi bollino|primario|coimtpbl-list|tabgen/|
+tpbl|Tipi bollino|secondario|coimtpbl-gest|tabgen/|
+imst|Lista stati impianto|primario|coimimst-list|tabgen/|
+imst|Gestione stati impianto|secondario|coimimst-gest|tabgen/|
+stco|conta impianti/mod. h|primario|coimstco-filter|src/|
+stco|conta impianti/mod. h|secondario|coimstco-gest|src/|
+isrt_manu|Inserimento scheda tecnica manutentori|primario|coimaimp-isrt-manu|src/|
+cari-manu|Caricamento Impianti per manutentori|primario|coimcari-manu-gest|src/|
+scar_docu|scarica docu estesa|secondario|coimscar-docu-gest-est|src/|
+scar_docu|scarica docu|secondario|coimscar-docu-gest|\r\nsrc/|
+docu-dist|stampa|secondario|coimdocu-gest|src/|
+bcos|bonifica costruttori|primario|coimbcos-filter|src/|
+bcos|bonifica costruttori|secondario|coimbcos-list|src/|
+bcos|bonifica cotruttori|secondario|coimbcos-gest|src/|
+bcom|bonifica combustibili|primario|coimbcom-filter|src/|
+bcom|bonifica combustibili|secondario|coimbcom-list|src/|
+bcom|bonifica combustibili|secondario|coimbcom-gest|src/|
+scar-viae|scarica viario|primario|coimscar-viae-filter|src/|
+scar-viae|scarica viario|secondario|coimscar-viae-gest|src/|
+scar_docu|scarico documenti|primario|coimscar-docu-filter|src/|
+cait-dist|Distinte per cait|primario|coimdocu-dist-list-cait|src/|
+cait-dist|stampa|secondario|coimdocu-gest|src/|
+cait-dist|distinta|secondario|coimdocu-dist-dimp-list-cait-filter|src/|
+cait-dist|distinta|secondario|coimdocu-dist-dimp-list-cait|src/|
+cait-dist|distinta|secondario|coimdocu-dist-cait-layout|src/|
+dimp-scar|Selezione per Esportazione Modelli H|primario|coimdimp-scar-filter|src/|
+iterman|caricamento per iterman|primario|coimcari-manu-new-gest|src/|
+asresp|alegati|primario|coim_as_resp-list|src/|
+asresp|allegato|secondario|coim_as_ammi-gest|src/|
+asresp|allegato|secondario|coim_as_manu-gest|src/|
+asresp|allegato|secondario|coim_as_resp-gest|src/|
+asresp|asresp|secondario|coim_as_resp-layout|src/|
+asresp-admin|asresp_admin|primario|coim_as_resp_admin-filter|src/|
+asresp-admin|coim_as_resp_admin|secondario|coim_as_resp_admin-list|src/|
+asresp-admin|asresp-admin|secondario|coimdimp-ins-gest|src/|
+asresp-admin|asresp-admin|secondario|coimdimp-ins-list|src/|
+insmodi-manu|allegato h|primario|coimdimp-ins-filter|src/|flag_tracciato=IMANU
+insmodi-manu|allegato h|secondario|coimdimp-ins-gest|src/|
+insmodi-manu|allegato h|secondario|coimdimp-ins-list|src/|
+insmodh-manu|allegato h|primario|coimdimp-ins-filter|src/|flag_tracciato=HMANU
+insmodh-manu|allegato h|secondario|coimdimp-ins-gest|src/|
+insmodh-manu|allegato h|secondario|coimdimp-ins-list|src/|
+insmodl-manu|insmodl-manu|primario|coimdimp-ins-filter|src/|flag_tracciato=LMANU
+insmodl-manu|insmodl-manu|secondario|coimdimp-ins-gest|src/|
+insmodl-manu|insmodl-manu|secondario|coimdimp-ins-list|src/|
+tp_pag|gestione tipi pagamento|primario|coimtp_pag-list|tabgen/|
+tp_pag|gestione tipi pagamento|secondario|coimtp_pag-gest|tabgen/|
+movi|pagamenti|secondario|coimmovi-paga-gest|src/|
+movi|pagamenti|secondario|coimsanz-ins|src/|
+stat-manu|statistica manutentori|primario|coimstat-manu-filter|src/|
+stat-manu|statistica manutentori|secondario|coimstat-manu-list|src/|
+impianti|altre vie|secondario|coim_multiubic-list|src/|
+impianti|altre vie|secondario|coim_multiubic-gest|src/|
+manuale-ammi|Manuale iter per Amministratori|primario|Manuale-funzionale-amministratori.pdf|src/|
+manuale-uten|Manuale iter per Utenti|primario|Manuale-funzionale-amministratori.pdf|src/|
+manuale-comu|Manuale iter per Comuni|primario|Manuale-funzionale-comuni.pdf|src/|
+manuale-manu|Manuale per manutentori|primario|Manuale-funzionale-manutentori.pdf|src/|
+manuale-veri|Manuale iter per Verificatori|primario|Manuale-funzionale-verificatori.pdf|src/|
+dimp|accettazione richiesta di storno dichiarazione|secondario|coimdimp-acc-storno|src/|
+dimp|Richiesta storno dichiarazione impianto|secondario|coimdimp-ric-storno|src/|
+dimp|Rifiuto richiesta di storno dichiarazione impianto |secondario|coimdimp-rif-storno|src/|
+pdc|pompa di calore|primario|coimpdc-ins-gest|src/|
+tele|allegato E3|primario|coimtele-ins-gest|src/|
+ammi-dist-all|Distinta Allegati AMMI|secondario|coimdocu-dist-allegati-ammi-layout|src/|
+ammi-dist-all|Distinta Allegati AMMI|primario|coimdocu-dist-list-allegati-ammi|src/|
+ammi-dist-all|Distinta Allegati AMMI|secondario|coimdocu-dist-allegati-list-ammi|src/|
+ammi-dist-all|Distinta Allegati AMMI|secondario|coimdocu-dist-allegati-gest|src/|
+docu-dist-all|Distinta Allegati|secondario|coimdocu-dist-allegati-gest|src/|
+docu-dist-all|Distinta Allegati|secondario|coimdocu-dist-allegati-layout|src/|
+docu-dist-all|Distinta Allegati|primario|coimdocu-dist-list-allegati|src/|
+docu-dist-all|Distinta Allegati|secondario|coimdocu-dist-allegati-list|src/|
+cari-modelli-g|caricamento modelli g|primario|coimcari-modelli-g-gest|src/|
+cari-modelli-g|correzione anomalie importazione|secondario|coimcorr-anom-gest|src/|
+cari-modelli-f|correzione anomalie importazione|secondario|coimcorr-anom-gest|src/|
+cari-modelli-f|Caricamento modelli F|primario|coimcari-modelli-f-gest|src/|
+dimp|Richiesta storno dichiarazione impianto|secondario|coimdimp-ricmot-storno|src/|
+stso|Stampa solleciti di Pagamento|primario|coimstso-filter|src/|
+stso|Stampa solleciti di Pagamento|secondario|coimstso-list|src/|
+stcu|Stampa comunicazioni utenti|primario|coimstcu-filter|src/|
+st_dimp_nc|Stampa Modelli non Conformi|primario|coimst_dimp_nc-filter|src/|
+stcu|Stampa comunicazioni utenti|secondario|coimstcu-list|src/|
+stat10|Stampa Impianti inseriti|primario|coimsta10-filter|src/|
+stat10|Stampa Impianti inseriti|secondario|coimsta10-layout|src/|
+at_dimp_nc|Stampa Modelli Non Conformi|secondario|coimst_dimp_nc-layout|src/|
+st_dimp_nc|Stampa Modelli non Conformi|secondario|coimst_dimp_nc-layout|src/|
+strd|Stampa richiesta documentazione|primario|coimstrd-filter|src/|
+strd|Stampa richiesta documenti|secondario|coimstrd-list|src/|
+stpm-stat-opve|stampa statistiche tecnico verificatore|primario|coimstpm-stat-opve-filter|src/|
+stpm-stat-opve|stampa statistiche tecnico verificatore|secondario|coimstpm-stat-opve-layout|src/|
+stpm-cimp-tar|stampa statistiche amministrativo|primario|coimstpm-cimp-tar-filter|src/|
+stpm-cimp-tar|stampa statistiche amministrativo|secondario|coimstpm-cimp-tar-layout|src/|
+impianti|Visualizza storico impianto|secondario|coimaimp-st-gest|src/|
+stpm-stat-ma|stampa statistiche mancata verifica|primario|coimstpm-stat-ma-filter|src/|
+stpm-stat-ma|stampa statistiche amministrativo|secondario|coimstpm-stat-ma-layout|src/|
+stp1-dimp|Scarico modelli controllo orario congruo|secondario|coimstin1-export|src/|
+stp1-dimp|Estrazione modelli analisi orario congruo |primario|coimstin1-filter|src/|
+stp1-dimp|Stampa modelli controllo orario congruo|secondario|coimstin1-layout|src/|
+stp2-dimp|Scarico modelli con presenza osservazioni|secondario|coimstin2-export|src/|
+stp2-dimp|Stampa modelli presenza osservazioni|primario|coimstin2-filter|src/|
+stp2-dimp|Stampa modelli con presenza osservazioni|secondario|coimstin2-layout|src/|
+impianti|Lista Storico di un impianto|secondario|coimaimp-st-list|src/|
+impianti|Soggetti storico impianto|secondario|coimaimp-st-sogg|src/|
+impianti|storico|secondario|coimaimp-st-tecn|src/|
+impianti|Ubicazione storico|secondario|coimaimp-st-ubic|src/|
+stco1|Statistica dichiarazioni per campagna|primario|coimstco1-filter|src/|
+coimcind|Campagne dichiarazioni|primario|coimcind-list|tabgen/|
+coimcind|Campagne dichiarazioni|secondario|coimcind-gest|tabgen/|
+stco1|Statistica dichiarazioni per campagna|secondario|coimstco1-gest|src/|
+prot|Protocollo|primario|coimtppt-list|tabgen/|
+prot|Protocollo|secondario|coimtppt-gest|tabgen/|
+rfis|ricevuta bollini|primario|coimrfis-filter|src/|
+rfis|ricevuta bollini|secondario|coimrfis-gest|src/|
+rfis|stampa ricevuta bollini|secondario|coimrfis-layout|src/|
+rfis|ricevuta bollini|secondario|coimrfis-list|src/|
+rfis_csv|Scarico Ricevute in csv|secondario|coimrfis-csv|src/|
+rfis_csv|Scarico Ricevute in csv|primario|coimrfis-csv-filter|src/|
+cari-controlli|Caricamento rapporti di verifica|primario|coimcari-controlli|src/|
+scar|Scarico incontri|secondario|coiminco-scar|src/|
+scar|Scarico incontri|primario|coiminco-scfl|src/|
+rcar|Ricarico incontri|primario|coiminco-rcar|src/|
+carialle|Caricamento scansionati|primario|coimalle-cari|src/|
+coimalle|Allegati scansionati|primario|coimalle-list|src/|
+anom_d|Gestione anomalie da dichiarazioni|primario|coim_d_anom-list|src/|
+anom_d|Gestione anomalie da dichiarazioni|secondario|coim_d_anom-gest|src/|
+tano_d|Gestione tipo anomalie da dichiarazioni|primario|coim_d_tano-list|tabgen/|
+tano_d|Gestione tipo anomalie da dichiarazioni|secondario|coim_d_tano-gest|tabgen/|
+reco|Stampa riepilogo corrispettivi|primario|coimreco|src/|
+reco|Stampa riepilogo corrispettivi|secondario|coimreco-list|src|
+fatt-multi|fatture multiple bollini|primario|coimfatt-filter-multi|src/|
+fatt-multi|stampa multipla fatture bollini|secondario|coimfatt-layout multi|src/|
+rfis_multi|Stampa fatture multiple|primario|coimrfis-filter-multi|src/|
+rfis_multi|Stampa ricevute multiple|secondario|coimrfis-layout-multi|src/|
+carianomg|Caricamento anomalie mod. G|primario|iter-cari-anom-g|src/|
+reco_fatt|Stampa riepilogo fatture|primario|coimreco-fatt|src/|
+carialledimp|Caricamento scansionati e Mod. G|primario|coimalle-cari-dimp|src/|
+dimp|gestione allegato IX B|secondario|coimnoveb-gest|src/|
+dimp|gestione allegato IX B|secondario|coimnoveb-layout|src/|
+caus|Causali di pagamento|primario|coimcaus-list|tabgen/|
+caus|Causali di pagamento|secondario|coimcaus-gest|tabgen/|
+impianti|Inserimento allegato E della scheda imp. nei documenti ed esposizione|secondario|coimaimp-sch-allega-ed-esponi|src/|
+coimscar-anom|Scarico anomalie da dichiarazione|primario|coimscar-anom-filter|src/|
+stat284|Stampa riepilogativa 284|primario|coimsta284-filter|src/|
+stat284|Stampa riepilogativa 284|secondario|coimsta284-layout|src/|
+coimscar-anom|Scarico anomalie da dichiarazione|secondario|coimscar-anom-gest|src/|
+coimtabs|gestione coimtabs|secondario|coimtabs-gest|src/|
+coimtabs|Gestione struttura file di caricamento massivo|primario|coimtabs-list|src/|
+dimp|Nuovi allegati|secondario|coimdimp-rct-gest|src/|
+dimp|Stampa allegati RCT|secondario|coimdimp-rct-layout|src/|
+stat-boll|Bollini usati|primario|coimstat-boll-usati-filter|src/|
+stat-boll|Bollini usati|secondario|coimstat-boll-usati-layout|src/|
+stat-boll-non|Bollini  non usati|primario|coimstat-boll-non-usati-filter|src/|
+stat-boll-non|Bollini  non usati|secondario|coimstat-boll-non-usati-layout|src/|
+stpm-dich|Riepilogo Dichiarazioni|primario|coimstpm-stat-dich-filter|src/|
+stpm-dich|Riepilogo Dichiarazioni|secondario|coimstpm-stat-dich-layout|src/|
+cout|Lista comuni associati ad un utente|secondario|coimcout-comu-list|utenti/|
+cout|Lista utenti per associazione comuni|primario|coimcout-list|utenti/|
+cout|Associazione comuni ad un utente|secondario|coimcout-gest|utenti/|
+targa|Stampa targa|primario|coimstpm-targ-filter|src/|
+targa|Stampa targa|secondario|coimstpm-targ-list|src/|
+targa|Stampa targa|secondario|coimstpm-targ-layout|src/|
+cimp|Scarico ispezioni|secondario|coimcimp-list-csv|src/|
+cimp|Stampa ispezioni|secondario|coimcimp-list-pdf|src/|
+isrt_manu_fr|Inserimento impianto di raffreddamento|primario|coimaimp-isrt-manu-fr|src/|
+tpco|Gestione tipi condizionatori|secondario|coimtpco-gest|tabgen/|
+tpco|Gestione tipi condizionatori|primario|coimtpco-list|tabgen/|
+flre|Fluido refrigerante|primario|coimflre-list|tabgen/|
+flre|Fluido refrigerante|secondario|coimflre-gest|tabgen/|
+stat-reg|Statitiche allegati|primario|coimstat-dimp-reg-filter|src/|
+stat-reg|Statitiche allegati|secondario|coimstat-dimp-reg-gest|src/|
+aces|coimaces-filter|primario|coimaces-filter|src/|
+aces| \tcoimaces-gest|secondario|coimaces-gest|src/|
+aces|coimaces-list|secondario|coimaces-list|src/|
+acts|coimacts-gest|secondario|coimacts-gest|src/|
+acts-isrt|coimacts-isrt|primario|coimacts-isrt|src/|
+acts|coimacts-list|primario|coimacts-list|src/|
+aces|coimaimp-aces-list|secondario|coimaimp-aces-list|src/|
+anrg|Relazione Anomalie / Raggruppamenti enti|secondario|coimanrg-gest|tabgen/|
+tmsg|Messaggi inviati|primario|coimtmsg-list|src/|
+tmsg|Messaggi inviati|secondario|coimtmsg-gest|src/|
+dmsg|Messaggi ricevuti|primario|coimdmsg-list|src/|
+dmsg|Messaggi ricevuti|secondario|coimdmsg-gest|src/|
+costruttori|Gestione modelli di un costruttore|secondario|coimmode-gest|tabgen/|
+costruttori|Lista modelli di un costruttore|secondario|coimmode-list|tabgen/|
+inco-cari2|Caricamento controlli/impianti da file esterno|primario|coiminco-cari2-gest|src/|
+inco_cari3|Caricamento controlli da file esterno (3)|primario|coiminco-cari3-gest|src/|
+cari_sche|Caricamento schede impianto|primario|coimaimp-cari-sche|src/|
+bollini|Gestione bollini manutentore|secondario|coimboap-list|src/|
+bollini|Gestione bollini manutentore|secondario|coimboap-gest|src/|
+dimp|Stampa allegato RCT del freddo|secondario|coimdimp-fr-layout|src/|
+dimp|Gestione RCEE gruppi frigo|secondario|coimdimp-fr-gest|src/|
+bman-imp|Bonifica manuten. senza agg. dich.|primario|coimbman-aimp-filter|src/|
+bman-imp|Bonifica manuten. senza agg. dich.|secondario|coimbman-aimp-gest|src/|
+bman-imp|Bonifica manuten. senza agg. dich.|secondario|coimbman-aimp-list|src/|
+coimdimp-dest|Spostemento dichiarazione|primario|coimdimp-dest|src/|
+impianti|Storico|secondario|coimgend-st-gest|src/|
+impianti|Storico|secondario|coimgend-st-list|src/|
+bpos|Gestione bollettini postali|primario|coimbpos-filter|src/|
+bpos|Gestione bollettini postali - scarico csv|secondario|coimbpos-scar|src/|
+bpos|Gestione bollettini postali|secondario|coimbpos-gest|src/|
+bpos|Gestione bollettini postali|secondario|coimbpos-list|src/|
+bpos|Gestione bollettini postali - stampa|secondario|coimbpos-layout|src/|
+boll-rila|Rilascio bollini|primario|coimboll-rila|src/|funzione=I
+cari-rcee-tipo-1|Caricamento RCEE di tipo 1 da file esterno|primario|coimcari-rcee-tipo-1-gest|src/|
+file-pagamenti-postali|File ricevuti dalle poste con i pagamenti|primario|coimfile-pagamenti-postali-filter|src/|
+file-pagamenti-postali|File ricevuti dalle poste con i pagamenti|secondario|coimfile-pagamenti-postali-list|src/|
+file-pagamenti-postali|File ricevuti dalle poste con i pagamenti|secondario|coimfile-pagamenti-postali-gest|src/|
+file-pagamenti-postali|File ricevuti dalle poste con i pagamenti|secondario|coimfile-pagamenti-postali-view|src/|
+impianti|Trattamento acqua|secondario|coimaimp-tratt-acqua-gest|src/|
+impianti|Regolazione e contabilizzazione del calore|secondario|coimaimp-regol-contab-gest|src/|
+coimdimp-data|Aggiornamento data|primario|coimdimp-data|src/|
+rifs|Stampa comunicazione|secondario|coimrifs-layout|src/|
+dimp|Gestione dich. di freq. ed elenco oper. di contr. e manut.|secondario|coimdope-aimp-gest|src/|
+dimp|Stampa dich. di freq. ed elenco oper. di contr. e manut.|secondario|coimdope-aimp-layout|src/|

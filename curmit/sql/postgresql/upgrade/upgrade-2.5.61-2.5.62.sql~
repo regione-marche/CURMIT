@@ -1,0 +1,865 @@
+ begin;
+
+--L'upgrade aggiunge il parametro tabella_caricamento_rcee_tipo_1
+
+--Luca R. sdoppiamento del menù "Selezione impianto con dichiarazione in scadenza".
+insert into coimfunz 
+select 'maim-dich'
+     , desc_funz
+     , tipo_funz 
+     , dett_funz
+     , azione
+     , 'tipo_filtro=DICH'
+  from coimfunz 
+ where nome_funz='maim'
+   and tipo_funz = 'primario';
+
+update coimfunz 
+   set parametri = 'tipo_filtro=MAN'
+where nome_funz='maim'
+   and tipo_funz = 'primario';
+
+insert into coimogge 
+       ( livello
+       , scelta_1
+       , scelta_2
+       , scelta_3
+       , scelta_4
+       , tipo
+       , descrizione
+       , nome_funz)
+select livello
+     , scelta_1
+     , max(scelta_2::integer) + 1
+     , scelta_3
+     , scelta_4
+     , 'funzione'
+     , 'Selezione impianto con dichiarazione in scadenza'
+     , 'maim-dich'
+from coimogge
+where livello = '2'
+  and scelta_1='11'
+  and scelta_3='0'
+  and scelta_4='0'
+group by livello
+     , scelta_1
+     , scelta_3
+     , scelta_4;
+
+update coimogge
+   set descrizione='Selezione impianto con manutenzione in scadenza'
+ where nome_funz='maim';
+
+insert into coimmenu
+select a.nome_menu
+  , o.livello
+  , o.scelta_1
+  , o.scelta_2
+  , o.scelta_3
+  , o.scelta_4
+  , a.lvl
+  , (a.seq -1)
+from coimogge o
+,(select m.lvl
+     , m.nome_menu
+      , m.seq
+from coimogge o
+   ,coimmenu m
+where nome_funz='maim'
+and m.livello      = o.livello      
+and m.scelta_1     = o.scelta_1     
+and m.scelta_2     = o.scelta_2     
+and m.scelta_3     = o.scelta_3     
+and m.scelta_4     = o.scelta_4  ) a
+where nome_funz='maim-dich';
+
+
+--Luca R. aggiunto flag su coimtgen.
+alter table coimtgen add flag_single_sign_on char(1) default 'f';
+
+--Luca R. upgrade di 2 voci di menù. Bisogna chiedere a Sandro se vanno bene per tutti gli enti o se bisogna lanciarli manualmente.
+update coimogge 
+   set descrizione= 'Creazione distinta consegna per manutentore' 
+ where livello ='3' 
+   and scelta_1='11' 
+   and scelta_2='55'
+   and scelta_3='20' 
+   and scelta_4='0' ;
+
+update coimogge 
+   set descrizione= 'Creazione distinta consegna per amministratore' 
+ where livello ='3' 
+   and scelta_1='11' 
+   and scelta_2='55' 
+   and scelta_3='15' 
+   and scelta_4='0' ;
+ 
+
+
+--GACALIN SVILUPPO SCHEDA 1 BIS LIBRETTO 
+create table coimcondu 
+     ( cod_conduttore    varchar(8) not null    
+     , cognome           varchar(250)
+     , nome              varchar(250)
+     , cod_fiscale       varchar(16) 
+     , indirizzo         varchar(40)
+     , numero            varchar(8)
+     , comune            varchar(40)
+     , provincia         varchar(4)
+     , cap               char(5)
+     , telefono          varchar(15)
+     , cellulare         varchar(15)
+     , fax               varchar(15)
+     , email             varchar(35)
+     , pec               varchar(35)
+     , data_patentino    date
+     , ente_rilascio_patentino varchar(250)
+     );
+create unique index coimcondu_00
+    on coimcondu
+     ( cod_conduttore
+     );
+
+alter table coimaimp add unita_immobiliari_servite char(1);
+alter table coimaimp add cod_conduttore varchar (8);
+--GACALIN FINE SVILUPPO SCHEDA 1 BIS
+
+--Luca R. svilupo Scheda 4.1Bis
+alter table coimgend add column funzione_grup_ter varchar(1) ;
+alter table coimgend add column funzione_grup_ter_note_altro varchar(400) ;
+alter table coimgend add column flag_caldaia_comb_liquid varchar(1) ;
+alter table coimgend add column rend_ter_max numeric(9,2) ;
+
+insert into coimfunz 
+    values (
+       'impianti'
+     , 'Gestione Impianti 1Bis'
+     , 'secondario'
+     , 'coimaimp-bis-gest'
+     , 'src/'
+     , null);
+
+insert into coimfunz 
+    values (
+       'impianti'
+     , 'Ricerca conduttori impianto'
+     , 'secondario'
+     , 'coimcondu-filter'
+     , 'src/'
+     , null);
+
+insert into coimfunz 
+    values (
+       'impianti'
+     , 'Gestione conduttori impianto'
+     , 'secondario'
+     , 'coimcondu-gest'
+     , 'src/'
+     , null);
+
+insert into coimfunz
+    values (
+       'impianti'
+     , 'Inserimento conduttori impianto'
+     , 'secondario'
+     , 'coimcondu-isrt'
+     , 'src/'
+     , null);
+
+insert into coimfunz
+    values (
+       'impianti'
+     , 'Lista conduttori impianto'
+     , 'secondario'
+     , 'coimcondu-list'
+     , 'src/'
+     , null);
+
+insert into coimfunz
+    values (
+       'impianti'
+     , 'Lista generatori da scheda 1bis impianto'
+     , 'secondario'
+     , 'coimgend-1bis-list'
+     , 'src/'
+     , null);
+
+
+update coimogge set descrizione='Ricerca impianti già in carico al Manutentore'  where nome_funz='impianti' ;
+
+--GACALIN INSERIMENTO E UPDATE DEI COMBUSTIBILI
+insert into coimcomb
+ values(
+  '8'
+  ,upper('propano')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'G'
+  );
+
+insert into coimcomb
+ values(
+  '9'
+  ,upper('butano')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'G'
+  );		
+
+insert into coimcomb
+ values(
+  '10'
+  ,upper('biogas')
+  ,current_date
+    ,null
+    ,'gacalin'
+    ,'G'
+    );			
+    			
+insert into coimcomb
+ values(
+  '13'
+  ,upper('syngas')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'G'
+  );		
+
+insert into coimcomb
+ values(
+  '14'
+  ,upper('aria propanata')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'G'
+  );		
+  
+insert into coimcomb
+ values(
+  '15'
+  ,upper('kerosene')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'L'
+  );		
+  
+insert into coimcomb
+ values(
+  '16'
+  ,upper('olio vegetale')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'L'
+  );		
+  
+insert into coimcomb
+ values(
+  '17'
+  ,upper('biodisel')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'L'
+  );			
+
+insert into coimcomb
+ values(
+  '18'
+  ,upper('bricchette')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'S'
+  );		
+
+insert into coimcomb
+ values(
+  '19'
+  ,upper('carbone')
+  ,current_date
+  ,null
+  ,'gacalin'
+  ,'S'
+  );		
+
+update coimcomb set tipo = 'G' where cod_combustibile = '4';         --G=Gassoso - L=Liquido - S=Solido - A=Altro GPL
+update coimcomb set tipo = 'G' where cod_combustibile = '5';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Metano
+update coimcomb set tipo = 'L' where cod_combustibile = '3';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Gasolio
+update coimcomb set tipo = 'L' where cod_combustibile = '1';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Olio
+update coimcomb set tipo = 'S' where cod_combustibile = '6';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Legna
+update coimcomb set tipo = 'S' where cod_combustibile = '12';        --G=Gassoso - L=Liquido - S=Solido - A=Altro Combustibile solido
+update coimcomb set tipo = 'A' where cod_combustibile = '7';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Teleriscaldamento
+--update coimcomb set tipo = 'G' where cod_combustibile = '88';        --G=Gassoso - L=Liquido - S=Solido - A=Altro Pompe di calore
+update coimcomb set tipo = 'A' where cod_combustibile = '0';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Non noto  
+update coimcomb set tipo = 'A' where cod_combustibile = '2';         --G=Gassoso - L=Liquido - S=Solido - A=Altro Altro     
+update coimcomb set tipo = 'A' where cod_combustibile = '11';        --G=Gassoso - L=Liquido - S=Solido - A=Altro Nafta 
+
+
+--GACALIN QUESTE SONO LE INSERT GIA PRESENTI SU ITER-DEV	
+insert into coimcomb
+ values(
+  '112'
+  ,upper('cippato')
+  ,'2017-03-09'
+  ,null
+  ,'sandro'
+  ,'S'
+  );		
+
+insert into coimcomb
+ values(
+  '211'
+  ,upper('pellet')
+  ,'2017-03-09'
+  ,null
+  ,'sandro'
+  ,'S'
+  );		
+
+insert into coimcomb
+ values(
+  '11'
+  ,upper('nafta')
+  ,'2017-05-23'
+  ,null
+  ,'sandro'
+  ,null
+  );		
+--GACALIN QUESTE SONO LE INSERT GIA PRESENTI SU ITER-DEV
+
+--AGGIUNTI CAMPI ACQUISTI, ACQUISTI2, SCORTA O LETTURA INIZIALE, SCORTA O LETTURA INIZIALE2, SCORTA O LETTURA FINALE e SCORTA O LETTURA FINALE2
+alter table coimdimp add acquisti numeric(10,2);
+alter table coimdimp add scorta_o_lett_iniz numeric(10,2);
+alter table coimdimp add scorta_o_lett_fin numeric(10,2);
+alter table coimdimp_stn add acquisti numeric(10,2);
+alter table coimdimp_stn add scorta_o_lett_iniz numeric(10,2);
+alter table coimdimp_stn add scorta_o_lett_fin numeric(10,2);
+alter table coimdimp add acquisti2 numeric(10,2);
+alter table coimdimp add scorta_o_lett_iniz2 numeric(10,2);
+alter table coimdimp add scorta_o_lett_fin2 numeric(10,2);
+alter table coimdimp_stn add acquisti2 numeric(10,2);
+alter table coimdimp_stn add scorta_o_lett_iniz2 numeric(10,2);
+alter table coimdimp_stn add scorta_o_lett_fin2 numeric(10,2);
+
+alter table coimcomb alter column um type varchar(10);
+
+--campi aggiunti su richiesta di Sandro il 07/05/2018
+alter table coimgend add rif_uni_10389 char(1);      --scheda 4.1
+alter table coimgend add altro_rif varchar(20);
+
+alter table coimdimp add bacharach2 numeric(6,2);    
+alter table coimdimp add bacharach3 numeric(6,2);
+alter table coimdimp add portata_comb numeric(10,2);
+alter table coimdimp add rispetta_indice_bacharach char(1);
+alter table coimdimp add co_fumi_secchi char(1);
+alter table coimdimp add rend_magg_o_ugua_rend_min char(1);
+
+alter table coimdimp_stn add bacharach2 numeric(6,2);
+alter table coimdimp_stn add bacharach3 numeric(6,2);
+alter table coimdimp_stn add portata_comb numeric(10,2);
+alter table coimdimp_stn add rispetta_indice_bacharach char(1);
+alter table coimdimp_stn add co_fumi_secchi char(1);
+alter table coimdimp_stn add rend_magg_o_ugua_rend_min char(1);
+
+alter table coimdimp_prfumi add bacharach2 numeric(6,2);      --aggiunti per gestire più prove fumi 
+alter table coimdimp_prfumi add bacharach3 numeric(6,2);      --aggiunti per gestire più prove fumi
+alter table coimdimp_prfumi add portata_comb numeric(10,2);   --aggiunti per gestire più prove fumi
+--FINE GACALIN
+
+--Inizio gestione tipologie controlli:
+
+\i ../coimtprc.sql
+
+insert into coimtprc values ('CADALLE','Cadenza secondo Allegato 3 - L.R. 19/2015',false);
+insert into coimtprc values ('REGINAD','Regolarizzazione inadempienze rispetto alla cadenza prevista dall''Allegato 3 - L.R. 19/2015',false);
+insert into coimtprc values ('PRIMMES','Prima messa in servizio (nuova installazione)',true);
+insert into coimtprc values ('SOSTGEN','Sostituzione del generatore',true);
+insert into coimtprc values ('RISTRUT','Ristrutturazione dell''impianto',true);
+insert into coimtprc values ('RIATTIV','Riattivazione dell''impianto',true);
+insert into coimtprc values ('MANSTRA','Manutenzione straordinaria passibile di modificare l''efficienza energetica',true);
+
+alter table coimdimp add cod_tprc varchar(08);
+alter table coimdimp_stn add cod_tprc varchar(08);
+
+
+
+--Luca R. 08/05/2018 Aggiunto campo data_libretto per la stampa del libretto della Regione Marche
+alter table coimaimp add column data_libretto date ;
+
+--Gacalin L. 10/05/2018 Aggiunto nuovo campi alla coimdimp, coimdimp_stn e coimdimp_prfumi
+alter table coimdimp add portata_termica_effettiva numeric(6,2);
+alter table coimdimp_stn add portata_termica_effettiva numeric(6,2);
+alter table coimdimp_prfumi add portata_termica_effettiva numeric(6,2);
+
+--Luca R. 28/05/2018 modifica e insert della tabella coimfuge  
+insert into coimfuge 
+       	  ( cod_fuge
+          , descr_fuge
+          , data_ins
+          , utente ) 
+            values 
+          ( '4' 
+          , 'Acqua surriscaldata' 
+          , '2018-05-28'
+          , 'romitti' );
+insert into coimfuge 
+          ( cod_fuge 
+          , descr_fuge
+          , data_ins
+          , utente) 
+            values 
+          ( '5' 
+          , 'Vapore' 
+          , '2018-05-28'
+          , 'romitti');
+insert into coimfuge 
+          ( cod_fuge
+          , descr_fuge
+          , data_ins
+          , utente
+          ) values 
+          ( '6' 
+          , 'Olio diatermico'
+          , '2018-05-28'
+          , 'romitti');
+update coimfuge 
+   set descr_fuge = 'Aria'
+     , data_mod   = '2018-05-28' 
+ where cod_fuge ='2' ;
+
+alter table coimgend add column altro_funz varchar(20) ;
+alter table coimdimp add column co_fumi_secchi_ppm decimal(10,4) ;
+alter table coimdimp_prfumi add column co_fumi_secchi_ppm decimal(10,4) ;
+
+--Gacalin 06/06/2018
+alter table coimaimp add column tipologia_generatore char(5);
+alter table coimaimp add column integrazione_per char(5);
+alter table coimaimp add column altra_tipologia_generatore varchar(200);
+
+--simone 07/06/2018 nuovi campi per cogenerazione
+alter table coimdimp add cog_sovrafreq_soglia1    numeric(6,2);
+alter table coimdimp add cog_sovrafreq_tempo1     numeric(6,2);
+alter table coimdimp add cog_sottofreq_soglia1    numeric(6,2);
+alter table coimdimp add cog_sottofreq_tempo1     numeric(6,2);
+alter table coimdimp add cog_sovraten_soglia1     numeric(6,2);
+alter table coimdimp add cog_sovraten_tempo1      numeric(6,2);
+alter table coimdimp add cog_sottoten_soglia1     numeric(6,2);
+alter table coimdimp add cog_sottoten_tempo1      numeric(6,2); 
+alter table coimdimp add cog_sovrafreq_soglia2    numeric(6,2);
+alter table coimdimp add cog_sovrafreq_tempo2     numeric(6,2);
+alter table coimdimp add cog_sottofreq_soglia2    numeric(6,2);
+alter table coimdimp add cog_sottofreq_tempo2     numeric(6,2);
+alter table coimdimp add cog_sovraten_soglia2     numeric(6,2);
+alter table coimdimp add cog_sovraten_tempo2      numeric(6,2);
+alter table coimdimp add cog_sottoten_soglia2     numeric(6,2);
+alter table coimdimp add cog_sottoten_tempo2      numeric(6,2); 
+alter table coimdimp add cog_sovrafreq_soglia3    numeric(6,2);
+alter table coimdimp add cog_sovrafreq_tempo3     numeric(6,2);
+alter table coimdimp add cog_sottofreq_soglia3    numeric(6,2);
+alter table coimdimp add cog_sottofreq_tempo3     numeric(6,2);
+alter table coimdimp add cog_sovraten_soglia3     numeric(6,2);
+alter table coimdimp add cog_sovraten_tempo3      numeric(6,2);
+alter table coimdimp add cog_sottoten_soglia3     numeric(6,2);
+alter table coimdimp add cog_sottoten_tempo3      numeric(6,2);
+
+alter table coimdimp_stn add cog_sovrafreq_soglia1    numeric(6,2);
+alter table coimdimp_stn add cog_sovrafreq_tempo1     numeric(6,2);
+alter table coimdimp_stn add cog_sottofreq_soglia1    numeric(6,2);
+alter table coimdimp_stn add cog_sottofreq_tempo1     numeric(6,2);
+alter table coimdimp_stn add cog_sovraten_soglia1     numeric(6,2);
+alter table coimdimp_stn add cog_sovraten_tempo1      numeric(6,2);
+alter table coimdimp_stn add cog_sottoten_soglia1     numeric(6,2);
+alter table coimdimp_stn add cog_sottoten_tempo1      numeric(6,2); 
+alter table coimdimp_stn add cog_sovrafreq_soglia2    numeric(6,2);
+alter table coimdimp_stn add cog_sovrafreq_tempo2     numeric(6,2);
+alter table coimdimp_stn add cog_sottofreq_soglia2    numeric(6,2);
+alter table coimdimp_stn add cog_sottofreq_tempo2     numeric(6,2);
+alter table coimdimp_stn add cog_sovraten_soglia2     numeric(6,2);
+alter table coimdimp_stn add cog_sovraten_tempo2      numeric(6,2);
+alter table coimdimp_stn add cog_sottoten_soglia2     numeric(6,2);
+alter table coimdimp_stn add cog_sottoten_tempo2      numeric(6,2); 
+alter table coimdimp_stn add cog_sovrafreq_soglia3    numeric(6,2);
+alter table coimdimp_stn add cog_sovrafreq_tempo3     numeric(6,2);
+alter table coimdimp_stn add cog_sottofreq_soglia3    numeric(6,2);
+alter table coimdimp_stn add cog_sottofreq_tempo3     numeric(6,2);
+alter table coimdimp_stn add cog_sovraten_soglia3     numeric(6,2);
+alter table coimdimp_stn add cog_sovraten_tempo3      numeric(6,2);
+alter table coimdimp_stn add cog_sottoten_soglia3     numeric(6,2);
+alter table coimdimp_stn add cog_sottoten_tempo3      numeric(6,2);
+ 
+--Gacalin nuovi campi RCEE e DAM
+alter table coimdimp add elet_esercizio_1 char(4);
+alter table coimdimp add elet_esercizio_2 char(4);
+alter table coimdimp add elet_esercizio_3 char(4);
+alter table coimdimp add elet_esercizio_4 char(4);
+alter table coimdimp add elet_lettura_iniziale    numeric(6,2);
+alter table coimdimp add elet_lettura_finale      numeric(6,2);
+alter table coimdimp add elet_consumo_totale      numeric(6,2);
+alter table coimdimp add elet_lettura_iniziale_2  numeric(6,2);
+alter table coimdimp add elet_lettura_finale_2    numeric(6,2);
+alter table coimdimp add elet_consumo_totale_2    numeric(6,2);
+
+alter table coimdimp_stn add elet_esercizio_1 char(4);
+alter table coimdimp_stn add elet_esercizio_2 char(4);
+alter table coimdimp_stn add elet_esercizio_3 char(4);
+alter table coimdimp_stn add elet_esercizio_4 char(4);
+alter table coimdimp_stn add elet_lettura_iniziale     numeric(6,2);
+alter table coimdimp_stn add elet_lettura_finale      numeric(6,2);
+alter table coimdimp_stn add elet_consumo_totale      numeric(6,2);
+alter table coimdimp_stn add elet_lettura_iniziale_2  numeric(6,2);
+alter table coimdimp_stn add elet_lettura_finale_2    numeric(6,2);
+alter table coimdimp_stn add elet_consumo_totale_2    numeric(6,2); 
+
+delete from wal_bodies where body_id=2;
+update wal_bodies set body_name='Ente' where body_id=1;
+update wal_bodies set body_name='Regione' where body_id=3;
+
+alter table coimcitt add patentino boolean not null default 'f';            --gac01
+alter table coimcitt add patentino_fgas boolean not null default 'f';       --gac01
+
+--Gacalin 13/06/2018: riporto le query già lanciate da Simone
+delete from coimtipo_grup_termico where cod_grup_term in ('GTM2','GTM3');
+update coimtipo_grup_termico  set desc_grup_term = 'Gruppo termico 
+modulare' where cod_grup_term='GTM1';
+update coimgend set cod_grup_term='GTM1' where cod_grup_term in 
+('GTM2','GTM3');
+
+--Rom 18/06/2018 Aggiunto campo Tipologia Intervento sulla coimaimp
+alter table coimaimp add column tipologia_intervento varchar(5) ;
+
+--Nuovo programma per visualizzazione schede libretto
+insert into coimfunz values ('impianti','Lista Schede Libretto'    ,'secondario','coimaimp-schede-libretto-list'   ,'src','');
+
+--Luca R. nuova tabella coimgend_pote per inserire le singole potenze delle prove_fumi
+\i ../coimgend_pote.sql
+
+insert into coimfunz 
+          ( nome_funz
+          , desc_funz
+          , tipo_funz
+          , dett_funz
+          , azione
+          ) values
+          ('datigen'
+          ,'Potenze singoli moduli'
+          , 'secondario'
+          , 'coimgend-pote'
+          , 'src/') ;
+
+--Gacalin 28/06/2018 inseriti campi coimaimp
+alter table coimaimp add column integrazione char (1);
+alter table coimaimp add column superficie_integrazione numeric(6,2);
+alter table coimaimp add column nota_altra_integrazione varchar(200);
+alter table coimaimp add column pot_utile_integrazione numeric (6,2);
+
+--Gacalin 29/06/2018 aggiunto tipo combustibile cogeneratore
+--insert into coimcomb
+-- values(
+--  '20'
+--  ,upper('cogeneratore')
+--  ,'2018-06-29'
+--  ,null
+--  ,'gacalin'
+--  ,null
+--  );
+
+--Gacalin 02/07/2018 riporto le update e le insert lanciate per modificare la tendina Destinazione d'uso scheda 4/4.1bis
+update coimutgi set descr_utgi = 'Produzione di acqua calda sanitaria' where cod_utgi = 'D';
+update coimutgi set descr_utgi = 'Climatizzazione invernale + produzione ACS' where cod_utgi = 'E';
+update coimutgi set descr_utgi = 'Climatizzazione estiva' where cod_utgi = 'F';
+update coimutgi set descr_utgi = 'Climatizzazione invernale' where cod_utgi = 'R';
+insert into coimutgi values('I', 'Climatizzazione invernale + Estiva', '2018-07-02', null, 'gacalin', 'Climatizzazione invernale + Estiva');
+
+--Gacalin 19/07/2018 creata nuova tabella coimoper per gestione campo operazione nlle dichiarazioni di avvenuta manutenzione
+\i ../coimoper.sql
+
+insert into coimfunz
+    values (
+       'operazioni'
+     , 'Tipi di operazioni'
+     , 'primario'
+     , 'coimoper-list'
+     , 'tabgen/'
+     , null);
+
+insert into coimfunz
+    values (
+       'operazioni'
+     , 'Tipi di operazioni'
+     , 'secondario'
+     , 'coimoper-gest'
+     , 'tabgen/'
+     , null);
+
+--Gacalin 20/07/2018 inserita nuova voce menu tipo operazioni
+insert into coimogge
+          ( livello
+          , scelta_1
+          , scelta_2
+          , scelta_3
+          , scelta_4
+          , tipo
+          , descrizione
+          , nome_funz )
+ select a.livello
+      , a.scelta_1
+      , a.scelta_2
+      , max(b.scelta_3::integer) +1
+      , a.scelta_4
+      , a.tipo
+      , 'Tipi Operazioni'
+      , 'operazioni'
+   from coimogge as a	
+      , coimogge as b
+  where b.livello= a.livello
+    and b.scelta_1 =a.scelta_1
+    and a.nome_funz = 'combustibile'
+  group by a.livello
+      , a.scelta_1
+      , a.scelta_2
+      , a.scelta_4
+      , a.tipo;	  
+	      
+insert into coimmenu
+select a.nome_menu
+     , o.livello
+     , o.scelta_1
+     , o.scelta_2
+     , o.scelta_3
+     , o.scelta_4
+     , a.lvl
+     , (a.seq -1)
+  from coimogge o
+     ,(select m.lvl
+     , m.nome_menu
+     , m.seq
+  from coimogge o
+     ,coimmenu m
+ where nome_funz='combustibile'
+   and m.livello      = o.livello
+   and m.scelta_1     = o.scelta_1
+   and m.scelta_2     = o.scelta_2
+   and m.scelta_3     = o.scelta_3
+   and m.scelta_4     = o.scelta_4  ) a
+ where nome_funz='operazioni';
+
+--Gacalin 23/08/2018 aggiungo cod manutentore alla tabella degli strumenti
+--alter table iter_tools add column cod_manutentore varchar(8); 
+--Gacalin 23/08/2018 Creo nuova tabella strumenti del manutentore
+\i ../coimstru_manu.sql
+alter table coimdimp add cod_strumento_01 varchar(8);
+alter table coimdimp add cod_strumento_02 varchar(8);
+
+alter table coimdimp_stn add cod_strumento_01 varchar(8);
+alter table coimdimp_stn add cod_strumento_02 varchar(8);
+
+\i ../coimgend_stesso_ambiente.sql
+			
+insert into coimfunz values ('datigen','Inserisci generatori stesso ambiente','secondario','coimgend-stesso-ambiente','src/','') ;
+insert into coimfunz values ('datigen','Inserisci generatori stesso ambiente','secondario','coimgend-stesso-ambiente-gest','src/','') ;
+
+alter table coimaimp add column sezione varchar(20) ;  --LucaR.
+
+--LucaR. 05/09/2018
+alter table coimrecu_cond_aimp add column "flag_sostituito" boolean default false ; 
+alter table coimaltr_gend_aimp add column "flag_sostituito" boolean default false ;
+alter table coimpomp_circ_aimp add column "flag_sostituito" boolean default false ;
+alter table coimaccu_aimp      add column "flag_sostituito" boolean default false ;
+alter table  coimraff_aimp     add column "flag_sostituito" boolean default false ;
+alter table coimscam_calo_aimp add column "flag_sostituito" boolean default false ;
+alter table coimcirc_inte_aimp add column "flag_sostituito" boolean default false ;
+alter table coimtrat_aria_aimp add column "flag_sostituito" boolean default false ;
+alter table coimrecu_calo_aimp add column "flag_sostituito" boolean default false ;
+alter table coimvent_aimp      add column "flag_sostituito" boolean default false ;
+
+--LucaR. 26/09/2018
+alter table coimgend add column flag_sostituito char(1) default 'N';
+drop index coimgend_01;
+--sim successivamente si è deciso che i sostituiti tengono lo stesso gen_prog_est quindi elimino solo il vincolo e non lo ricreo
+--create unique index coimgend_01
+--    on coimgend
+--     ( cod_impianto
+--     , gen_prog_est
+--     , flag_sostituito
+--     , flag_attivo  
+--     );
+
+--LucaR. 04/10/2018
+alter table coimaimp add column flag_ibrido char(1) ;
+
+--LucaR. 10/10/2018 ATTENZIONE: TUTTI GLI ENTI DOVRANNO AVERE IL CAMPO email VALORIZZATO!!!!!!!!!
+alter table coimdesc add column email varchar(150) ;
+
+--LucaR. 17/10/2018 
+alter table coim_as_resp add column flag_as_resp char(1) ;
+--LucaR. 07/11/2018
+alter table coimaimp           add column tratt_acqua_raff_filtraz_note_altro  varchar(1000);
+alter table coimaimp           add column tratt_acqua_raff_tratt_note_altro    varchar(1000);
+alter table coimaimp           add column tratt_acqua_raff_cond_note_altro     varchar(1000);
+alter table coimrecu_cond_aimp add column gt_collegato                         integer;
+alter table coimcamp_sola_aimp add column data_installaz_nuova_conf            date;
+alter table coimcamp_sola_aimp add column flag_sostituito                      boolean default false ;
+alter table coimaimp           add column sistem_emis_radiatore                char(1);
+alter table coimaimp           add column sistem_emis_termoconvettore          char(1);
+alter table coimaimp           add column sistem_emis_ventilconvettore         char(1);
+alter table coimaimp           add column sistem_emis_pannello_radiante        char(1);
+alter table coimaimp           add column sistem_emis_bocchetta                char(1);
+alter table coimaimp           add column sistem_emis_striscia_radiante        char(1);
+alter table coimaimp           add column sistem_emis_trave_fredda             char(1);
+alter table coimaimp           add column sistem_emis_altro                    char(1);
+alter table coimaimp           add column regol_curva_ind_iniz_num_sr          integer;
+alter table coimaimp           add column regol_curva_ind_iniz_flag_sostituito boolean default false;
+alter table coimaimp           add column regol_valv_ind_num_vr                integer;
+alter table coimaimp           add column regol_valv_ind_flag_sostituito       boolean default false;
+\i ../coimaimp_sistemi_regolazione.sql
+\i ../coimaimp_valvole_regolazione.sql
+insert into coimfunz values ('impianti','Gestione Sistemi di Regolazione','secondario','coimsist-reg-gest','src','');
+insert into coimfunz values ('impianti','Gestione Valvole di Regolazione','secondario','coimvalv-reg-gest','src','');
+alter table coimutgi alter column descr_utgi type varchar(250);
+insert into coimutgi values ('RA' ,'Riscaldamento ambienti',current_date,null,'romitti','Riscaldamento ambienti');
+insert into coimutgi values ('RAD','Riscaldamento ambienti + Produzione di acqua calda sanitaria',current_date,null,'romitti','Riscaldamento ambienti + Produzione di acqua calda sanitaria');
+
+--Gacalin 08/11/2018
+alter table coimgend           add column flag_clima_invernale char(1);
+alter table coimgend           add column flag_prod_acqua_calda char(1);
+alter table coimdimp           add column data_ultima_manu date;
+alter table coimdimp_stn       add column data_ultima_manu date;
+alter table coimdimp           add column flag_pagato char(1);
+alter table coimdimp_stn       add column flag_pagato char(1);
+
+--Gacalin 21/11/2018
+alter table coimnoveb add column flag_dichiarante char(1);
+alter table coimnoveb add column flag_rispetta_val_min char(1);
+alter table coimnoveb add column cognome_dichiarante varchar(200);
+alter table coimnoveb add column nome_dichiarante varchar(200);
+
+--LucaR. 29/11/2018
+alter table coimgend add column flag_clim_est char(1);
+alter table coimgend add column flag_altro char(1);
+alter table coimgend add column motivazione_disattivo char(1) ;
+--LucaR. 21/12/2018
+alter table coimrecu_cond_aimp add column num_rc_sostituente integer;
+alter table coimcamp_sola_aimp add column num_cs_sostituente integer ;
+alter table coimaltr_gend_aimp add column num_ag_sostituente integer ;
+alter table coimaimp_sistemi_regolazione add column num_sr_sostituente integer;
+alter table coimaimp add column num_sr_sostituente integer;
+alter table coimaimp add column num_vr_sostituente integer;
+alter table coimaimp_valvole_regolazione add column num_vr_sostituente integer;
+alter table coimpomp_circ_aimp add column num_po_sostituente integer;
+alter table coimvent_aimp add column num_vm_sostituente integer;
+alter table coimaccu_aimp add column num_ac_sostituente integer ;
+alter table coimtorr_evap_aimp add column num_te_sostituente integer;
+alter table coimrecu_calo_aimp add column num_rc_sostituente integer;
+alter table coimscam_calo_aimp add column num_sc_sostituente integer;
+alter table coimtrat_aria_aimp add column num_ut_sostituente integer;
+alter table coimraff_aimp add column num_rv_sostituente integer;
+alter table coimcirc_inte_aimp add column num_ci_sostituente integer;
+
+--LUCAR. 04/01/2019
+alter table coimtpco alter column  descr_tpco type varchar(400);
+update coimtpco set descr_tpco = 'Ad assorbimento a fiamma diretta', data_mod = current_date where cod_tpco = '1' ;
+update coimtpco set descr_tpco = 'A ciclo di compressione con motore elettrico', data_mod = current_date where cod_tpco = '2' ;
+update coimtpco set descr_tpco = 'Ad assorbimento per recupero di calore', data_mod = current_date where cod_tpco = '3' ;
+update coimtpco set descr_tpco = 'A ciclo di compressione con motore endotermico', data_mod = current_date where cod_tpco = '4' ;
+--LUCAR. 07/01/2019
+alter table coimaimp alter column integrazione_per type varchar(20);
+--LUCAR. 15/01/2019
+alter table coimgend add column cod_installatore varchar(8) ;
+alter table coimgend add column sorgente_lato_esterno varchar(2);
+alter table coimgend add column fluido_lato_utenze    varchar(2);
+--LUCAR. 19/01/2019
+update coimtppr set descr_tppr = 'RCEE', data_mod=current_date, utente='romitti' where cod_tppr = '3';
+update coimtppr set descr_tppr = 'Ispezione in campo', data_mod=current_date, utente='romitti' where cod_tppr = '5';
+alter table coimaimp add column volimetria_raff numeric(9,2) ;
+--LUCAR. 11-02-2019
+update coimtppr set descr_tppr = 'Precedente database' , data_mod=current_date, utente='romitti' where cod_tppr = '0' ;
+update coimtppr set descr_tppr = 'Distributore di combustibile' , data_mod=current_date, utente='romitti' where cod_tppr = '1' ;
+alter table coimtppr alter column descr_tppr type varchar(200);
+update coimtppr set descr_tppr = 'Nuova Installazione/Ristrutturazione' , data_mod=current_date, utente='romitti' where cod_tppr = '2' ;
+update coimtppr set descr_tppr = 'Caricamento impianto esistente da parte del manutentore' , data_mod=current_date, utente='romitti' where cod_tppr = '7';
+--LUCAR. 13/02/2019
+insert into coimutgi (cod_utgi, descr_utgi, descr_e_utgi, data_ins, utente) values ('FD','Climatizzazione estiva + produzione ACS','Climatizzazione estiva + produzione ACS',current_date,'romitti');
+insert into coimutgi (cod_utgi, descr_utgi, descr_e_utgi, data_ins, utente) values ('FRD','Climatizzazione estiva + Climatizzazione invernale + produzione ACS','Climatizzazione estiva + Climatizzazione invernale + produzione ACS',current_date,'romitti');
+--LUCAR. 21/02/2019
+alter table coimgend add column tel_alimentazione varchar(1);
+
+--aggiunto il campo per gestire i documenti su file system e non sul database
+alter table coimdocu add column path_file varchar(4000);
+
+
+--LUCAR. 07/03/2019
+update coimtpes set descr_tpes  = 'Impianti senza REE'                where cod_tpes  = '4';
+update coimogge set descrizione = 'Caricamento rapporti di Ispezione' where nome_funz = 'cari-controlli';
+update coimogge set descrizione = 'Spostamento RCEE'                  where nome_funz = 'coimdimp-dest'; 
+--LUCAR. 11/03/2019
+insert into coimtpes values('19','Impianti senza DAM',current_date,null,'romitti');
+
+--simone sistemo le potenze come indicato in fase di collaudo 
+update coimpote set potenza_min='0.01' where cod_potenza='FB';
+update coimpote set potenza_min='5' where cod_potenza='B';
+
+--simone corretto problema su permessi lista "Selezione impianto con dichiarazione in scadenza" emerso in fase di collaudo
+insert into coimfunz
+values ('maim'
+   ,'Gestione Impianti'
+   ,'secondario'
+   ,'coimaimp-gest'
+   ,'src/'
+   ,null);
+	       
+
+--se non servono, vanno tolti i permessi al menu' Amministrazione --> Lista Movimenti
+
+--LucaR. 13/06/2019 
+insert into coimfunz values ('estr-stampa','Stampa estrazione impianti per controlli','primario','coimestr-stampa-filter','src/','');
+
+insert into coimogge values ('2','16','39','0','0','funzione','Stampa estrazione impianti per controlli','estr-stampa');
+
+insert into coimmenu (
+     select nome_menu
+          , '2'
+          , '16'
+          , '39'
+          , scelta_3
+          , scelta_4
+          , lvl
+          , seq
+       from coimmenu
+      where livello  = '2'
+        and scelta_1 = '16'
+        and scelta_2 = '12');
+
+insert into coimfunz values ('estr-stampa','Stampa estrazione impianti per controlli','secondario','coimestr-stampa','src/','');
+
+--simone aggiunto nuovo menu per caricamento del freddo
+insert into coimogge
+        values ('3','23','11','48','0','funzione','Caricamento RCEE di tipo 2','cari-rcee-tipo-2');
+
+insert into coimfunz
+        values ('cari-rcee-tipo-2','Caricamento RCEE di tipo 2 da file esterno','primario','coimcari-rcee-tipo-2-gest','src/',null);
+	
+delete from coimogge where descrizione='Caricamento modelli F' or descrizione='Caricamento modelli G';
+
+--Gacalin 05/07/2019 aggiunto nome_funz per il freddo per richiamare il programma coimcorr-anom-gest
+insert into coimfunz
+        values ('cari-rcee-tipo-2','correzione anomalie importazione','secondario','coimcorr-anom-gest','src/',null);
+insert into coimfunz
+        values ('cari-rcee-tipo-1','correzione anomalie importazione','secondario','coimcorr-altre-anom-gest','src/',null);
+insert into coimfunz
+        values ('cari-rcee-tipo-2','correzione anomalie importazione','secondario','coimcorr-altre-anom-gest','src/',null);
+		
+
+
+alter table coimesit alter column url type varchar(250);
+
+--sim modifica per gestire i sostituiti
+alter table coimgend add column gen_prog_originario integer;
+
+
+end;

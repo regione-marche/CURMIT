@@ -1,0 +1,41 @@
+-- Simone 19/11/2014
+
+begin;
+
+alter table coimaimp add h2o_contenutu              numeric(10,2);
+alter table coimaimp add h2o_durezza                numeric(9,2);
+alter table coimaimp add h2o_cli                    char(1);
+alter table coimaimp add h2o_cli_addolcimento       numeric(9,2);
+alter table coimaimp add h2o_cli_prot_gelo          char(1);
+alter table coimaimp add h2o_cli_prot_gelo_eti      numeric(9,2);
+alter table coimaimp add h2o_cli_prot_gelo_eti_perc numeric(9,2);
+alter table coimaimp add h2o_cli_prot_gelo_pro      numeric(9,2);
+alter table coimaimp add h2o_cli_prot_gelo_pro_perc numeric(9,2);
+alter table coimaimp add h2o_cli_acs                char(1);
+alter table coimaimp add h2o_cli_acs_uscita         numeric(9,2);
+alter table coimaimp add h2o_raf_assente            char(1);
+alter table coimaimp add h2o_raf_tipo_circuito      char(1);
+alter table coimaimp add h2o_raf_origine            char(1);
+alter table coimaimp add h2o_raf_filtrazione        char(1);
+alter table coimaimp add h2o_raf_filtrazione_1      char(1);
+alter table coimaimp add h2o_raf_filtrazione_2      char(1);
+alter table coimaimp add h2o_raf_filtrazione_3      char(1);
+alter table coimaimp add h2o_raf_filtrazione_4      char(1);
+alter table coimaimp add h2o_raf_tratt              char(1);
+alter table coimaimp add h2o_raf_tratt_1            char(1);
+alter table coimaimp add h2o_raf_tratt_2            char(1);
+alter table coimaimp add h2o_raf_tratt_3            char(1);
+alter table coimaimp add h2o_raf_tratt_4            char(1);
+alter table coimaimp add h2o_raf_tratt_5            char(1);
+alter table coimaimp add h2o_raf_cond               char(1);
+alter table coimaimp add h2o_raf_cond_1             char(1);
+alter table coimaimp add h2o_raf_cond_2             char(1);
+alter table coimaimp add h2o_raf_cond_3             char(1);
+alter table coimaimp add h2o_raf_cond_4             char(1);
+alter table coimaimp add h2o_raf_cond_5             char(1);
+alter table coimaimp add h2o_raf_cond_6             char(1);
+alter table coimaimp add h2o_raf_torre              char(1);
+alter table coimaimp add h2o_conduc                 numeric (10,2);
+alter table coimaimp add h2o_conduc_tara            numeric (10,2);
+
+end;

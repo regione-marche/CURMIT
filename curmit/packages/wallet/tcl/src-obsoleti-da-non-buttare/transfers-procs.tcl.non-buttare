@@ -1,0 +1,336 @@
+ad_library {
+
+    CBI Procs.
+
+    @author claudio.pasolini@comune.mantova.it
+    @cvs-id $Id:
+
+}
+
+namespace eval wal {}
+
+ad_proc -public wal::transfers_load {
+} { 
+    Esplora la cartella cbi/tmp e carica la tabella wal_transfers con le informazioni
+    estratte dai file presenti nella cartella, dopo di che sposta i file elaborati nella
+    cartella cbi/transfers. 
+
+    @author Claudio Pasolini
+} {
+
+    set b120 [string repeat " " 120]
+
+    # creo un frammento di codice che eseguirò in seguito
+    set load {
+	set tail [file tail $filename]
+	set other_63 [join $rec63_al_orig " | "]
+        db_dml transfer "
+            insert into wal_transfers (
+                transfer_id
+               ,filename
+               ,reference
+               ,rec62_orig
+               ,rec63_1_orig
+               ,rec63_al_orig
+               ,rec62_elab
+               ,rec63_1_elab
+               ,rec63_al_elab
+               ,status
+            ) values (
+                nextval('wal_transfers_seq')
+               ,:tail
+               ,:reference
+               ,:rec62_orig
+               ,:rec63_1_orig
+               ,coalesce(:other_63, :b120)
+               ,:rec62_orig
+               ,:rec63_1_orig
+               ,coalesce(:other_63, :b120)
+               ,'L'
+            )"
+    }
+
+    # ottengo i nomi dei file prefissati RH presenti nella cartella
+    set files_to_load [glob -nocomplain -directory [ah::package_root -package_key wallet]/cbi/tmp -types f RH*]
+
+    ns_log notice "\ndebug files-to_load: $files_to_load"
+
+    db_transaction {
+
+	# elaboro i files della cartella cbi/tmp
+	foreach filename $files_to_load { 
+
+            ns_log notice "\n ... processing $filename"
+
+	    set file_inp   [open $filename r]
+
+	    set c61  "f"  ; # i record da elaborare iniziano con tipo record 61, seguito da un 62 e da vari 63
+	    set c63  "f"  ; # indica se un gruppo di record è stato elaborato o meno
+
+	    foreach line [split [read $file_inp] \n] {
+
+		set rec_type [string range $line 1 2]
+		set cc_cestec [string range $line 62 73]
+
+                #ns_log notice "\n ... processing type $rec_type"
+
+                # il conto 4967 viene usato per i manutentori e amministratori, mentre il conto 5109 viene
+                # usato esclusivamente per CENED 
+		if {$rec_type eq "61" && ($cc_cestec eq "000000004967" || $cc_cestec eq "000000005109")} {
+		    set c61 "t"
+		    continue
+		}
+
+		if {!$c61} {
+                    #ns_log notice "\n ... skipping $rec_type"
+		    continue
+		}
+
+		if {$rec_type eq "62"} {
+                    #ns_log notice "\n ... processing type 62 with c63 = $c63"
+		    if {$c63} {
+		        # scrivo una riga di wal_transfers relativa al gruppo di record precedente
+			eval $load
+		    }
+		    set reference  [string range $line 3 12]
+		    set rec62_orig $line
+		    set c63 "f"
+		    continue
+		}
+
+		if {$rec_type eq "63" && !$c63} {
+                    #ns_log notice "\n ... processing first type 63"
+		    # questo è il primo record 63
+		    set rec63_1_orig $line
+		    set rec63_al_orig [list]
+		    set c63 "t"
+		    continue
+		}
+
+		if {$rec_type eq "63" && $c63} {
+                    #ns_log notice "\n ... processing other type 63"
+		    lappend rec63_al_orig $line
+		}
+
+		if {$rec_type eq "64"} {
+                    #ns_log notice "\n ... processing type 64 with c63 = $c63"
+		    if {$c63} {
+		        # scrivo una riga di wal_transfers relativa al gruppo di record precedente
+			eval $load
+		    }
+
+		    set c61 "f"
+                    set c63 "f"
+		    continue
+		}
+
+	    }
+
+	    close $file_inp
+
+	}
+
+    } on_error {
+
+	acs_mail_lite::send \
+	    -from_addr "info@curit.it" \
+	    -to_addr   [ad_system_owner] \
+	    -subject  "wallet-dev: transfers_load" \
+	    -body     "Attenzione! la procedura di caricamento è fallita!\nErrore:\n$errmsg"
+
+    }
+
+    # se la transazione è andata a buon fine sposto i files dalla cartella cbi/tmp a cbi/transfers
+    foreach filename $files_to_load { 
+        file rename -force $filename [ah::package_root -package_key wallet]/cbi/transfers/
+    }
+
+    return OK
+
+}
+
+ad_proc -public wal::transfers_process {
+    {-transfer_ids ""}
+} { 
+    Se invocato senza argomenti, elabora le righe di wal_transfers in stato 'Loaded' o 
+    'Pending', altrimenti elabora le righe specificate nella lista 'transfer_ids':
+
+    1. Estrae da rec62_elab i dati del bonifico (data creazione e valuta e importo)
+    2. Estrae da rec63_1_elab il nome dell'intestatario 
+    3. Estrae da rec63_al_elab, se possibile, la colonna wallet_id e con quest'ultima
+       ottiene altri dati (iban_code e cc_name) da wal_maintainers
+
+    In caso siano state reperite le informazioni necessarie viene invocato il web service
+    'move2' per creare un movimento contabile e lo stato della riga di wal_transefrs viene
+    impostato a 'Closed', altrimenti a 'Pending'.  
+
+    @author Claudio Pasolini
+} {
+
+    # Rendo dinamica la scelta del database 
+    if {[db_get_database] eq "wallet-dev"} {
+	set base_url "http://wallet.sviluppo.curit.it"
+	set curit_dbn "curit-dev"
+    } elseif {[db_get_database] eq "wallet-sta"} {
+	set base_url "http://wallet.staging.curit.it"
+	set curit_dbn "curit-sta"
+    } else {
+	set base_url "http://wallet.curit.it"
+	set curit_dbn "curit"
+    }
+
+    # imposto provenienza per manutentori
+    set maintainers_source_id [db_string source_man "select source_id from wal_sources where source_name = 'CURIT MAN'"]
+    # imposto provenienza per amministratori
+    set trustees_source_id    [db_string source_man "select source_id from wal_sources where source_name = 'CURIT AMM'"]
+    # imposto provenienza per CENED
+    set cened_source_id       [db_string source_cened "select source_id from wal_sources where source_name = 'CENED'"]
+
+    if {[llength $transfer_ids] == 0} {
+	set transfer_ids [db_list transfers "select transfer_id from wal_transfers where status in ('L', 'P')"]
+    }
+
+    db_transaction {
+
+	foreach transfer_id $transfer_ids {
+
+            db_1row get_transfer "
+                select 
+                    reference
+                   ,filename
+                   ,to_date('20' || substr(rec62_elab, 24, 2) || substr(rec62_elab, 22, 2) || substr(rec62_elab, 20, 2), 'YYYYMMDD') as creation_date 
+                   ,to_date('20' || substr(rec62_elab, 18, 2) || substr(rec62_elab, 16, 2) || substr(rec62_elab, 14, 2), 'YYYYMMDD') as currency_date
+                   ,substr(rec62_elab, 27, 15) as amount_pretty
+                   ,substr(rec63_1_elab, 41, 50) as name
+                   ,substr(rec63_al_elab, 14, 107) as wallet_may_be
+                from wal_transfers
+                where transfer_id = :transfer_id"
+
+	    # tratto l'importo
+	    set amount [ah::check_num $amount_pretty 2]
+
+            # imposto valori di default in vista dell'aggiornamento 
+            set wallet_id ""
+            set iban_code ""
+            set cc_name   ""
+            set status    "P"
+            set notes     "Codice portafoglio inesistente"
+            set source_id ""
+
+	    # tento di recuperare wallet_id
+	    foreach token [split $wallet_may_be " "] {
+                # cerco un token lungo 18
+		if {[string length $token] != 18} {
+		    continue
+		}
+
+		# Tento la lettura: il codice portafoglio potrebbe essere quello di un
+                # manutentore oppure di un amministratore di condominio o di CENED
+		if {[db_0or1row holder "
+                    select holder_id, name as cc_name, source_id 
+                    from wal_holders
+                    where wallet_id = :token"]} {
+		    set wallet_id $token
+		} else {
+		    set notes "Nessun soggetto corrisponde al codice portafoglio $token"
+		    continue
+		}
+
+		# controllo esistenza iban solo per manutentori e amministratori
+		if {$source_id eq "$maintainers_source_id"} {
+		    set iban_code [db_string -dbn $curit_dbn maintainer "select iban_code from iter_maintainers where maintainer_id = :holder_id" -default ""]
+		} elseif {$source_id eq "$trustees_source_id"} {
+		    set iban_code [db_string -dbn $curit_dbn trustee    "select iban_code from iter_trustees where trustee_id = :holder_id" -default ""]
+		}
+		if {$source_id ne "$cened_source_id"} {
+		    if {$iban_code eq ""} {
+			set notes "Codice IBAN inesistente"
+			continue
+		    }
+		}
+
+                # dispongo dei dati necessari ad invocare il web service 'move2'
+		set url "${base_url}/lotto/move2?wallet_id=$wallet_id&tran_type_id=1&pay_type_id=2&creation_date=$creation_date&payment_date=$currency_date&reference=$reference&filename=$filename&description=Bonifico&amount=$amount&body_id="
+
+                #ns_log notice "\n... calling move2 with $url"
+
+		set data [ad_httpget -url $url -timeout 50]
+
+		array set result $data
+		set risultato [string range $result(page) 0 [expr [string first " " $result(page)] - 1]]
+		ns_log notice "\nrisultato=$risultato \npage=$result(page)"
+		if {$risultato eq "OK"} {
+                    set notes  ""
+		    set status "C"
+		    break
+		} else {
+		    set notes "Creazione movimento fallita: $risultato"
+		}
+	    }
+     
+            # aggiorno riga di wal_transfers
+            db_dml no_wallet "
+                update wal_transfers set
+                    reference     = :reference
+                   ,filename      = :filename
+                   ,creation_date = :creation_date
+                   ,currency_date = :currency_date
+                   ,amount        = :amount
+                   ,wallet_id     = :wallet_id
+                   ,name          = :name
+                   ,cc_name       = :cc_name
+                   ,iban_code     = :iban_code
+                   ,status        = :status
+                   ,notes         = :notes
+                   ,source_id     = :source_id
+                where transfer_id = :transfer_id"
+
+	}
+    }
+    return OK
+}
+
+ad_proc -public wal::daily_transfers {
+} { 
+    Elaborazione giornaliera dei bonifici.
+    La funzione java di ricezione dei bonifici è unica e pertanto non può essere eseguita
+    nelle istanze di test e di staging.
+
+    @author Claudio Pasolini
+} {
+
+    # Dove mi trovo?
+    if {[db_get_database] eq "wallet-dev"} {
+        set instance dev
+    } elseif {[db_get_database] eq "wallet-sta"} {
+        set instance sta
+    } else {
+        set instance prod
+    }
+
+    # invoca funzione java di ricezione dei bonifici (solo in prod)
+    if {$instance eq "prod"} {
+        exec /ClientRbh2h/import.sh
+    }
+
+    # ottengo i nomi dei file ricevuti (solo quelli che iniziano con RH)
+    set files [glob -nocomplain -directory /ClientRbh2h/in -types f RH*]
+
+    foreach filename $files { 
+        # Se sono in prod sposto i files nella cartella cbi/tmp altrimenti mi limito a copiarli
+	if {$instance eq "prod"} {
+            file rename -force $filename [ah::package_root -package_key wallet]/cbi/tmp/
+	} else {
+            file copy   -force $filename [ah::package_root -package_key wallet]/cbi/tmp/
+	}
+    }
+
+    # carica i bonifici
+    set rc [wal::transfers_load]
+
+    # e li elabora, creando i necessari movimenti
+    if {$rc eq "OK"} {
+        wal::transfers_process
+    }
+   
+}

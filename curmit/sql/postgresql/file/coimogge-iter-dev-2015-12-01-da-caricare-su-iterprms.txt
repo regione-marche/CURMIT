@@ -1,0 +1,44 @@
+2|22|37|0|0|funzione|Stampa Bollini usati da Manutentore|stat-boll
+2|22|31|0|0|funzione|Stampa Dichiarazioni con orario non congruo|stp1-dimp
+2|22|32|0|0|funzione|Stampa osservazioni/raccomandazioni/prescrizioni|stp2-dimp
+2|22|24|0|0|funzione|Stampa Solleciti di pagamento|stso
+2|22|25|0|0|funzione|Stampa Impianti inseriti|stat10
+2|22|26|0|0|funzione|Stampa comunicazioni utenti|stcu
+2|22|27|0|0|funzione|Stampa Modelli con assenza dichiarazioni di Conformità|st_dimp_nc
+2|16|33|0|0|funzione|Richiesta documentazione|strd
+2|22|28|0|0|funzione|Stampa statistica ispettori|stpm-stat-opve
+3|11|55|20|0|funzione|Creazione distinta consegna modelli H/I|docu-dist-all
+3|11|55|15|0|funzione|Creazione distinta consegna modelli L|ammi-dist-all
+2|22|29|0|0|funzione|Stampa statistica Amministrativa|stpm-cimp-tar
+2|22|33|0|0|funzione|Statistiche dich. per campagna|stco1
+2|22|30|0|0|funzione|Stampa mancate ispezioni|stpm-stat-ma
+2|16|34|0|0|funzione|Caricamento controlli da file esterno (cod_fisc)|inco_cari3
+3|16|36|11|0|funzione|Scarico incontri su file esterno|scar
+3|16|36|12|0|funzione|Ricarico Incontri da file esterno|rcar
+2|18|73|0|0|funzione|Anomalie da dichiarazioni|anom_d
+2|22|36|0|0|funzione|Stampa riepilogativa art. 284|stat284
+2|22|38|0|0|funzione|Stampa Bollini non usati|stat-boll-non
+2|22|40|0|0|funzione|Riepilogo Dichiarazioni|stpm-dich
+2|22|41|0|0|funzione|Stampa Targa|targa
+2|22|42|0|0|funzione|Statistiche per Regioni|stat-reg
+2|11|37|0|0|funzione|Inserimento scheda tecnica per Raffreddamento|isrt_manu_fr
+3|23|11|40|0|funzione|Caricamento modelli F|cari-modelli-f
+3|23|11|42|0|funzione|Caricamento modelli G|cari-modelli-g
+3|23|11|43|0|funzione|Caricamento schede impianto|cari_sche
+3|23|11|44|0|funzione|Caricamento anomalie mod. G|carianomg
+3|23|21|51|0|funzione|Scarico anomalie da dichiarazioni|coimscar-anom
+3|23|31|12|0|funzione|Scansionati non associati|coimalle
+3|23|51|72|0|funzione|Messaggi inviati|tmsg
+3|23|51|73|0|funzione|Messaggi ricevuti|dmsg
+3|31|14|44|0|funzione|Gestione tipi condizionatori|tpco
+3|31|14|45|0|funzione|Gestione fluido refrigerante|flre
+3|31|31|18|0|funzione|Associazione Comuni agli Utenti|cout
+3|31|14|40|0|funzione|Gestione Protocollo|prot
+3|31|14|41|0|funzione|Gestione tipi anomalie da dichiarazioni|tano_d
+3|31|14|42|0|funzione|Gestione causali di pagamento|caus
+3|31|14|43|0|funzione|Gestione struttura file caricamenti massivi|coimtabs
+2|17|31|0|0|funzione|Bollettini Postali|bpos
+3|23|11|45|0|funzione|Caricamento RCEE di tipo 1|cari-rcee-tipo-1
+2|17|32|0|0|funzione|File ricevuti dalle poste con i pagamenti|file-pagamenti-postali
+3|23|11|46|0|funzione|Spostamento dichiarazione|coimdimp-dest
+3|23|11|47|0|funzione|Aggiornamento Data|coimdimp-data

@@ -1,0 +1,212 @@
+ad_page_contract {
+    Lista tabella "coiminco"
+
+    @author                  Mortoni Nicola/Formizzi Paolo Adhoc
+    @creation-date           19/08/2004
+
+    @param search_word       parola da ricercare con una query
+    @param rows_per_page     una delle dimensioni della tabella  
+    @param caller            se diverso da index rappresenta il nome del form 
+                             da cui e' partita la ricerca ed in questo caso
+                             imposta solo azione "sel"
+    @param nome_funz         identifica l'entrata di menu,
+                             serve per le autorizzazioni
+    @param nome_funz_caller  identifica l'entrata di menu,
+                             serve per la navigation bar
+    @param receiving_element nomi dei campi di form che riceveranno gli
+                             argomenti restituiti dallo script di zoom,
+                             separati da '|' ed impostarli come segue:
+
+    @cvs-id coiminco-list.tcl 
+} {
+    {search_word       ""}
+    {rows_per_page     ""}
+    {caller       "index"}
+    {nome_funz         ""}
+    {nome_funz_caller  ""} 
+    {receiving_element ""}
+    {last_cod_inco     ""}
+
+    {f_tipo_data       ""}
+    {f_data            ""}
+    {f_cod_impianto    ""}
+    {f_tipo_estrazione ""}
+    {f_anno_inst_da    ""}
+    {f_anno_inst_a     ""}
+    {f_cod_comb        ""}
+    {f_cod_enve        ""}
+    {f_cod_tecn        ""}
+    {f_cod_comune      ""}
+    {f_cod_via         ""}
+    {f_descr_topo      ""}
+    {f_descr_via       ""}
+    {f_stato           ""}
+
+    {flag_aimp         ""}
+    {cod_impianto      ""}
+    {url_aimp          ""}
+    {url_list_aimp     ""}
+
+    {num_rec           ""}
+    {flag_scar         ""}
+    {flag_scar2        ""}
+    {f_cod_area        ""}
+    {f_tipo_lettera    ""}
+    {f_campagna        ""}
+}  -properties {
+    page_title:onevalue
+    context_bar:onevalue
+    list_head:onevalue
+    table_result:onevalue
+}
+
+# Controlla lo user
+if {![string is space $nome_funz]} {
+    set lvl        1
+    set id_utente [lindex [iter_check_login $lvl $nome_funz] 1]
+} else {
+  # se la lista viene chiamata da un cerca, allora nome_funz non viene passato
+  # e bisogna reperire id_utente dai cookie
+    set id_utente [ad_get_cookie iter_login_[ns_conn location]]
+}
+
+set desc_enve [db_map descrizione_enve_opve]
+set title_enve "Ente Verif"
+# controllo se l'utente è il responsabile dell'ente verificatore
+set cod_tecn   [iter_check_uten_opve $id_utente]
+set cod_enve   [iter_check_uten_enve $id_utente]
+if {![string equal $cod_tecn ""]} {
+    set flag_cod_tecn "t"
+    set desc_enve ""
+    set title_enve ""
+} else {
+    set flag_cod_tecn "f"
+}
+
+if {![string equal $cod_enve ""]} {
+    set flag_cod_enve "t"
+    set desc_enve [db_map descrizione_opve]
+    set title_enve "Tecn.Verif"
+} else {
+    set flag_cod_enve "f"
+}
+
+
+if {$flag_aimp == "S"} {
+    set link_tab [iter_links_form $cod_impianto $nome_funz_caller $url_list_aimp $url_aimp]
+    set dett_tab [iter_tab_form $cod_impianto]
+} else {
+    set link_tab ""
+    set dett_tab ""
+}
+
+if {![string equal $f_campagna ""]} {
+    if {[db_0or1row sel_campagna ""] == 0} {
+	iter_return_complaint "Campagna non trovata"
+    }
+} else {
+    if {$flag_aimp == "S"
+	||  $caller    != "index"
+    } {
+	set where_cinc " and c.cod_comune in $lista_comu"
+    } else {
+	set where_area ""
+    }
+    append where_cond $where_area
+} else {
+    set where_area ""
+}
+
+ns_log notice "prova dob coiminco_list lista_comu = $lista_comu where_area = $where_area"
+
+# se entro come verificatore e sono provincia di mantoav o provincia di padova 
+# visualizzo solo gli incontri dallo stato assegnato in poi.
+if {$flag_ente == "P"
+&&  (   $sigla_prov == "MN"
+     || $sigla_prov == "PD"
+    )
+&& ![string equal $cod_tecn ""]
+} {
+    append where_cond " and a.stato >= 3"
+}
+
+
+# filtro per parola di ricerca
+set pos_join_coimcitt "left outer join coimcitt"
+set ora_join_coimcitt "(+)"
+if {![string equal $search_word ""]} {
+    set search_word_1 [iter_search_word $search_word]
+    set pos_join_coimcitt "     inner join coimcitt"
+    set ora_join_coimcitt ""
+    append where_cond  "
+    and b.cognome like upper(:search_word_1)"
+}
+
+# posizionatore per pagina successiva
+set where_last ""
+if {$last_cod_inco != ""} {
+    set indirizzo     [lindex $last_cod_inco 0]
+    set cod_inco      [lindex $last_cod_inco 1]
+
+    if {[string equal $indirizzo ""]} {
+	set indirizzo_eq  "is null"
+        set or_indirizzo  ""
+    } else {
+	set indirizzo_eq  "= :indirizzo"
+        set or_indirizzo_si_vie  "or (e.descrizione > :indirizzo)"
+        set or_indirizzo_no_vie  "or (c.indirizzo > :indirizzo)"
+    }
+
+    set where_last_si_vie "and (
+                            (e.descrizione $indirizzo_eq
+                             and a.cod_inco > :cod_inco)
+                         $or_indirizzo_si_vie
+                        )"
+    set where_last_no_vie "and (
+                            (c.indirizzo $indirizzo_eq
+                             and a.cod_inco > :cod_inco)
+                         $or_indirizzo_no_vie
+                        )"
+
+} else {
+    set where_last_si_vie ""
+    set where_last_no_vie ""
+}
+
+if {$flag_aimp != "S"
+&&  $caller    == "index"
+} {
+    if {[string equal $num_rec ""]} {
+	set num_rec [db_string sel_inco_count ""]
+    }
+    set dett_num_rec "Appuntamenti selezionati: $num_rec"
+} else {
+    set dett_num_rec "&nbsp;"
+}
+
+if {$flag_viario == "T"} {
+    set sel_inco [db_map sel_inco_si_vie]
+} else {
+    set sel_inco [db_map sel_inco_no_vie]
+}
+
+set table_result [ad_table -Tmax_rows $rows_per_page -Tmissing_text "Nessun dato corrisponde ai criteri impostati." -Textra_vars {last_cod_inco cod_inco cognome nome indirizzo nome_funz nome_funz_caller extra_par flag_aimp cod_impianto url_aimp url_list_aimp} go $sel_inco $table_def]
+
+# preparo url escludendo last_cod_inco che viene passato esplicitamente
+# per poi preparare il link alla prima ed eventualmente alla prossima pagina
+set url_vars [export_ns_set_vars "url" "last_cod_inco num_rec"]&[export_url_vars num_rec]
+set link_altre_pagine "Vai alla <a href=\"$curr_prog?$url_vars\">prima pagina</a>"
+
+# preparo link a pagina successiva
+set ctr_rec [expr [regsub -all <tr $table_result <tr comodo] -1]
+if {$ctr_rec == $rows_per_page} {
+    set last_cod_inco [list $indirizzo $cod_inco]
+    append url_vars          "&[export_url_vars last_cod_inco]"
+    append link_altre_pagine " o alla <a href=\"$curr_prog?$url_vars\">pagina successiva</a>"
+}
+
+# creo testata della lista
+set list_head [iter_list_head $form_di_ricerca   $col_di_ricerca \
+              $dett_num_rec   $link_altre_pagine $link_righe "Righe per pagina"]
+db_release_unused_handles
+ad_return_template 

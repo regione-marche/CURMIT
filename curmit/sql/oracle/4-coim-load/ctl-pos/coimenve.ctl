@@ -1,0 +1,28 @@
+--OPTIONS(DIRECT=TRUE)
+LOAD DATA
+CHARACTERSET UTF8
+INTO TABLE coimenve
+REPLACE
+FIELDS TERMINATED BY '|'
+TRAILING NULLCOLS
+(COD_ENVE                      CHAR(8) NULLIF (COD_ENVE = BLANKS)
+,RAGIONE_01                    CHAR(40) NULLIF (RAGIONE_01 = BLANKS)
+,RAGIONE_02                    CHAR(40) NULLIF (RAGIONE_02 = BLANKS)
+,INDIRIZZO                     CHAR(40) NULLIF (INDIRIZZO = BLANKS)
+,NUMERO                        CHAR(8) NULLIF (NUMERO = BLANKS)
+,CAP                           CHAR(5) NULLIF (CAP = BLANKS)
+,LOCALITA                      CHAR(40) NULLIF (LOCALITA = BLANKS)
+,COMUNE                        CHAR(40) NULLIF (COMUNE = BLANKS)
+,PROVINCIA                     CHAR(4) NULLIF (PROVINCIA = BLANKS)
+,COD_FISCALE                   CHAR(16) NULLIF (COD_FISCALE = BLANKS)
+,COD_PIVA                      CHAR(16) NULLIF (COD_PIVA = BLANKS)
+,TELEFONO                      CHAR(15) NULLIF (TELEFONO = BLANKS)
+,CELLULARE                     CHAR(15) NULLIF (CELLULARE = BLANKS)
+,FAX                           CHAR(15) NULLIF (FAX = BLANKS)
+,EMAIL                         CHAR(35) NULLIF (EMAIL = BLANKS)
+,NOTE                          CHAR(4000) NULLIF (NOTE = BLANKS)
+,TRACCIATO                     CHAR(250) NULLIF (TRACCIATO = BLANKS)
+,DATA_INS                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_INS = BLANKS)
+,DATA_MOD                      DATE(10) "YYYY-MM-DD" NULLIF (DATA_MOD = BLANKS)
+,UTENTE                        CHAR(10) NULLIF (UTENTE = BLANKS)
+)

@@ -1,0 +1,139 @@
+nome_tabella|nome_colonna|denominazione|tipo_dato|dimensione|obbligatorio|default_value|range_value|ordinamento
+rcee1|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||1000
+rcee1|data_controllo|DATA CONTROLLO|date||S|||1010
+rcee1|flag_status|ESITO CONTROLLO|varchar|2|S||P,N|1020
+rcee1|data_installazione_aimp|DATA INSTALLAZIONE IMPIANTO|date||S|19010101||1030
+rcee1|anno_costruzione_aimp|DATA ICOSTRUZIONE IMPIANTO|date||S|19010101||1040
+rcee1|pdr|PDR|varchar|20|N|||1070
+rcee1|pod|POD|varchar|20|N|||1080
+rcee1|marca|COSTRUTTORE |varchar|40|S|||1090
+rcee1|matricola|MATRICOLA|varchar|40|S|||1100
+rcee1|modello|MODELLO|varchar|40|S|||1110
+rcee1|combustibile|COMBUSTIBILE|varchar|40|S|NON NOTO||1120
+rcee1|data_costruzione_gend|DATA COSTRUZIONE GENERATORE|date||N|||1160
+rcee1|cod_manutentore|CODICE MANUTENTORE|varchar|8|S|||1240
+rcee1|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||1250
+rcee1|indirizzo_manu|INDIRIZZO MANUTENTORE |varchar|40|N|||1270
+rcee1|cap_manu|CAP MANUTENTORE|varchar|5|N|||1300
+rcee1|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||1310
+rcee1|cod_opmanu_new|CODICE OPERATORE MANUTENTORE|varchar|16|N|||1320
+rcee1|cognome_resp|COGNOME RESPONSABILE|varchar|100|S|||1350
+rcee1|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|S|||1360
+rcee1|provincia_resp|PROVINCIA RESPONSABILE|varchar|2|S|||1380
+rcee1|cap_resp|CAP RESPONSABILE |varchar|5|S|||1400
+rcee1|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE |varchar|16|S|||1410
+rcee1|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||1440
+rcee1|data_installaz_gend|DATA INSTALLAZIONE GEN. |date||S|||1170
+rcee1|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||1450
+rcee1|provincia_occu|PROVINCIA OCCUPANTE|varchar|2|N|||1470
+rcee1|scarico_fumi_gend|SCARICO FUMI GENERATORE |varchar|8|S||0,I,C,P|1130
+rcee1|cod_utgi|DESTINAZIONE USO GENERATORE|varchar|1|S||0,A,E,R,X|1180
+rcee1|cod_tpim|TIPOLOGIA IMPIANTO|varchar|1|S||0,A,C|1050
+rcee1|fluido_termovettore_gend|FLUIDO TERMOVETTORE GENERATORE|varchar|1|N||0,1,2,3|1150
+rcee1|locale|LOCALE INSTALLAZIONE|varchar|1|S||T,E,I|1200
+rcee1|marc_effic_energ|MARCATURA EFFICIENZA ENERGETICA |varchar|1|N||1,2,3,4,5|1210
+rcee1|nome_manu|NOME MANUTENTORE |varchar|100|N|||1260
+rcee1|flag_responsabile|FLAG RESPONSABILE|varchar|1|S||T,A,O,P|1330
+rcee1|tipo_foco|TIPO GENERATORE|varchar|1|S||A,C|1190
+rcee1|cap_occu|CAP OCCUPANTE |varchar|5|N|||1490
+rcee1|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||1500
+rcee1|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||1530
+rcee1|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||1540
+rcee1|provincia_prop|PROVINCIA PROPRIETARIO|varchar|2|N|||1560
+rcee1|cap_prop|CAP PROPRIETARIO |varchar|5|N|||1580
+rcee1|cod_fiscale_prop|IDENTIFICATIVO FISCALE PROPRIETARIO |varchar|16|N|||1590
+rcee1|nome_int|NOME INTESTATARIO|varchar|100|N|||1610
+rcee1|comune_int|COMUNE INTESTATARIO|varchar|40|N|||1640
+rcee1|natura_giuridica_int|NATURA GIURIDICA INTESTATARIO|varchar|1|N||G,F|1670
+rcee1|cap_int|CAP INTESTATARIO |varchar|5|N|||1680
+rcee1|cod_fiscale_int|IDENTIFICATIVO FISCALE INTESTATARIO |varchar|16|N|||1690
+rcee1|telefono_int|TELEFONO INTESTATARIO|varchar|15|N|||1700
+rcee1|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||1710
+rcee1|ora_fine|ORARIO FINE CONTROLLO |varchar|8|N|||1720
+rcee1|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||1730
+rcee1|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||1740
+rcee1|data_prot|DATA PROTOCOLLO|date||N|||1750
+rcee1|conformita|CONFORMITA|varchar|1|S||S,N,C|1760
+rcee1|lib_impianto|LIBRETTO IMPIANTO|varchar|1|S||S,N,C|1770
+rcee1|rct_lib_uso_man_comp|LIBRETTO compilato IN TUTTE LE SUE PARTI|varchar|1|S||S,N,C|1790
+rcee1|rct_tratt_in_risc|Trattamento in riscaldamento|varchar|1|N|S|R,A,F,D,C,K,J,W,T|1810
+rcee1|rct_tratt_in_acs|Trattamento in ACS|varchar|1|N|S|R,A,F,D,C,K,J,W,T|1820
+rcee1|rct_install_interna|Per installazione esterna:generatori idonei|varchar|1|N|S|S,N,C|1830
+rcee1|ap_vent_ostruz|Aperture di ventilazione/areazione libere da ostruzioni|varchar|1|N|S|S,N,C|1840
+rcee1|ap_ventilaz|Adeguate dimensione aperture ventilazione/areazione|varchar|1|N|S|S,N,C|1850
+rcee1|rct_canale_fumo_idoneo|Canali da fumo e condotti di scarico idonei|varchar|1|N|S|S,N,C|1860
+rcee1|rct_sistema_reg_temp_amb|Sistema di regolazione temp. ambiente funzionante|varchar|1|S||S,N,C|1870
+rcee1|rct_assenza_per_comb|Assenza di perdite di combustibile liquido|varchar|1|S||S,N,C|1880
+rcee1|rct_idonea_tenuta|Idonea tenuta dell'impianto interno e raccordi con il generatore|varchar|1|S||S,N,C|1890
+rcee1|disp_comando|Dispositivi di comando funzionanti correttamente|varchar|1|S||S,N,C|1910
+rcee1|disp_sic_manom|Dispositivi di sicurezza non manomessi e/o cortocircuitati|varchar|1|S||S,N,C|1920
+rcee1|rct_valv_sicurezza|Valvola di sicurezza alla sovrapressione a scarico libero|varchar|1|S||S,N,C|1930
+rcee1|rct_scambiatore_lato_fumi|Controllato e pulito scambiatore lato fumi|varchar|1|S||S,N,C|1940
+rcee1|rct_riflussi_comb|Presenza dei riflussi della combustione|varchar|1|S||S,N,C|1950
+rcee1|rct_uni_10389|Risultati controllo secondo norma UNI 10389-1 conformi alla legge|varchar|1|S||S,N,C|1960
+rcee1|rct_modulo_termico|Modulo termico|varchar|8|N|||2070
+rcee1|rct_check_list_1|Adozione di valvole termostatiche sui corpi scaldanti|varchar|1|S||S,N|2080
+rcee1|rct_check_list_2|L'isolamento della rete di distribuzione nei locali non riscaldati|varchar|1|S||S,N|2090
+rcee1|osservazioni|OSSERVAZIONI|varchar|4000|N|||2120
+rcee1|raccomandazioni|RACCOMANDAZIONI |varchar|4000|N|||2130
+rcee1|prescrizioni|PRESCRIZIONI|varchar|4000|N|||2140
+rcee1|data_utile_inter|DATA UTILE INTERVENTO|date||N|||2150
+rcee1|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||2160
+rcee1|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|S|||2170
+rcee1|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N||BO,BP,CN,BB,CC,POS,PS|2190
+rcee1|stagione_risc2|STAGIONE RISCALDAMENTO2|varchar|40|N|||2240
+rcee1|localita|LOCALITA|varchar|40|N|||2260
+rcee1|toponimo|TOPONIMO|varchar|20|S|||2270
+rcee1|civico|CIVICO|varchar|8|N|||2290
+rcee1|comune|COMUNE|varchar|40|S|||2340
+rcee1|cap|CAP |varchar|5|N|||2360
+rcee1|rct_check_list_4|Sostituzione di un sistema di regolazione on/off|varchar|1|S||S,N|2110
+rcee1|rct_dur_acqua|Durezza totale|numeric|6,2|S|||1800
+rcee1|tiraggio_gend|TIRAGGIO GENERATORE|varchar|1|S||N,F|1140
+rcee1|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE |varchar|1|N||G,F|1480
+rcee1|rct_gruppo_termico|Gruppo Termico|varchar|2|N|||1900
+rcee1|rct_check_list_3|Introduzione di un sistema di trattamento dell'acqua sanitaria e per riscaldamento ove assente|varchar|1|S||S,N|2100
+rcee1|potenza_foc_nom|POTENZA FOCOLARE NOMINALE |numeric|6,2|S|||1220
+rcee1|potenza_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|S|||1230
+rcee1|o2|O2|numeric|6,2|S|||2000
+rcee1|co|CO   PPM |numeric|10,4|S|||2030
+rcee1|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|S|||2040
+rcee1|tiraggio|TIRAGGIO|numeric|9,2|N|||2050
+rcee1|rct_rend_min_legge|Rend.to combustione minimo di legge|numeric|6,2|S|||2060
+rcee1|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||2200
+rcee1|consumo_annuo2|CONSUMO ANNUO2|numeric|9,2|N|||2220
+rcee1|gen_prog|PROGRESSIVO GENERATORE|numeric|8,0|S|1||1060
+rcee1|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||1280
+rcee1|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||1290
+rcee1|nome_resp|NOME RESPONSABILE|varchar|100|S|||1340
+rcee1|comune_resp|COMUNE RESPONSABILE|varchar|40|S|||1370
+rcee1|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|S||G,F|1390
+rcee1|telefono_resp|TELEFONO RESPONSABILE |varchar|15|N|||1420
+rcee1|nome_occu|NOME OCCUPANTE|varchar|100|N|||1430
+rcee1|comune_occu|COMUNE OCCUPANTE |varchar|40|N|||1460
+rcee1|telefono_occu|TELEFONO OCCUPANTE|varchar|15|N|||1510
+rcee1|nome_prop|NOME PROPRIETARIO|varchar|100|N|||1520
+rcee1|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||1550
+rcee1|natura_giuridica_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||G,F|1570
+rcee1|telefono_prop|TELEFONO PROPRIETARIO |varchar|15|N|||1600
+rcee1|cognome_int|COGNOME INTESTATARIO|varchar|100|N|||1620
+rcee1|indirizzo_int|INDIRIZZO INTESTATARIO|varchar|40|N|||1630
+rcee1|provincia_int|PROVINCIA INTESTATARIO|varchar|2|N|||1660
+rcee1|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|S||S,N,C|1780
+rcee1|cont_rend|CONTROLLO RENDIMENTO|varchar|1|S||S,N,C|1970
+rcee1|temp_fumi|TEMPERATURA FUMI |numeric|6,2|S|||1980
+rcee1|stagione_risc|STAGIONE RISCALDAMENTO|varchar|40|N|||2230
+rcee1|anomalie_dimp|ANOMALIE|varchar|6000|N|||2250
+rcee1|indirizzo|INDIRIZZO|varchar|50|S|||2280
+rcee1|esponente|ESPONENTE|varchar|3|N|||2300
+rcee1|scala|SCALA |varchar|5|N|||2310
+rcee1|piano|PIANO |varchar|5|N|||2320
+rcee1|interno|INTERNO |varchar|5|N|||2330
+rcee1|provincia|PROVINCIA|varchar|40|S|||2350
+rcee1|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|S|||1990
+rcee1|co2|CO2 |numeric|6,2|S|||2010
+rcee1|bacharach|BACHARACH|numeric|6,2|N|||2020
+rcee1|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||2180
+rcee1|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||2210
+rcee1|idoneita_locale||varchar|1|N||S,N,C|1829
+(137 rows)

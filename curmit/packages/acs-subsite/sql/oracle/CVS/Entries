@@ -1,0 +1,21 @@
+/acs-subsite-create.sql/1.8/Tue Dec  8 01:57:22 2009//Toacs-5-8
+/acs-subsite-drop.sql/1.4/Sat Jan 22 17:59:37 2005//Toacs-5-8
+/application-groups-create.sql/1.6/Fri Jan 30 02:36:56 2009//Toacs-5-8
+/application-groups-drop.sql/1.1/Thu Apr  5 18:23:38 2001//Toacs-5-8
+/email-image-drop.sql/1.1/Sat Jan 22 17:57:35 2005//Toacs-5-8
+/email-image.sql/1.2/Tue Sep 26 15:19:56 2006//Toacs-5-8
+/host-node-map-create.sql/1.3/Thu Jan 16 13:37:08 2003//Toacs-5-8
+/host-node-map-drop.sql/1.1/Wed Oct 10 17:53:09 2001//Toacs-5-8
+/portraits-drop.sql/1.1/Thu Apr  5 18:23:38 2001//Toacs-5-8
+/portraits.sql/1.2/Tue Sep 26 15:19:56 2006//Toacs-5-8
+/site-node-selection-drop.sql/1.2/Thu Jan 13 13:55:32 2005//Toacs-5-8
+/site-node-selection.sql/1.4/Sun Jun  4 00:45:41 2006//Toacs-5-8
+/subsite-callbacks-create.sql/1.2/Tue Sep 30 12:10:03 2003//Toacs-5-8
+/subsite-callbacks-drop.sql/1.1/Thu Apr  5 18:23:38 2001//Toacs-5-8
+/themes-create.sql/1.4/Mon Oct  4 21:59:20 2010//Toacs-5-8
+/themes-drop.sql/1.1/Thu May  8 01:52:31 2008//Toacs-5-8
+/user-profiles-create.sql/1.3/Mon Jan 26 15:39:46 2004//Toacs-5-8
+/user-profiles-drop.sql/1.1/Thu Apr  5 18:23:38 2001//Toacs-5-8
+/user-sc-create.sql/1.1/Wed Jan 23 02:05:31 2002//Toacs-5-8
+D/tests////
+D/upgrade////

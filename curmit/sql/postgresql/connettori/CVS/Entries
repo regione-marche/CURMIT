@@ -1,0 +1,19 @@
+/0-coim-unload.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/1-coim-drop.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/2-coim-create.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/4-coim-load.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/5-coim-sequence.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimaimp_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimanom_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimcimp_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimcitt_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimcomb_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimcost_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimdimp_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimgend_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimmanu_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimopve_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimprog_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimtopo_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+/coimviae_cnt.sql/1.1.1.1/Thu Aug 29 12:31:22 2019//
+D

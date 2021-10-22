@@ -1,0 +1,12 @@
+<master>
+
+<h1>iterbase vs @origin2@ - diffing @fname@</h1>
+
+<a href="metrics?origin2=@origin2@&dirpath=@dirpath@&ftype=@ftype@&diff_size_p=1">Ritorna</a>
+
+<blockquote>
+  <pre>
+@diff@    
+  </pre>
+</blockquote>
+

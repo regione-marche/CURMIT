@@ -1,0 +1,826 @@
+ad_library {
+
+    Holders Procs.
+
+    @author claudio.pasolini@comune.mantova.it
+    @cvs-id $Id:
+
+}
+
+namespace eval wal {}
+
+ad_proc -public wal::prepare_holders_file {
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Prepara file di carico Curit per Lottomatica.
+    Prepara file di carico CENED per Lottomatica.
+    Prepara file di carico Curit + CENED per Sisal.
+    Registra i titolari provenienti da Curit su wal_holders.
+    Registra i titolari provenienti da Curit su wal_log_holders.
+
+    @author Claudio Pasolini
+
+    @param shipping_date  Data spedizione in formato YYYYMMDD
+    @param shipping_no    Progressivo invio nella giornata
+} {
+
+    # determino il dbn a cui collegarmi
+    if {[db_get_database] eq "wallet-dev"} {
+	    set curit_dbn "curit-dev"
+    } elseif {[db_get_database] eq "wallet-sta"} {
+	    set curit_dbn "curit-sta"
+    } else {
+	    set curit_dbn "curit"
+    }
+
+    if {$shipping_date eq ""} {
+	set shipping_date [clock format [clock seconds] -format %Y%m%d]
+    }
+
+    # determino la data dell'ultimo carico inviato
+    set from_date [db_string date "
+        select creation_date 
+        from wal_log_holders
+        order by creation_date desc
+        limit 1" -default "2007-12-31"]
+
+    # imposto provenienza e prefix per manutentori
+    db_1row source_man "select source_id as maintainers_source_id, prefix as maintainers_prefix from wal_sources where source_name = 'CURIT MAN'"
+
+    # imposto provenienza e prefix per amministratori
+    db_1row source_man "select source_id as trustees_source_id, prefix as trustees_prefix from wal_sources where source_name = 'CURIT AMM'"
+
+    # imposto provenienza e prefix per soggetti CENED
+    db_1row source_cened "select source_id as cened_source_id, prefix as cened_prefix from wal_sources where source_name = 'CENED'"
+
+    # imposto i caratteri CR e LF di terminazione riga
+    set CRLF \x0d\x0a
+
+    # imposto prefissi denominazione files
+    set curit_prefix CESTC
+    set cened_prefix CESTD
+    set sisal_prefix CESTCS
+
+    # imposto intestazione Cestec
+    set body_header   [ah::rpad {Cestec S.p.A.} 24 { }]
+    set body_header_2 [string repeat " " 24]
+
+    # preparo e scrivo record di testa per file di carico Curit per Lottomatica
+    set filename_1 "$curit_prefix${shipping_date}_${shipping_no}.DLD"
+    set header   "0[ah::rpad $filename_1 32 { }]$shipping_date$CRLF"
+    set fd1 [open [ah::package_root -package_key wallet]/lotto/tmp/$filename_1 w]
+    puts -nonewline $fd1 $header
+
+    # preparo e scrivo record di testa per file di carico CENED per Lottomatica
+    set filename_2 "$cened_prefix${shipping_date}_${shipping_no}.DLD"
+    set header   "0[ah::rpad $filename_2 32 { }]$shipping_date$CRLF"
+    set fd2 [open [ah::package_root -package_key wallet]/lotto/tmp/$filename_2 w]
+    puts -nonewline $fd2 $header
+
+    # preparo e scrivo record di testa per file di carico Sisal
+    set filename_3 "$sisal_prefix${shipping_date}_${shipping_no}.DLD"
+    set header   "0[ah::rpad $filename_3 32 { }]$shipping_date$CRLF"
+    set fd3 [open [ah::package_root -package_key wallet]/sisal/tmp/$filename_3 w]
+    puts -nonewline $fd3 $header
+
+    # imposto contatori dei tre file
+    set ctr1 0 ; # Curit x Lottomatica
+    set ctr2 0 ; # CENED x Lottomatica
+    set ctr3 0 ; # Curit + CENED x Sisal
+
+    db_transaction {
+
+	# cancello preliminarmente eventuali righe di wal_holders e wal_log_holders
+	# generate dal file di carico: in questo modo mi assicuro la possibilità di
+	# rieseguire la procedura in caso di necessità
+	db_dml del_holders     "delete from wal_holders     where filename in (:filename_1, :filename_2, :filename_3)"
+	db_dml del_log_holders "delete from wal_log_holders where filename in (:filename_1, :filename_2, :filename_3)"
+
+	# individuo i manutentori variati: devono avere wallet_id non nullo e data modifica > from_date 
+	set changed_maintainers [db_list_of_lists -dbn $curit_dbn changed_m "
+        select 
+            maintainer_id
+           ,rpad(substr(name,  1, 24), 24, ' ')
+           ,rpad(substr(name, 25, 24), 24, ' ')
+           ,rpad(substr(name, 49, 24), 24, ' ') 
+           ,rpad(substr(name, 73, 24), 24, ' ')
+           ,case 
+             when iva_code is not null then rpad(iva_code, 16, ' ')
+             else rpad(fiscal_code, 16, ' ')
+            end 
+           ,wallet_id
+           ,name
+           ,fiscal_code as fc
+           ,iva_code as ic
+           ,city
+        from iter_maintainers
+        where wallet_id is not null
+          and iter_code is not null
+          and editing_date > :from_date"]
+
+	# individuo gli amministratori di condominio variati
+	set changed_trustees [db_list_of_lists -dbn $curit_dbn changed_a "
+        select 
+            trustee_id
+           ,rpad(substr(name,  1, 24), 24, ' ')
+           ,rpad(substr(name, 25, 24), 24, ' ')
+           ,rpad(substr(name, 49, 24), 24, ' ') 
+           ,rpad(substr(name, 73, 24), 24, ' ')
+           ,case 
+             when iva_code is not null then rpad(iva_code, 16, ' ')
+             else rpad(fiscal_code, 16, ' ')
+            end 
+           ,wallet_id
+           ,name
+           ,fiscal_code as fc
+           ,iva_code as ic
+           ,city
+        from iter_trustees
+        where wallet_id is not null
+          and iter_code is not null
+          and editing_date > :from_date"]
+
+        # fondo le due liste
+	#PROVVISORIO FINO A RISOLUZIONE PROBLEMA LOTTOMATICA
+	#set changed_holders [concat $changed_maintainers $changed_trustees]
+        set changed_holders [list]
+
+	foreach changed_holder $changed_holders {
+
+	    # decodifico
+	    util_unlist $changed_holder maintainer_id name1 name2 name3 name4 fiscal_code wallet_id name fc ic city
+
+	    # preparo record di dettaglio Curit per Lottomatica
+	    set detail "R$body_header$body_header_2${wallet_id}M$name1$name2$name3$name4$fiscal_code$CRLF"
+
+	    # scrivo record dettaglio Curit per Lottomatica
+	    puts -nonewline $fd1 $detail
+	    incr ctr1
+
+            # aggiorno titolare
+            db_dml upd_holder "
+            update wal_holders set
+                name        = :name
+               ,fiscal_code = :fc
+               ,iva_code    = :ic
+               ,city        = :city  
+            where holder_id = :maintainer_id" 
+
+	    # registro carico su tabella di log
+	    db_dml log_new "
+            insert into wal_log_holders (
+                log_id        
+               ,filename
+               ,sisal_filename      
+               ,creation_date 
+               ,body_header   
+               ,body_header_2 
+               ,wallet_id     
+               ,action        
+               ,cust_header   
+               ,cust_header_2 
+               ,cust_header_3 
+               ,cust_header_4 
+               ,fiscal_code   
+            ) values (
+                nextval('wal_log_holders_seq')
+               ,:filename_1
+               ,null
+               ,:shipping_date
+               ,:body_header  
+               ,:body_header_2 
+               ,:wallet_id
+               ,'M'   
+               ,:name1
+               ,:name2
+               ,:name3
+               ,:name4
+               ,:fiscal_code  
+            )"
+	    
+	}
+
+	# individuo i manutentori nuovi: devono avere wallet_id nullo e iter_code nullo
+	set new_maintainers [db_list_of_lists -dbn $curit_dbn new_m "
+        select 
+            maintainer_id
+           ,rpad(substr(name,  1, 24), 24, ' ')
+           ,rpad(substr(name, 25, 24), 24, ' ')
+           ,rpad(substr(name, 49, 24), 24, ' ') 
+           ,rpad(substr(name, 73, 24), 24, ' ')
+           ,case 
+             when iva_code is not null then rpad(iva_code, 16, ' ')
+             else rpad(fiscal_code, 16, ' ')
+            end 
+           ,substr(iter_code, 3, 6)
+           ,name
+           ,fiscal_code as fc
+           ,iva_code as ic
+           ,city
+           ,:maintainers_source_id
+           ,:maintainers_prefix
+        from iter_maintainers
+        where wallet_id is null
+          and iter_code is not null"]
+
+	# individuo gli amministratori nuovi: devono avere wallet_id nullo e iter_code nullo
+	set new_trustees [db_list_of_lists -dbn $curit_dbn new_a "
+        select 
+            trustee_id
+           ,rpad(substr(name,  1, 24), 24, ' ')
+           ,rpad(substr(name, 25, 24), 24, ' ')
+           ,rpad(substr(name, 49, 24), 24, ' ') 
+           ,rpad(substr(name, 73, 24), 24, ' ')
+           ,case 
+             when iva_code is not null then rpad(iva_code, 16, ' ')
+             else rpad(fiscal_code, 16, ' ')
+            end 
+           ,substr(iter_code, 3, 6)
+           ,name
+           ,fiscal_code as fc
+           ,iva_code as ic
+           ,city
+           ,:trustees_source_id
+           ,:trustees_prefix
+        from iter_trustees
+        where wallet_id is null
+          and iter_code is not null"]
+
+        # fondo le due liste
+	set new_holders [concat $new_maintainers $new_trustees]
+
+	foreach new_holder $new_holders {
+
+	    # decodifico
+	    util_unlist $new_holder holder_id name1 name2 name3 name4 fiscal_code id name fc ic city source_id prefix
+
+	    # genero identificativo univoco di 18 digit per Lottomatica
+	    set wallet_id ${prefix}${id}[randomRange 99999999]
+
+	    # inspiegabilmente ogni tanto la funzione randomRange restituisce un numero di 7 cifre
+            # invece che di 8: mi cautelo con rpad
+            set wallet_id [ah::rpad $wallet_id 18 9]
+
+	    # preparo record di dettaglio Curit per Lottomatica
+	    set detail "R$body_header$body_header_2${wallet_id}I$name1$name2$name3$name4$fiscal_code$CRLF"
+
+	    # scrivo record dettaglio Curit per Lottomatica
+	    puts -nonewline $fd1 $detail
+	    incr ctr1
+
+	    # aggiungo riga titolari 
+	    db_dml new_holder "
+            insert into wal_holders (
+                holder_id
+               ,wallet_id
+               ,source_id
+               ,filename
+               ,sisal_filename
+               ,name
+               ,fiscal_code
+               ,iva_code
+               ,city
+            ) values (
+               :holder_id
+              ,:wallet_id
+              ,:source_id
+              ,:filename_1
+              ,null
+              ,:name
+              ,:fc
+              ,:ic
+              ,:city
+            )"
+
+	    # registro carico su tabella di log impostando anche sisal_filename, anche se scriverò
+            # la riga del file per Sisal più tardi
+	    db_dml log_new "
+            insert into wal_log_holders (
+                log_id        
+               ,filename      
+               ,sisal_filename
+               ,creation_date 
+               ,body_header   
+               ,body_header_2 
+               ,wallet_id     
+               ,action        
+               ,cust_header   
+               ,cust_header_2 
+               ,cust_header_3 
+               ,cust_header_4 
+               ,fiscal_code   
+           ) values (
+               nextval('wal_log_holders_seq')
+              ,:filename_1
+              ,:filename_3
+              ,:shipping_date
+              ,:body_header  
+              ,:body_header_2 
+              ,:wallet_id
+              ,'I'   
+              ,:name1
+              ,:name2
+              ,:name3
+              ,:name4
+              ,:fiscal_code  
+            )"
+
+	    # aggiorno codice portafoglio su curit
+	    if {$source_id == $maintainers_source_id} {
+	        db_dml -dbn $curit_dbn man "
+                    update iter_maintainers set
+                        wallet_id = :wallet_id
+                    where maintainer_id = :holder_id"
+	    } elseif {$source_id == $trustees_source_id} {
+	        db_dml -dbn $curit_dbn amm "
+                    update iter_trustees set
+                        wallet_id = :wallet_id
+                    where trustee_id = :holder_id"
+	    }
+	}
+
+        # trovo i soggetti provenienti da CENED (filename null) e quelli da inviare a
+        # Sisal (filename not null e sisal_filename null)    
+	set new_holders [db_list_of_lists new_h "
+        select 
+            holder_id
+           ,wallet_id
+           ,rpad(substr(name,  1, 24), 24, ' ')
+           ,rpad(substr(name, 25, 24), 24, ' ')
+           ,rpad(substr(name, 49, 24), 24, ' ') 
+           ,rpad(substr(name, 73, 24), 24, ' ')
+           ,case 
+             when iva_code is not null then rpad(iva_code, 16, ' ')
+             else rpad(fiscal_code, 16, ' ')
+            end 
+           ,case
+             when filename is null then 1
+             else 0
+            end as is_cened_p
+        from wal_holders
+        where filename is null 
+           or (filename is not null and sisal_filename is null)
+        "]
+
+	foreach new_holder $new_holders {
+
+	    # decodifico
+	    util_unlist $new_holder holder_id wallet_id name1 name2 name3 name4 fiscal_code is_cened_p 
+
+	    # preparo record di dettaglio per Lottomatica e Sisal
+	    set detail "R$body_header$body_header_2${wallet_id}I$name1$name2$name3$name4$fiscal_code$CRLF"
+
+            if {$is_cened_p} {
+		# scrivo record dettaglio CENED per Lottomatica
+		puts -nonewline $fd2 $detail
+		incr ctr2
+
+		# scrivo record dettaglio CENED per Sisal
+		puts -nonewline $fd3 $detail
+		incr ctr3
+
+                # aggiorno titolare
+                db_dml upd_holder "
+                update wal_holders set
+                    filename       = :filename_2
+                   ,sisal_filename = :filename_3
+                where holder_id = :holder_id" 
+
+	    # registro carico CENED su tabella di log
+	    db_dml log_new "
+            insert into wal_log_holders (
+                log_id        
+               ,filename
+               ,sisal_filename      
+               ,creation_date 
+               ,body_header   
+               ,body_header_2 
+               ,wallet_id     
+               ,action        
+               ,cust_header   
+               ,cust_header_2 
+               ,cust_header_3 
+               ,cust_header_4 
+               ,fiscal_code   
+            ) values (
+                nextval('wal_log_holders_seq')
+               ,:filename_2
+               ,:filename_3
+               ,:shipping_date
+               ,:body_header  
+               ,:body_header_2 
+               ,:wallet_id
+               ,'I'   
+               ,:name1
+               ,:name2
+               ,:name3
+               ,:name4
+               ,:fiscal_code  
+            )"
+
+	    } else {
+		# scrivo record dettaglio Curit per Sisal
+		puts -nonewline $fd3 $detail
+		incr ctr3
+
+                # aggiorno titolare
+                db_dml upd_holder "
+                update wal_holders set
+                    sisal_filename = :filename_3
+                where holder_id = :holder_id" 
+
+                # il file di log è già stato creato e quindi non è necessario crearlo
+	    }
+
+	}
+
+    }
+
+    # preparo record di coda Curit per Lottomatica
+    incr ctr1  2 ; # devo contare anche i record di testa e di coda
+    set footer "9$shipping_date[ah::lpad $ctr1 9 0][string repeat { } 51]$CRLF"
+    puts -nonewline $fd1 $footer
+    close $fd1
+
+    # preparo record di coda CENED per Lottomatica
+    incr ctr2  2 ; # devo contare anche i record di testa e di coda
+    set footer "9$shipping_date[ah::lpad $ctr2 9 0][string repeat { } 51]$CRLF"
+    puts -nonewline $fd2 $footer
+    close $fd2
+
+    # preparo record di coda Curit + CENED per Sisal
+    incr ctr3  2 ; # devo contare anche i record di testa e di coda
+    set footer "9$shipping_date[ah::lpad $ctr3 9 0][string repeat { } 51]$CRLF"
+    puts -nonewline $fd3 $footer
+    close $fd3
+
+    return 0
+
+}
+
+ad_proc -public wal::send_holders_file_lotto { 
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Invia file di carico Curit a Lottomatica.
+    Invia file di carico CENED a Lottomatica.
+
+    @author Claudio Pasolini
+
+    @param shipping_date  Data spedizione in formato YYYYMMDD
+    @param shipping_no    Progressivo invio nella giornata
+
+} {
+
+    if {$shipping_date eq ""} {
+        set shipping_date [clock format [clock seconds] -format %Y%m%d]
+    }
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/lotto/tmp
+
+    # imposto archivio carichi
+    set archive [ah::package_root -package_key wallet]/lotto/carichi
+
+    # ottengo dati connessione da parametri
+    set ip       [parameter::get_from_package_key -package_key wallet -parameter ftp_ip]
+    set user     [parameter::get_from_package_key -package_key wallet -parameter ftp_user]
+    set password [parameter::get_from_package_key -package_key wallet -parameter ftp_password]
+
+    # devo spedire due files 
+    set file_prefixs [list CESTC          CESTD]
+    set folders      [list PerLottomatica/Curit PerLottomatica/Cened]
+    set ips          [list $ip            $ip]
+    set users        [list $user          $user]
+    set passwords    [list $password      $password]
+
+    foreach file_prefix $file_prefixs folder $folders ip $ips user $users password $passwords {
+
+	set filename "$file_prefix${shipping_date}_${shipping_no}.DLD"
+
+	cd $wrkdir
+
+	# comprimo il file
+	exec "zip" "$filename.zip" "$filename"
+
+	# preparo script di ftp 
+	set fd [open "$wrkdir/ftp_dld.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder \nbinary\nput $filename.zip $file_prefix${shipping_date}_${shipping_no}.TMP\nrename $file_prefix${shipping_date}_${shipping_no}.TMP $filename.zip.RUN\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_dld.tmp"
+	    ns_log notice "\nFtp carichi $file_prefix ftp $ip OK"
+	} {
+	    ns_log notice "\nFtp $ip carichi $file_prefix\nProc send_holders_file fallita durante ftp:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp carichi $file_prefix" "Proc send_holders_file fallita durante ftp :Errore: $errmsg"
+	}
+
+	# faccio pulizia e archivio il file di carico
+	ns_unlink -nocomplain $wrkdir/ftp_dld.tmp
+	ns_rename $wrkdir/$filename $archive/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+
+	ns_log notice "\nFtp $ip carichi $file_prefix Proc send_holders_file terminata correttamente."
+    }
+}
+
+ad_proc -public wal::send_holders_file_sisal { 
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Invia file di carico Curit + CENED a Sisal
+
+    @author Claudio Pasolini
+
+    @param shipping_date  Data spedizione in formato YYYYMMDD
+    @param shipping_no    Progressivo invio nella giornata
+
+} {
+
+    if {$shipping_date eq ""} {
+        set shipping_date [clock format [clock seconds] -format %Y%m%d]
+    }
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/sisal/tmp
+
+    # imposto archivio carichi
+    set archive [ah::package_root -package_key wallet]/sisal/carichi
+
+    set sisal_ip       [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_ip]
+    set sisal_user     [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_user]
+    set sisal_password [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_password]
+
+    # devo spedire un file 
+    set file_prefixs [list CESTCS]
+    set folders      [list .]
+    set ips          [list $sisal_ip]
+    set users        [list $sisal_user]
+    set passwords    [list $sisal_password]
+
+    foreach file_prefix $file_prefixs folder $folders ip $ips user $users password $passwords {
+
+	set filename "$file_prefix${shipping_date}_${shipping_no}.DLD"
+
+	cd $wrkdir
+
+	# comprimo il file
+	exec "zip" "$filename.zip" "$filename"
+
+	# preparo script di ftp 
+	set fd [open "$wrkdir/ftp_dld.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder \nbinary\nput $filename.zip $file_prefix${shipping_date}_${shipping_no}.TMP\nrename $file_prefix${shipping_date}_${shipping_no}.TMP $filename.zip\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_dld.tmp"
+	    ns_log notice "\nFtp carichi $file_prefix ftp $ip OK"
+	} {
+	    ns_log notice "\nFtp $ip carichi $file_prefix\nProc send_holders_file fallita durante ftp:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp carichi $file_prefix" "Proc send_holders_file fallita durante ftp :Errore: $errmsg"
+	}
+
+	# faccio pulizia e archivio il file di carico
+	ns_unlink -nocomplain $wrkdir/ftp_dld.tmp
+	ns_rename $wrkdir/$filename $archive/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+
+	ns_log notice "\nFtp $ip carichi $file_prefix Proc send_holders_file terminata correttamente."
+    }
+}
+
+ad_proc -public wal::get_holders_response_lotto {
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Riceve file di esito (DRS) dei file di carico (DLD) inviati.
+
+    @author Claudio Pasolini
+
+} {
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/lotto/tmp
+
+    # imposto archivio carichi
+    set archive [ah::package_root -package_key wallet]/lotto/carichi
+
+    # ottengo dati connessione da parametri
+    set ip       [parameter::get_from_package_key -package_key wallet -parameter ftp_ip]
+    set user     [parameter::get_from_package_key -package_key wallet -parameter ftp_user]
+    set password [parameter::get_from_package_key -package_key wallet -parameter ftp_password]
+
+    # devo ricevere due files 
+    set file_prefixs [list CESTC          CESTD]
+    set folders      [list PerCESTEC      PerCESTEC]
+    set ips          [list $ip            $ip]
+    set users        [list $user          $user]
+    set passwords    [list $password      $password]
+
+    foreach file_prefix $file_prefixs folder $folders ip $ips user $users password $passwords {
+
+	# imposto filename da ricevere
+	if {$shipping_date ne ""} {
+	    set filename $file_prefix${shipping_date}_${shipping_no}.DLD.DRS
+	} else {
+	    # recupero il nome dell'ultimo carico inviato
+	    cd $archive
+	    set invio [lindex [lsort -decreasing [glob $file_prefix*DLD*]] 0]
+	    regsub {DLD} $invio {DLD.DRS} filename
+	}
+
+	ns_log notice "\n1 ... processing $filename"
+
+	# rimuovo per cautela eventuali file residui dall'ultima elaborazione
+	ns_unlink -nocomplain $wrkdir/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip.RUN
+
+	cd $wrkdir
+
+	# preparo script di ftp per ricevere il file 
+	set fd [open "$wrkdir/ftp_drs.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\nbinary\nget $filename.zip.RUN\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_drs.tmp"
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nftp OK"
+	} {
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nProc get_holders_response fallita durante ftp:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp carichi $file_prefix" "Proc get_holders_response fallita durante ftp :Errore: $errmsg"
+
+	    #return FTP_ERROR
+	    continue
+	}
+
+	if {![file exists $filename.zip.RUN]} {
+	    # il file dovrebbe esistere sempre!
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nProc get_holders_response non ha trovato il file atteso!"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp esito $file_prefix (DRS)" "Proc get_holders_response non ha trovato il file atteso!"
+
+	    #return NO_EXPECTED_FILE
+	    continue
+	}
+
+	ns_log notice "\n2 ricevuto file $filename.zip.RUN"
+
+	# decomprimo file
+	exec "unzip" "-o" "$filename.zip.RUN"
+
+	set filename [string toupper $filename]
+
+	if {[file size $filename] > 0} {
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nProc get_holders_response : il file contiene errori!"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp esito $file_prefix (DRS)" "Proc get_holders_response: il file contiene errori!"
+	}
+
+	# faccio pulizia e archivio il file di esito
+	ns_unlink -nocomplain $wrkdir/ftp_drs.tmp
+	ns_unlink -nocomplain $wrkdir/$filename.zip.RUN
+	ns_rename $wrkdir/$filename $archive/$filename
+
+	# preparo script di ftp per cancellare il file dal ftp server 
+	set fd [open "$wrkdir/ftp_drs.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\ndelete $filename.zip.RUN\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_drs.tmp"
+	} {
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp esito $file_prefix (DRS)" "Proc get_holders_response fallita durante delete:Errore: $errmsg"
+
+	    #return FTP_DELETE_ERROR
+	    continue
+	}
+
+	# faccio pulizia 
+	ns_unlink -nocomplain $wrkdir/ftp_drs.tmp
+
+	ns_log notice "\nFtp $file_prefix\nProc get_holders_response_lotto terminata correttamente."
+    }
+
+    return OK
+
+}
+
+ad_proc -public wal::get_holders_response_sisal {
+    {-shipping_date ""}
+    {-shipping_no "001"}
+} { 
+    Riceve file di esito (DRS) dei file di carico (DLD) inviati.
+
+    @author Claudio Pasolini
+
+} {
+
+    # imposto directory di lavoro
+    set wrkdir [ah::package_root -package_key wallet]/sisal/tmp
+
+    # imposto archivio carichi
+    set archive [ah::package_root -package_key wallet]/sisal/carichi
+
+    set sisal_ip       [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_ip]
+    set sisal_user     [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_user]
+    set sisal_password [parameter::get_from_package_key -package_key wallet -parameter sisal_ftp_password]
+
+    # devo ricevere un file
+    set file_prefixs [list CESTCS]
+    set folders      [list .]
+    set ips          [list $sisal_ip]
+    set users        [list $sisal_user]
+    set passwords    [list $sisal_password]
+
+    foreach file_prefix $file_prefixs folder $folders ip $ips user $users password $passwords {
+
+	# imposto filename da ricevere
+	if {$shipping_date ne ""} {
+	    set filename $file_prefix${shipping_date}_${shipping_no}.DRS
+	} else {
+	    # recupero il nome dell'ultimo carico inviato
+	    cd $archive
+	    set invio [lindex [lsort -decreasing [glob $file_prefix*DLD*]] 0]
+	    regsub {DLD} $invio {DRS} filename
+	}
+
+	ns_log notice "\n1 ... processing $filename"
+
+	# rimuovo per cautela eventuali file residui dall'ultima elaborazione
+	ns_unlink -nocomplain $wrkdir/$filename
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+
+	cd $wrkdir
+
+	# preparo script di ftp per ricevere il file 
+	set fd [open "$wrkdir/ftp_drs.tmp" w]
+
+	puts $fd "user $user $password\ncd $folder\nbinary\nget $filename.zip\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_drs.tmp"
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nftp OK"
+	} {
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nProc get_holders_response fallita durante ftp:Errore: $errmsg"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp carichi $file_prefix" "Proc get_holders_response fallita durante ftp :Errore: $errmsg"
+
+	    #return FTP_ERROR
+	    continue
+	}
+
+	if {![file exists $filename.zip]} {
+	    # il file dovrebbe esistere sempre!
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nProc get_holders_response non ha trovato il file atteso!"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp esito $file_prefix (DRS)" "Proc get_holders_response non ha trovato il file atteso!"
+
+	    #return NO_EXPECTED_FILE
+	    continue
+	}
+
+	ns_log notice "\n2 ricevuto file $filename.zip"
+
+	# decomprimo file
+	exec "unzip" "-o" "$filename.zip"
+
+	set filename [string toupper $filename]
+
+	if {[file size $filename] > 0} {
+	    ns_log notice "\nFtp esito $file_prefix (DRS)\nProc get_holders_response : il file contiene errori!"
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp esito $file_prefix (DRS)" "Proc get_holders_response: il file contiene errori!"
+	}
+
+	# faccio pulizia e archivio il file di esito
+	ns_unlink -nocomplain $wrkdir/ftp_drs.tmp
+	ns_unlink -nocomplain $wrkdir/$filename.zip
+	ns_rename $wrkdir/$filename $archive/$filename
+
+	# preparo script di ftp per cancellare il file dal ftp server 
+	set fd [open "$wrkdir/ftp_drs.tmp" w]
+
+	puts $fd "user $user $password\ncd PerCESTEC\ndelete $filename.zip\nquit\n"
+	close $fd
+
+	with_catch errmsg {
+	    exec "ftp" "-n" "$ip" "<$wrkdir/ftp_drs.tmp"
+	} {
+	    ns_sendmail [ad_system_owner] info@curit.it "Ftp esito $file_prefix (DRS)" "Proc get_holders_response fallita durante delete:Errore: $errmsg"
+
+	    #return FTP_DELETE_ERROR
+	    continue
+	}
+
+	# faccio pulizia 
+	ns_unlink -nocomplain $wrkdir/ftp_drs.tmp
+
+	ns_log notice "\nFtp $file_prefix\nProc get_holders_response_sisal terminata correttamente."
+    }
+
+    return OK
+
+}
+

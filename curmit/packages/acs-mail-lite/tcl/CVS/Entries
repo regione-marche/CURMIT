@@ -1,0 +1,15 @@
+/acs-mail-lite-callback-procs.tcl/1.22/Wed Mar 18 22:41:15 2009//Toacs-5-8
+/acs-mail-lite-callback-procs.xql/1.4/Fri Dec 22 07:57:43 2006//Toacs-5-8
+/acs-mail-lite-init.tcl/1.13/Tue Mar 16 12:10:27 2010//Toacs-5-8
+/acs-mail-lite-procs-oracle.xql/1.14/Mon Sep  8 20:26:43 2008//Toacs-5-8
+/acs-mail-lite-procs-postgresql.xql/1.13/Mon Sep  8 20:26:43 2008//Toacs-5-8
+/acs-mail-lite-procs.tcl/1.90.2.1/Wed Aug 28 22:53:44 2013//Toacs-5-8
+/acs-mail-lite-procs.xql/1.17/Wed Jan  9 16:51:30 2008//Toacs-5-8
+/apm-callback-procs.tcl/1.1/Wed Jan  9 12:45:24 2008//Toacs-5-8
+/bounce-procs-oracle.xql/1.1/Mon Apr  9 06:18:17 2007//Toacs-5-8
+/bounce-procs-postgresql.xql/1.1/Mon Apr  9 06:18:17 2007//Toacs-5-8
+/bounce-procs.tcl/1.9.4.1/Mon Sep  9 16:44:18 2013//Toacs-5-8
+/bounce-procs.xql/1.2/Thu Sep 13 13:52:05 2007//Toacs-5-8
+/incoming-mail-procs.tcl/1.6/Sat Mar 30 19:07:23 2013//Toacs-5-8
+/utils-procs.tcl/1.4/Sat Aug 23 17:20:55 2008//Toacs-5-8
+D

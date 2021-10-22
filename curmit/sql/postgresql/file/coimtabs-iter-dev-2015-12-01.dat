@@ -1,0 +1,1615 @@
+autocert|antivento|SISTEMA ANTIVENTO NON DETERIORATO|varchar|1|N||S,N,C|5400
+autocert|scambiatore|SCAMBIATORE PULITO|varchar|1|N||S,N,C|5500
+autocert|accens_reg|ACCENSIONE REGOLARE|varchar|1|N||S,N,C|5600
+impianti|data_ins|DATA INSERIMENTO|date||N|||11400
+autocert|valvola_sicur|VALVOLA DI SICUREZZA|varchar|1|N||S,N,C|5800
+autocert|vaso_esp|VASO ESPANSORE|varchar|1|N||S,N,C|5900
+autocert|disp_sic_manom|DISPOSITIVI DI SICUREZZA NON MANOMESSI|varchar|1|N||S,N,C|6000
+autocert|organi_integri|ORGANI INTEGRI|varchar|1|N||S,N,C|6100
+autocert|circ_aria|CIRCUITO ARIA PULITO|varchar|1|N||S,N,C|6200
+autocert|guarn_accop|GUARNIZIONE ACCOPPIAMENTO INTEGRA|varchar|1|N||S,N,C|6300
+autocert|assenza_fughe|ASSENZA FUGHE GAS|varchar|1|N||P,N,A|6400
+autocert|coibentazione|COIBENTAZIONE|varchar|1|N||P,N,A|6500
+autocert|eff_evac_fum|EFFICIENZA EVACUAZIONE FUMI|varchar|1|N||P,N,A|6600
+autocert|cont_rend|CONTROLLO RENDIMENTO|varchar|1|N||S,N|6700
+impianti|cfisc_terzi|IDENTIFICATIVO FISCALE TERZI|varchar|16|N|||7000
+impianti|cfisc_intestatario|IDENTIFICATIVO FISCALE INTESTATARIO|varchar|16|N|||6000
+autocert|temp_fumi|TEMPERATURA FUMI|numeric|6,2|N|||7000
+autocert|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|N|||7100
+autocert|o2|O2|numeric|6,2|N|||7200
+autocert|co2|CO2|numeric|6,2|N|||7300
+autocert|bacharach|BACHARACH|numeric|6,2|N|||7400
+autocert|co|CO|numeric|10,4|N|||7500
+rapporti|disp_reg_cont_pre|DISPOSITIVI DI CONTROLLO PRESENTI|varchar|1|N||S,N,V|3350
+autocert|tiraggio|TIRAGGIO|numeric|9,2|N|||7700
+autocert|osservazioni|OSSERVAZIONI|varchar|4000|N|||7800
+autocert|raccomandazioni|RACCOMANDAZIONI|varchar|4000|N|||7900
+autocert|prescrizioni|PRESCRIZIONI|varchar|4000|N|||8000
+autocert|data_utile_inter|DATA UTILE INTERVENTO|date||N|||8100
+autocert|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||8200
+autocert|delega_manut|DELEGA MANUTENTORE|varchar|50|N|||8300
+autocert|num_bollo|NUMERO BOLLINO|varchar|20|N|||8400
+autocert|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||8500
+autocert|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N|||8600
+autocert|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|N|||8700
+rapporti|new1_conf_accesso|ACCESSO ALLA CENTRALE|varchar|1|N||S,N,V|3510
+rapporti|new1_pres_mezzi|MEZZI ANTINCENDIO|varchar|1|N||S,N,V|3520
+autocert|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||9000
+impianti|anno_costruzione|ANNO COSTRUZIONE|date||N|||11700
+impianti|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||3300
+impianti|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||3800
+impianti|cognome_terzi|COGNOME TERZI|varchar|100|N|||6200
+impianti|cognome_amm|COGNOME AMMINISTRATORE|varchar|100|N|||7300
+impianti|localita_intestatario|LOCALITA INTESTATARIO|varchar|40|N|||5550
+impianti|tipo_impianto|TIPO IMPIANTO|varchar|1|N|0|A,C,0|400
+dimpmanu|toponimo|TOPONIMO|varchar|20|S|||12550
+autocert|pot_focolare_mis|POTENZA FOCOLARE NOMINALE|numeric|6,2|N|||8850
+rapporti|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|N|||10100
+rapporti|libretto_manutenz|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|N||S,N,I|4100
+rapporti|doc_prev_incendi|CERTIFICATO PREVENZIONE INCENDI PER IMPIANTI > 116,3 kW|varchar|1|N||S,N|4275
+autocert|prev_incendi|CERTIFICATO PREVENZIONE INCENDI|varchar|1|N|S|S,N, |4070
+autocert|esame_vis_l_elet|ESAME VISIVO LINEE ELETTRICHE|varchar|1|N|S|S,N, |4084
+autocert|libretto_bruc|LIBRETTO USO E MANUTENZIONE BRUCIATORE|varchar|1|N|S|S,N, |4042
+autocert|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|N||S,N,C|3900
+autocert|ass_perdite|ASSENZA DI PERDITE NEI RACCORDI|varchar|1|N|S|S,N,C|5750
+autocert|rapp_contr|CERTIFICAZIONE EX UNI 10435|varchar|1|N|S|S,N, |4014
+autocert|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|40|N|||1100
+impianti|campo_funzion_max|CAMPO DI LAVORO BRUCIATORE MAX|numeric|9,2|N|||10250
+impianti|localita_amm|LOCALITA AMMINISTRATORE|varchar|40|N|||7550
+modellog|scarico_fumi_gend|SCARICO FUMI GENERATORE|varchar|8|S||0,I,C,P|2700
+impianti|data_scad_dich|DATA SCADENZA AUTOCERTIFICAZIONE|date||N|||10975
+imprdimp|tot_autocert|TOTALE AUTOCERTIFICAZIONI|numeric|5|N|||100
+imprdimp|data_prima_dich|DATA PRIMA DICHIARAZIONE|date||N|||200
+incontri|cod_cinc|CAMPAGNA|varchar|40|S|||300
+incontri|tipo_estrazione|TIPO ETRAZIONE INCONTRO|varchar|40|N|||400
+incontri|ora_verifica|ORARIO VERIFICA|varchar|8|N|||500
+autocert|data_mod|DATA MODIFICA|date||N|||9200
+autocert|utente|UTENTE ULTIMA MODIFICA|varchar|10|N|||9300
+rapporti|ora_inizio|ORA INIZIO VERIFICA|varchar|8|N|||380
+rapporti|ora_fine|ORA FINE VERIFICA|varchar|8|N|||390
+rapporti|data_ins|DATA INSERIMENTO|date||N|||11600
+rapporti|data_mod|DATA MODIFICA|date||N|||11700
+incontri|cognome|COGNOME VERIFICATORE O RAGIONE SOCIALE|varchar|40|N|||600
+incontri|nome|NOME VERIFICATORE|varchar|40|N|||700
+incontri|cod_cimp|NUMERO RAPPORTO DI VERIFICA|varchar|20|N|||800
+incontri|cod_inco|CODICE INCONTRO|varchar|8|N|||900
+incontri|tipo_lettera|TIPO AVVISO|varchar|1|N|||1000
+incontri|stato|STATO INCONTRO|varchar|1|N|||1100
+incontri|esito|ESITO INCONTRO|varchar|2|N|||1200
+incontri|data_avviso_01|DATA PRIMO AVVISO|date||N|||1300
+incontri|data_avviso_02|DATA ULTIMO AVVISO|date||N|||1400
+incontri|data_estrazione|DATA ESTRAZIONE INCONTRO|date||N|||1500
+incontri|data_assegn|DATA ASSEGNAZIONE INCONTRO|date||N|||1600
+incontri|data_ins|DATA INSERIMENTO|date||N|||1700
+incontri|data_mod|DATA MODIFICA|date||N|||1800
+incontri|utente|UTENTE ULTIMA MODIFICA|varchar|10|N|||1900
+incontri|note|NOTE|varchar|4000|N|||2000
+incontri|data_verifica|DATA INCONTRO|date||S|||200
+impianti|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||11900
+imprdimp|data_ultim_dich|DATA ULTIMA DICHIARAZIONE|date||N|||300
+imprdimp|data_scad_dich|DATA SCADENZA AUTOCERTIFICAZIONE|date||N|||400
+imprdimp|osservazioni|FLAG AUTOCERTIFICAZIONE OSSERVAZIONI|varchar|1|N|||500
+imprdimp|raccomandazioni|FLAG AUTOCERTIFICAZIONE RACCOMANDAZIONI|varchar|1|N|||600
+imprdimp|prescrizioni|FLAG AUTOCERTIFICAZIONE PRESCRIZIONI|varchar|1|N|||700
+imprcimp|tot_rapporti|TOTALE RAPPORTI DI VERIFICA|numeric|5|N|||100
+impraimp|stato_conformita|STATO CONFORMITA|varchar|1|N|||3100
+impraimp|cod_cted|CATEGORIA EDIFICIO DPR 412|varchar|8|N|||3200
+imprcimp|note_conf|FLAG VERIFICA OSSERVAZIONI|varchar|1|N|||400
+imprcimp|esito_verifica|ESITO VERIFICA|varchar|2|S|||500
+impraimp|cod_impianto|CODICE IMPIANTO ITER|varchar|8|S|||200
+impraimp|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||300
+impraimp|potenza|POTENZA FOCOLARE NOMINALE IMPIANTO|numeric|9,2|N|||400
+impraimp|potenza_utile|POTENZA UTILE IMPIANTO|numeric|9,2|N|||500
+impraimp|cod_potenza|CODICE POTENZA|varchar|8|N|||600
+impraimp|tipo_impianto|TIPO IMPIANTO|varchar|1|N|||700
+impraimp|n_generatori|NUMERO GENERATORI|numeric|2|N|||800
+impraimp|flag_dpr412|SOTTOPONIBILE DPR 412|varchar|1|N|||900
+impraimp|cod_combustibile|CODICE COMBUSTIBILE|varchar|8|S|||1000
+impraimp|stato|STATO IMPIANTO|varchar|1|N|||1100
+impraimp|cod_via|CODICE VIA|varchar|8|N|||1200
+impraimp|localita|LOCALITA IMPIANTO|varchar|40|N|||1300
+impraimp|toponimo|TOPONIMO|varchar|8|S|||1400
+impraimp|indirizzo|INDIRIZZO|varchar|50|S|||1500
+impraimp|numero|CIVICO|varchar|8|N|||1600
+impraimp|esponente|ESPONENTE|varchar|3|N|||1700
+impraimp|scala|SCALA|varchar|5|N|||1800
+impraimp|piano|PIANO|varchar|5|N|||1900
+impraimp|interno|INTERNO|varchar|5|N|||2000
+impraimp|cod_qua|RIFERIMENTO QUARTIERE|varchar|5|N|||2100
+impraimp|cod_urb|RIFERIMENTO AREA URBANA|varchar|5|N|||2200
+impraimp|cod_comune|CODICE COMUNE|varchar|8|S|||2300
+impraimp|cod_provincia|CODICE PROVINCIA|varchar|8|S|||2400
+autocert|scar_ca_si|SCARICO A CAMINO SINGOLO|varchar|1|N||S,N,C|4900
+autocert|scar_parete|SCARICO A PARETE|varchar|1|N||S,N,C|5000
+autocert|riflussi_locale|NON ESISTONO RIFLUSSI NEL LOCALE|varchar|1|N||S,N,C|5100
+impianti|cognome_intestatario|COGNOME INTESTATARIO|varchar|100|N|||5200
+rapporti|nome_resp|NOME RESPONSABILE|varchar|100|N|||1000
+autocert|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|N|||2000
+autocert|comune_resp|COMUNE RESPONSABILE|varchar|40|N|||2100
+autocert|provincia_resp|PROVINCIA RESPONSABILE|varchar|4|N|||2200
+autocert|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|N||F,G|2300
+autocert|cap_resp|CAP RESPONSABILE|varchar|5|N|||2400
+autocert|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE|varchar|16|N|||2500
+autocert|telefono_resp|TELEFONO RESPONSABILE|varchar|15|N|||2600
+autocert|nome_occu|NOME OCCUPANTE|varchar|100|N|||2700
+autocert|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||2800
+autocert|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||2900
+autocert|comune_occu|COMUNE OCCUPANTE|varchar|40|N|||3000
+autocert|provincia_occu|PROVINCIA OCCUPANTE|varchar|4|N|||3100
+autocert|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE|varchar|1|N||F,G|3200
+autocert|cap_occu|CAP OCCUPANTE|varchar|5|N|||3300
+autocert|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||3400
+autocert|telefono|TELEFONO OCCUPANTE|varchar|15|N|||3500
+autocert|curve|CURVE|varchar|1|N||S,N,C|4600
+autocert|conformita|CONFORMITA|varchar|1|N||S,N,C|3700
+autocert|lunghezza|LUNGHEZZA|varchar|1|N||S,N,C|4700
+impianti|provincia_manu|PROVINCIA MANUTENTORE|varchar|4|N|||4150
+impianti|convenzionato|CONVENZIONATO|varchar|4|N|||4450
+impianti|provincia_prog|PROVINCIA PROGETTISTA|varchar|4|N|||4850
+impianti|data_costruz_gen|DATA COSTRUZIONE GENERATORE|date||N|||10350
+autocert|assenza_perdite|ASSENZA PERDITE SCARICO|varchar|1|N||S,N,C|5200
+coimcimp|eccesso_aria_perc_3a|ECCESSO ARIA PERCENTUALE MISURAZIONE 3|numeric|9,2|N|||5200
+rapporti|dt_tar_strum|DATA TARATURA STRUMENTO|date||N|||5200
+impianti|data_rottamaz_gen|DATA ROTTAMAZIONE GENERATORE|date||N|||10500
+impianti|data_rottamaz|DATA ROTTAMAZIONE|date||N|||10950
+autocert|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||1700
+autocert|conservazione|BUONO STATO DI CONSERVAZIONE|varchar|1|N||S,N,C|4800
+autocert|pulizia_ugelli|PULIZIA UGELLI|varchar|1|N||S,N,C|5300
+impraimp|cap|CAP|varchar|5|N|||2500
+impraimp|flag_dichiarato|FLAG DICHIARATO|varchar|1|N|||2600
+impraimp|anno_costruzione|ANNO COSTRUZIONE|date||N|||2700
+impraimp|data_installaz|DATA INSTALLAZIONE|date||N|||2800
+impraimp|data_attivaz|DATA ATTIVAZIONE|date||N|||2900
+impraimp|data_rottamaz|DATA ROTTAMAZIONE|date||N|||3000
+impianti|localita_prog|LOCALITA PROGETTISTA|varchar|40|N|||4750
+impraimp|cod_tpdu|DESTINAZIONE D USO EDIFICIO|varchar|5|N|||3300
+impraimp|marc_effic_energ|MARCATURA ENERGETICA|varchar|5|N|||3400
+impraimp|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||3500
+impraimp|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||3600
+impraimp|funz_consumo_um|CONSUMO ANNUO UM|varchar|3|N|||3700
+impraimp|data_ins|DATA INSERIMENTO|date||N|||3800
+impraimp|data_mod|DATA MODIFICA|date||N|||3900
+impraimp|utente|UTENTE ULTIMA MODIFICA|varchar|10|N|||4000
+impraimp|gb_x|COORDIANTA X|varchar|50|N|||2525
+impraimp|gb_y|COORDIANTA Y|varchar|50|N|||2550
+scrmaps|cod_impianto|CODICE IMPIANTO|varchar|20|S|||100
+imprcimp|data_primo_rapporto|DATA PRIMA VERIFICA|date||N|||200
+scrmaps|descrizione|DESCRIZIONE VIA|varchar|50|S|||200
+scrmaps|numero|CIVICO|varchar|8|S|||300
+scrmaps|localita|LOCALITA|varchar|20|S|||400
+scrmaps|comune|COMUNE|varchar|40|S|||500
+scrmaps|provincia|PROVINCIA|varchar|40|S|||600
+impraimp|flag_coordinate|FLAG COORDINATE|varchar|50|N|||2575
+impraimp|cod_ente|CODICE ENTE|varchar|8|S|||100
+imprcimp|data_ultim_rapporto|DATA ULTIMA VERIFICA|date||N|||300
+impianti|potenza|POTENZA FOCOLARE NOMINALE IMPIANTO|numeric|9,2|N|0||200
+rapporti|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||400
+rapporti|mis_pot_focolare|POTENZA FOCOLARE NOMINALE IMPIANTO|numeric|9,2|N|||2600
+autocert|potenza|POTENZA UTILE NOMINALE|numeric|9,2|N|||8800
+autocert|funz_corr_bruc|FUNZIONAMENTO CORRETTO DEL BRUCIATORE|varchar|1|N|S|S,N, |4098
+impianti|gen_prog|PROGRESSIVO GENERATORE|numeric|2,0|N|||150
+impianti|n_generatori|NUMERO GENERATORI|numeric|2,0|N|||450
+rapporti|co2_md|MISURAZIONE C02 MISURAZIONE MED|numeric|6,2|N|||7200
+rapporti|o2_1a|MISURAZIONE 02 MISURAZIONE 1|numeric|6,2|N|||7300
+rapporti|o2_2a|MISURAZIONE 02 MISURAZIONE 2|numeric|6,2|N|||7400
+rapporti|o2_3a|MISURAZIONE 02 MISURAZIONE 3|numeric|6,2|N|||7500
+rapporti|o2_md|MISURAZIONE 02 MISURAZIONE MED|numeric|6,2|N|||7600
+rapporti|temp_mant_1a|TEMPERATURA MANTELLO MISURAZIONE 1|numeric|6,2|N|||7700
+rapporti|temp_mant_2a|TEMPERATURA MANTELLO MISURAZIONE 2|numeric|6,2|N|||7800
+rapporti|temp_mant_3a|TEMPERATURA MANTELLO MISURAZIONE 3|numeric|6,2|N|||7900
+rapporti|temp_mant_md|TEMPERATURA MANTELLO MISURAZIONE MED|numeric|6,2|N|||8000
+rapporti|eccesso_aria_perc|ECCESSO ARIA PERCENTUALE MISURAZIONE 1|numeric|9,2|N|||8100
+rapporti|eccesso_aria_perc_2a|ECCESSO ARIA PERCENTUALE MISURAZIONE 2|numeric|9,2|N|||8200
+rapporti|eccesso_aria_perc_3a|ECCESSO ARIA PERCENTUALE MISURAZIONE 3|numeric|9,2|N|||8300
+rapporti|eccesso_aria_perc_md|ECCESSO ARIA PERCENTUALE MISURAZIONE MED|numeric|9,2|N|||8400
+rapporti|manutenzione_8a|8A MANUTENZIONE|varchar|2|N||S,N|8500
+rapporti|new1_manu_prec_8a|MANUTENZIONE ANNI PRECEDENTI|varchar|1|N||S,N|8600
+rapporti|new1_co_rilevato|CO RILEVATO|numeric|6,2|N|||8700
+rapporti|co_fumi_secchi_8b|8B CO NEI FUMI SECCHI|varchar|2|N||S,N|8800
+rapporti|indic_fumosita_md|INDICE FUMOSITA MISURAZIONE MEDIA|numeric|6,2|N|||8900
+rapporti|indic_fumosita_8c|8C INDICE FUMOSITA|varchar|2|N||S,N|9000
+rapporti|rend_comb_min|RENDIMENTO MINIMO|numeric|9,2|N|||9100
+impianti|flag_attivo|STATO GENERATORE|varchar|1|N|N|S,N|8350
+rapporti|rend_comb_8d|8D RENDIMENTO COMBUSTIBILE|varchar|2|N||S,N|9300
+rapporti|new1_flag_peri_8p|PERICOLOSITA IMPIANTO|varchar|1|N||I,P|9400
+rapporti|esito_verifica|ESITO VERIFICA|varchar|2|S||P,N|9500
+rapporti|note_verificatore|NOTE VERIFICATORE|varchar|4000|N|||9600
+impianti|campo_funzion_min|CAMPO DI LAVORO BRUCIATORE MIN|numeric|9,2|N|||10225
+rapporti|note_resp|NOTE RESPONSABILE|varchar|4000|N|||9800
+rapporti|tipologia_costo|METODO DI PAGAMENTO|varchar|2|N|||9900
+rapporti|data_prot|DATA PROTOCOLLO|date||N|||500
+rapporti|pendenza|PENDENZA CANALI|varchar|1|N||S,N|2700
+autocert|pendenza|PENDENZA CANALI|varchar|1|N||S,N,C|4400
+rapporti|dich_conformita|DICHIARAZIONE CONFORMITA IMPIANTO|varchar|2|N|||4200
+impianti|provenienza_dati|PROVENIENZA DATI|varchar|1|N|2|0,1,2,3,4,5|950
+autocert|flag_status|ESITO CONTROLLO|varchar|2|N||P,N|250
+impianti|indirizzo_manu|INDIRIZZO MANUTENTORE|varchar|40|N|||4000
+impianti|cod_potenza|CODICE POTENZA|varchar|8|N|0|0,A,B,MA,MB|350
+rapporti|numero_rapporto|NUMERO RAPPORTO DI VERIFICA|varchar|20|N|||375
+rapporti|flag_tracciato|TIPO DOCUMENTO|varchar|2|N|||350
+autocert|lib_impianto|LIBRETTO IMPIANTO|varchar|1|N||S,N,C|3800
+impianti|localita_terzi|LOCALITA TERZI|varchar|40|N|||6550
+autocert|disp_comando|DISPOSITIVI DI COMANDO|varchar|1|N||S,N,C|5700
+rapporti|utente|UTENTE ULTIMA MODIFICA|varchar|10|N|||11800
+autocert|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||100
+autocert|data_controllo|DATA CONTROLLO|date||S|||200
+rapporti|gen_prog|PROGRESSIVO GENERATORE|numeric|8,0|S|1||200
+autocert|flag_tracciato|TIPO DOCUMENTO|varchar|2|N|H|H,G,F,HB|400
+autocert|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||500
+autocert|ora_fine|ORARIO FINE CONTROLLO|varchar|8|N|||600
+autocert|data_scadenza|DATA SCADENZA AUTOCERTIFICAZIONE|date||N|||700
+autocert|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||800
+autocert|n_prot|NUM PROTOCOLLO|varchar|20|N|||900
+autocert|data_prot|DATA PROTOCOLLO|date||N|||1000
+impianti|note_impianto|NOTE IMPIANTO|varchar|4000|N|||975
+autocert|nome_manu|NOME MANUTENTORE|varchar|40|N|||1200
+autocert|indirizzo_manu|INDIRIZZO MANUTENTORE|varchar|40|N|||1300
+autocert|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||1400
+autocert|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||1500
+autocert|cap_manu|CAP MANUTENTORE|varchar|5|N|||1600
+autocert|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||8900
+autocert|nome_resp|NOME RESPONSABILE|varchar|100|N|||1800
+autocert|cognome_resp|COGNOME RESPONSABILE|varchar|100|N|||1900
+impianti|nome_amm|NOME AMMINISTRATORE|varchar|100|N|||7200
+rapporti|cognome_resp|COGNOME RESPONSABILE|varchar|100|N|||1100
+rapporti|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|N|||1200
+rapporti|comune_resp|COMUNE RESPONSABILE|varchar|40|N|||1300
+rapporti|provincia_resp|PROVINCIA RESPONSABILE|varchar|4|N|||1400
+rapporti|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|N||F,G|1500
+rapporti|cap_resp|CAP RESPONSABILE|varchar|5|N|||1600
+rapporti|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE|varchar|16|N|||1700
+rapporti|telefono_resp|TELEFONO RESPONSABILE|varchar|15|N|||1800
+rapporti|nominativo_pres|EVENTUALE DELEGATO|varchar|4000|N|||1900
+rapporti|volumetria|VOLUMETRIA RISCALDATA|numeric|9,2|N|||2000
+rapporti|comsumi_ultima_stag|CONSUMI ULTIMA STAGIONE|numeric|9,2|N|||2100
+impianti|comb_gen|COMBUSTIBILE GENERATORE|varchar|35|S|||9700
+rapporti|pot_focolare_nom|POTENZA FOCOLARE NOMINALE|numeric|9,2|N|||2300
+rapporti|pot_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|N|||2400
+rapporti|mis_port_combust|PORTATA COMBUSTIBILE m3/h kg/h|numeric|9,2|N|||2500
+rapporti|note_conf|NOTE CONFORMITA|varchar|4000|N|||9550
+rapporti|indic_fumosita_3a|FUMOSITA MISURAZIONE 3|numeric|6,2|N|||5275
+rapporti|effic_evac|VERIFICA SCARICO|varchar|1|N||P,N,A|2800
+rapporti|new1_foro_presente|PRESENZA FORO|varchar|1|N||S,N,V|2900
+rapporti|new1_foro_corretto|FORO CORRETTO|varchar|1|N||S,N,V|3000
+rapporti|stato_coiben|STATO COIBENTAZIONE|varchar|1|N||B,M,S,V|3100
+rapporti|new1_foro_accessibile|FORO ACCESSIBILE|varchar|1|N||S,N,V|3200
+rapporti|new1_conf_locale|CONFORMITA DEL LOCALE|varchar|1|N||S,N,V|3300
+rapporti|disp_reg_cont_funz|DISPOSITIVI DI CONTROLLO FUNZIONANTI|varchar|1|N|||3400
+rapporti|verifica_areaz|VERIFICA AREAZIONE|varchar|1|N||P,N,A|3500
+rapporti|ventilaz_lib_ostruz|APERTURA DI VENTILAZIONE LIBERA|varchar|1|N||S,N|3600
+rapporti|new1_asse_mate_estr|ASSENZA MATERIALI ESTRANEI|varchar|1|N||S,N,V|3560
+rapporti|new1_disp_regolaz|DISPOSITIVI DI REGOLAZIONE CLIMA PRESENTI|varchar|1|N||M,P,A|3700
+rapporti|disp_reg_clim_funz|DISPOSITIVI DI REGOLAZIONE DEL CLIMA FUNZIONANTE|varchar|1|N|||3800
+rapporti|new1_data_ultima_manu|DATA ULTIMA MANUTENZIONE|date||N|||4300
+rapporti|rend_comb_conv|RENDIMENTO COMBUSTIONE|numeric|9,2|N|||9200
+rapporti|new1_dimp_pres|AUTOCERTIFICAZIONE ESISTENTE|varchar|1|N||S,N|4500
+rapporti|new1_note_manu|NOTE|varchar|4000|N|||4600
+rapporti|new1_dimp_prescriz|AUTOCERTIFICAZIONE CON PRESCRIZIONE|varchar|1|N||S,N|4700
+rapporti|strumento|DESCRIZIONE STRUMENTO|varchar|100|N|||4800
+rapporti|marca_strum|MARCA STRUMENTO|varchar|50|N|||4900
+rapporti|modello_strum|MODELLO STRUMENTO|varchar|50|N|||5000
+rapporti|matr_strum|MATRICOLA STRUMENTO |varchar|50|N|||5100
+autocert|ispesl|PRATICA ISPESL|varchar|1|N|S|S,N, |4056
+rapporti|temp_h2o_out_1a|TEMPERATURA FLUIDO IN MANDATA MISURAZIONE 1|numeric|6,2|N|||5300
+rapporti|temp_h2o_out_2a|TEMPERATURA  FLUIDO IN MANDATA MISURAZIONE 2|numeric|6,2|N|||5400
+rapporti|temp_h2o_out_3a|TEMPERATURA  FLUIDO IN MANDATA MISURAZIONE 3|numeric|6,2|N|||5500
+rapporti|temp_h2o_out_md|TEMPERATURA  FLUIDO IN MANDATA MISURAZIONE MED|numeric|6,2|N|||5600
+rapporti|t_aria_comb_1a|TEMPERATURA ARIA COMBURENTE MISURAZIONE 1|numeric|6,2|N|||5700
+rapporti|t_aria_comb_2a|TEMPERATURA ARIA COMBURENTE MISURAZIONE 2|numeric|6,2|N|||5800
+rapporti|t_aria_comb_3a|TEMPERATURA ARIA COMBURENTE MISURAZIONE 3|numeric|6,2|N|||5900
+rapporti|t_aria_comb_md|TEMPERATURA ARIA COMBURENTE MISURAZIONE MED|numeric|6,2|N|||6000
+rapporti|temp_fumi_1a|TEMPERATURA FUMI MISURAZIONE 1|numeric|6,2|N|||6100
+rapporti|temp_fumi_2a|TEMPERATURA FUMI MISURAZIONE 2|numeric|6,2|N|||6200
+rapporti|temp_fumi_3a|TEMPERATURA FUMI MISURAZIONE 3|numeric|6,2|N|||6300
+rapporti|temp_fumi_md|TEMPERATURA FUMI MISURAZIONE MED|numeric|6,2|N|||6400
+rapporti|co_1a|MISURAZIONE C0 MISURAZIONE 1|numeric|10,4|N|||6500
+rapporti|co_2a|MISURAZIONE C0 MISURAZIONE 2|numeric|10,4|N|||6600
+rapporti|co_3a|MISURAZIONE C0 MISURAZIONE 3|numeric|10,4|N|||6700
+rapporti|co_md|MISURAZIONE C0 MISURAZIONE MED|numeric|10,4|N|||6800
+rapporti|co2_1a|MISURAZIONE C02 MISURAZIONE 1|numeric|6,2|N|||6900
+rapporti|co2_2a|MISURAZIONE C02 MISURAZIONE 2|numeric|6,2|N|||7000
+rapporti|co2_3a|MISURAZIONE C02 MISURAZIONE 3|numeric|6,2|N|||7100
+impianti|tipo_foco|TIPO GENERATORE|varchar|1|N||A,C|9000
+impianti|indirizzo_terzi|INDIRIZZO TERZI|varchar|40|N|||6400
+impianti|numero_terzi|NUMERO CIVICO TERZI|varchar|8|N|||6500
+impianti|comune_terzi|COMUNE TERZI|varchar|40|N|||6600
+impianti|provincia_terzi|PROVINCIA TERZI|varchar|4|N|||6700
+impianti|natura_terzi|NATURA GIURIDICA TERZI|varchar|1|N|||6800
+impianti|cap_terzi|CAP TERZI|varchar|5|N|||6900
+rapporti|new1_data_ultima_anal|DATA ULTIMA ANALISI DEL COMBUSTIBILE|date||N|||4400
+impianti|telefono_terzi|TELEFONO TERZI|varchar|15|N|||7100
+rapporti|libr_manut_bruc|LIBRETTO USO E MANUTENZIONE BRUCIATORE|varchar|1|N||S,N,I|4150
+autocert|sezioni|SEZIONI|varchar|1|N||S,N,C|4500
+impianti|indirizzo_amm|INDIRIZZO AMMINISTRATORE|varchar|40|N|||7400
+impianti|numero_amm|NUMERO CIVICO AMMINISTRATORE|varchar|8|N|||7500
+impianti|comune_amm|COMUNE AMMINISTRATORE|varchar|40|N|||7600
+impianti|provincia_amm|PROVINCIA AMMINISTRATORE|varchar|4|N|||7700
+impianti|natura_amm|NATURA GIURIDICA AMMINISTRATORE|varchar|1|N||F,G|7800
+impianti|cap_amm|CAP AMMINISTRATORE|varchar|5|N|||7900
+impianti|cfisc_amm|IDENTIFICATIVO FISCALE AMMINISTRATORE|varchar|16|N|||8000
+impianti|telefono_amm|TELEFONO AMMINISTRATORE|varchar|15|N|||8100
+rapporti|cod_combustibile|COMBUSTIBILE|varchar|35|N|||2200
+impianti|descrizione|DESCRIZIONE GENERATORE|varchar|100|N|||8300
+impianti|matricola|MATRICOLA GENERATORE|varchar|35|N|||8400
+impianti|modello|MODELLO GENERATORE|varchar|40|N|||8500
+impianti|costruttore_gen|COSTRUTTORE GENERATORE|varchar|35|N|||8600
+impianti|matricola_bruc|MATRICOLA  BRUCIATORE|varchar|35|N|||8700
+impianti|modello_bruc|MODELLO BRUCIATORE|varchar|40|N|||8800
+impianti|costruttore_bruc|COSTRUTTORE BRUCIATORE|varchar|35|N|||8900
+impianti|mod_funz|FLUIDO TERMOVETTORE|varchar|1|N||0,1,2,3|9100
+impianti|cod_utgi|DESTINAZIONE D USO|varchar|1|N||0,A,E,R,X|9200
+rapporti|costo|COSTO VERIFICA|numeric|9,2|N|||10000
+autocert|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|N|||7600
+impianti|pot_focolare_lib|POTENZA FOCOLARE  DA LIBRETTO|numeric|9,2|N|||9900
+impianti|pot_utile_lib|POTENZA UTILE DA LIBRETTO|numeric|9,2|N|||10000
+impianti|pot_focolare_nom|POTENZA FOCOLARE NOMINALE|numeric|9,2|N|||10100
+impianti|pot_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|N|||10200
+impianti|note|NOTE GENERATORE|varchar|4000|N|||10300
+impianti|data_attivaz|DATA ATTIVAZIONE|date||N|||10400
+rapporti|conf_imp_elettrico|DICHIARAZIONE CONFORMITA IMPIANTO ELETTRICO|varchar|1|N||S,N|4250
+autocert|data_ins|DATA INSERIMENTO|date||N|||9100
+impianti|flag_dichiarato|FLAG DICHIARATO|varchar|1|N||S,N,C|10600
+impianti|data_installaz|DATA INSTALLAZIONE|date||N|||10700
+impianti|data_prima_dich|DATA PRIMA DICHIARAZIONE|date||N|||10800
+impianti|data_ultim_dich|DATA ULTIMA DICHIARAZIONE|date||N|||10900
+impianti|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||11000
+impianti|stato_conformita|STATO CONFORMITA|varchar|1|N||S,N|11100
+impianti|cod_cted|CATEGORIA EDIFICIO DPR 412|varchar|8|N|||11200
+impianti|cod_tpdu|DESTINAZIONE D USO EDIFICIO|varchar|5|N|||11300
+impianti|localita_prop|LOCALITA PROPRIETARIO|varchar|40|N|||2650
+impianti|data_mod|DATA MODIFICA|date||N|||11500
+impianti|utente|UTENTE ULTIMA MODIFICA|varchar|10|N|||11600
+impianti|localita_manu|LOCALITA MANUTENTORE|varchar|40|N|||4050
+impianti|marc_effic_energ|MARCATURA ENERGETICA|varchar|5|N||1,2,3,4,5|11800
+incontri|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||100
+impianti|gb_x|COORDINATE X|varchar|50|N|||12000
+impianti|gb_y|COORDINATE Y|varchar|50|N|||12100
+rapporti|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||100
+autocert|gen_prog|PROGRESSIVO GENERATORE|numeric|8,0|N|1||300
+rapporti|data_controllo|DATA VERIFICA|date||S|||300
+rapporti|indic_fumosita_2a|FUMOSITA MISURAZIONE 2|numeric|6,2|N|||5250
+rapporti|cognome_veri|COGNOME VERIFICATORE O RAGIONE SOCIALE|varchar|40|N|||600
+rapporti|nome_veri|NOME VERIFICATORE|varchar|40|N|||700
+rapporti|new1_data_dimp|DATA ULTIMA AUTOCERTIFICAZIONE|date||N|||800
+rapporti|new1_data_paga_dimp|DATA PAGAMENTO ULTIMA AUTOCERTIFICAZIONE|date||N|||900
+coimdimp|ora_inizio|ORA INIZIO CONTROLLO|varchar|8|N|||6900
+coimdimp|ora_fine|ORA FINE CONTROLLO|varchar|8|N|||7000
+coimdimp|data_scadenza|DATA SCADENZA|date||N|||7100
+coimdimp|num_autocert|NUMERO AUTOCERTIFIAZIONE|varchar|20|N|||7200
+coimdimp|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||7300
+coimdimp|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||7400
+impianti|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||100
+coimdimp|prescrizioni|ASSENZA PERDITE SCARICO|varchar|4000|N|||5200
+impianti|potenza_utile|POTENZA UTILE IMPIANTO|numeric|9,2|N|0||300
+impianti|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||2400
+impianti|flag_dpr412|SOTTOPONIBILE DPR 412|varchar|1|N||S,N|500
+impianti|cfisc_prog|IDENTIFICATIVO FISCALE PROGETTISTA|varchar|16|N|||5100
+impianti|flag_resp|SOGGETTO RESPONSABILE|varchar|1|N|O|P,O,A,I,T|700
+impianti|stato|STATO IMPIANTO|varchar|1|N||A,D,L,N,R|800
+impianti|tariffa|TARIFFA|varchar|8|N|||900
+impianti|localita|LOCALITA IMPIANTO|varchar|40|N|||1000
+impianti|toponimo|TOPONIMO|varchar|8|S|||1100
+impianti|indirizzo|INDIRIZZO|varchar|40|S|||1200
+impianti|numero|CIVICO|varchar|8|N|||1300
+impianti|esponente|ESPONENTE|varchar|3|N|||1400
+impianti|scala|SCALA|varchar|5|N|||1500
+impianti|piano|PIANO|varchar|5|N|||1600
+impianti|interno|INTERNO|varchar|5|N|||1700
+impianti|cod_qua|RIFERIMENTO QUARTIERE|varchar|5|N|||1800
+impianti|cod_urb|RIFERIMENTO AREA URBANA|varchar|5|N|||1900
+impianti|comune|COMUNE|varchar|40|S|||2000
+impianti|provincia|PROVINCIA|varchar|40|S|||2100
+impianti|cap|CAP|varchar|5|N|||2200
+impianti|nome_prop|NOME PROPRIETARIO|varchar|100|N|||2300
+impianti|nome_terzi|NOME TERZI|varchar|100|N|||6300
+impianti|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||2500
+impianti|numero_prop|NUMERO CIVICO PROPRIETARIO|varchar|8|N|||2600
+rapporti|new1_pres_cartell|CARTELLONISTICA PREVISTA|varchar|1|N||S,N,V|3540
+rapporti|presenza_libretto|PRESENZA LIBRETTO|varchar|1|N||S,N|3900
+rapporti|libretto_corretto|LIBRETTO CORRETTO|varchar|1|N||S,N|4000
+autocert|inst_in_out|INSTALLAZIONE INTERNA/ESTERNA|varchar|1|N||S,N,E|4000
+impianti|nome_occu|NOME OCCUPANTE|varchar|100|N|||3400
+impianti|natura_occu|NATURA GIURIDICA OCCUPANTE|varchar|1|N||F,G|3500
+impianti|cfisc_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||3600
+impianti|telefono_occu|TELEFONO OCCUPANTE|varchar|15|N|||3700
+autocert|idoneita_locale|IDONEITA LOCALE|varchar|1|N||S,N,E|4100
+impianti|cfisc_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||4400
+rapporti|indic_fumosita_1a|FUMOSITA MISURAZIONE 1|numeric|6,2|N|||5225
+impianti|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||4100
+impianti|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||4200
+impianti|cap_manu|CAP MANUTENTORE|varchar|5|N|||4300
+impianti|cognome_prog|COGNOME PROGETTISTA O RAGIONE SOCIALE|varchar|100|N|||4500
+autocert|ap_ventilaz|APERTURA VENTILAZIONE|varchar|1|N||S,N,C|4200
+impianti|nome_manu|NOME MANUTENTORE|varchar|100|N|||3900
+impianti|nome_prog|NOME PROGETTISTA|varchar|100|N|||4600
+impianti|indirizzo_prog|INDIRIZZO PROGETTISTA|varchar|40|N|||4700
+impianti|comune_prog|COMUNE PROGETTISTA|varchar|40|N|||4800
+impianti|telefono_prog|TELEFONO PROGETTISTA|varchar|15|N|||4900
+impianti|cap_prog|CAP PROGETTISTA|varchar|5|N|||5000
+autocert|ap_vent_ostruz|APERTURA VENTIALZIONE OSTRUITA|varchar|1|N||S,N,C|4300
+impianti|nome_intestatario|NOME INTESTATARIO|varchar|100|N|||5300
+impianti|indirizzo_intestatario|INDIRIZZO INTESTATARIO|varchar|40|N|||5400
+impianti|numero_intestatario|NUMERO CIVICO INTESTATARIO|varchar|8|N|||5500
+impianti|comune_intestatario|COMUNE INTESTATARIO|varchar|40|N|||5600
+impianti|provincia_intestatario|PROVINCIA INTESTATARIO|varchar|4|N|||5700
+impianti|natura_intestatario|NATURA GIURIDICA INTESTATARIO|varchar|1|N|||5800
+impianti|cap_intestatario|CAP INTESTATARIO|varchar|5|N|||5900
+impianti|data_installaz_gend|DATA INSTALLAZIONE GENERATORE|date||N|||9800
+impianti|telefono_intestatario|TELEFONO INTESTATARIO|varchar|15|N|||6100
+coimanom|anom_prog|CODICE ANOMALIA|varchar|8|S|||200
+coimanom|tipo_anom|TIPO ANOMALIA|varchar|8|S|||300
+coimanom|anom|ANOMALIA|varchar|8|S|||400
+coimanom|flag_origine|FLAG ORIGINE|varchar|2|S|||500
+coimdimp|cod_dimp|CODICE DIMP|varchar|8|S|||100
+coimdimp|cod_impianto|CODICE IMPIANTO|varchar|8|S|||200
+coimdimp|data_controllo|DATA CONTROLLO|date||S|||300
+coimdimp|gen_prog|PROGRESSIVO GENERATORE|numeric|8,0|N|||400
+coimdimp|cod_manutentore|CODICE MANUTENTORE|varchar|8|N|||500
+coimdimp|cod_responsabile|CODICE RESPONSABILE|varchar|8|N|||600
+coimdimp|cod_proprietario|CODICE PROPRIETARIO|varchar|8|N|||700
+coimdimp|cod_occupante|CODICE OCCUPANTE|varchar|8|N|||800
+coimdimp|garanzia|GARANZIA|varchar|1|N|||900
+coimdimp|conformita|CONFORMITA|varchar|1|N|||1000
+coimdimp|lib_impianto|LIBRETTO IMPIANTO|varchar|1|N|||1100
+coimdimp|lib_uso_man|LIBRETTO USO MANUTENZIONE|varchar|1|N|||1200
+coimdimp|inst_in_out||varchar|1|N|||1300
+coimdimp|idoneita_locale|IDONEITA LOCALE|varchar|1|N|||1400
+coimdimp|ap_ventilaz|APERTURA VENTILAZIONE|varchar|1|N|||1500
+coimdimp|ap_vent_ostruz||varchar|1|N|||1600
+coimdimp|pendenza|PENDENZA|varchar|1|N|||1700
+coimdimp|sezioni|SEZIONI|varchar|1|N|||1800
+coimdimp|curve|CURVE|varchar|1|N|||1900
+coimdimp|lunghezza|LUNGHEZZA|varchar|1|N|||2000
+coimdimp|conservazione|CONSERVAZIONE |varchar|1|N|||2100
+coimdimp|scar_ca_si||varchar|1|N|||2200
+coimdimp|scar_parete||varchar|1|N|||2300
+coimdimp|riflussi_locale|RIFLUSSI LOCALE|varchar|1|N|||2400
+coimdimp|assenza_perdite|ASSENZA PERDITE|varchar|1|N|||2500
+coimdimp|pulizia_ugelli|PULIZIA UGELLI|varchar|1|N|||2600
+coimdimp|antivento|ANTIVENTO|varchar|1|N|||2700
+coimdimp|scambiatore|SCAMBIATORE|varchar|1|N|||2800
+coimdimp|accens_reg||varchar|1|N|||2900
+impianti|tipo_bruciatore|TIPO BRUCIATORE|varchar|1|N||A,P,M|9300
+impianti|tiraggio|TIRAGGIO|varchar|1|N||F,N|9400
+impianti|locale|TIPO LOCALE|varchar|1|N||T,E,I|9500
+impianti|cod_emissione|SCARICO FUMI|varchar|1|N||0,C,I,P|9600
+impianti|descr_comb|COMBUSTIBILE|varchar|35|S|||600
+coimdimp|eff_evac_fum|EVACUAZIONE FUMI EFFICIENTE|varchar|1|N|||3900
+coimdimp|cont_rend||varchar|1|N|||4000
+coimdimp|pot_focolare_mis|MISURAZIONE PORTATA FOCOLARE|numeric|6,2|N|||4100
+coimdimp|portata_comb_mis|MISURAZIONE PORTATA COMBUSTIBILE|numeric|6,2|N|||4200
+coimdimp|temp_fumi|TEMPERATURA FUMI|numeric|6,2|N|||4300
+coimdimp|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|N|||4400
+coimdimp|o2|MISURAZIONE O2|numeric|6,2|N|||4500
+coimdimp|co2|MISURAZIONE CO2|numeric|6,2|N|||4600
+coimdimp|bacharach|MISURAZIONE BACHARACH|numeric|6,2|N|||4700
+coimdimp|co|MISURAZIONE CO|numeric|10,4|N|||4800
+coimdimp|rend_combust|RENDIMENTO COMBUSTIBILE|numeric|6,2|N|||4900
+coimdimp|osservazioni|OSSERVAZIONI|varchar|4000|N|||5000
+coimdimp|raccomandazioni|RACCOMANDAZIONI|varchar|4000|N|||5100
+rapporti|new1_pres_interrut|INTERRUTTORE GENERALE ESTRENO|varchar|1|N||S,N,V|3550
+coimdimp|data_utile_inter|DATA UTILE INTERVENTO|date||N|||5300
+coimdimp|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||5400
+coimdimp|data_prot|DATA PROTOCOLLO|date||N|||5500
+coimdimp|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||5600
+coimdimp|delega_manut|DELEGA MANUTENTORE|varchar|50|N|||5700
+coimdimp|num_bollo|NUMERO BOLLO|varchar|20|N|||5800
+coimdimp|costo|COSTO|numeric|6,2|N|||5900
+coimdimp|tipologia_costo|TIPOLOGIA PAGAMENTO|varchar|2|N|||6000
+coimdimp|riferimento_pag|RIFERIMENTO PAGAMENTO|varchar|20|N|||6100
+coimdimp|utente|UTENTE OPERANTE ULTIMA MODIFICA|varchar|10|N|||6200
+coimdimp|data_ins|DATA INSERIMENTO|date||N|||6300
+coimdimp|data_mod|DATA MODIFICA|date||N|||6400
+coimdimp|potenza|POTENZA|numeric|9,2|N|||6500
+coimdimp|flag_pericolosita|FLAG PERICOLOSITA|varchar|1|N|||6600
+coimdimp|flag_tracciato|FLAG TRACCIATO|varchar|1|N|||6700
+coimdimp|tiraggio|TIRAGGIO|numeric|9,2|N|||6800
+coimcimp|cod_combustibile|CODICE COMBUSTIBILE|varchar|8|N|||4400
+coimcimp|verb_n|VERBALE NUMERO|varchar|20|N|||4500
+coimcimp|data_verb|DATA VERBALE|date||N|||4600
+coimcimp|libretto_corretto|LIBRETTO CORRETTO|varchar|2|N|||4700
+coimcimp|mis_pot_focolare|MISURA POTENZA FOCOLARE|numeric|9,2|N|||4800
+coimcimp|stato_canna_fum|STATO CANNA FUMARIA|varchar|2|N|||4900
+coimcimp|eccesso_aria_perc|ECCESSO ARIA PERCENTUALE|numeric|9,2|N|||5000
+coimcimp|eccesso_aria_perc_2a|ECCESSO ARIA PERCENTUALE 2|numeric|9,2|N|||5100
+rapporti|new1_pres_intercet|RUBINETTO INTERCETTAZIONE|varchar|1|N||S,N,V|3530
+coimcimp|eccesso_aria_perc_md|ECCESSO ARIA PERCENTUALE MEDIA|numeric|9,2|N|||5300
+coimcimp|perdita_ai_fumi|PERDITA FUMI|numeric|9,2|N|||5400
+coimcimp|manutenzione_8a|MANUTENZIONE|varchar|2|N|||5500
+coimcimp|co_fumi_secchi_8b|CO FUMI SECCHI|varchar|2|N|||5600
+coimcimp|indic_fumosita_8c|INDICE FUMOSITA|varchar|2|N|||5700
+coimcimp|rend_comb_8d|RENDIMENTO COMBUSTIBILE|varchar|2|N|||5800
+coimcimp|esito_verifica|ESITO VERIFICA|varchar|2|N|||5900
+coimcimp|note_verificatore|NOTE VERIFICATORE|varchar|4000|N|||6000
+coimcimp|note_resp|NOTE RESPONSABILE|varchar|4000|N|||6100
+coimcimp|pot_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|N|||6200
+coimcimp|pot_focolare_nom|POTENZA FOCOLARE NOMINALE|numeric|9,2|N|||6300
+coimcimp|cod_responsabile|CODICE RESPONSABILE|varchar|8|N|||6400
+coimcimp|new1_data_dimp||date||N|||6500
+coimcimp|new1_data_paga_dimp||date||N|||6600
+coimcimp|new1_conf_locale|CONFORMITA LOCALE|varchar|1|N|||6700
+coimcimp|new1_conf_accesso|CONFORMITA ACCESSO|varchar|1|N|||6800
+coimcimp|new1_pres_intercet|PRESENZA INTERRUTTORE DI INTERCETTAZIONE|varchar|1|N|||6900
+coimcimp|new1_pres_interrut|PRESENZA INTERRUTTORE|varchar|1|N|||7000
+coimcimp|new1_asse_mate_estr||varchar|1|N|||7100
+coimcimp|new1_pres_mezzi||varchar|1|N|||7200
+coimcimp|new1_pres_cartell|PRESENZA CARTELLI|varchar|1|N|||7300
+impianti|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||2700
+impianti|provincia_prop|PROVINCIA PROPRIETARIO|varchar|4|N|||2800
+impianti|natura_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||F,G|2900
+impianti|cap_prop|CAP PROPRIETARIO|varchar|5|N|||3000
+impianti|cfisc_prop|IDENTIFICATIVO FISCALE PROPRIETARIO|varchar|16|N|||3100
+impianti|telefono_prop|TELEFONO PROPRIETARIO|varchar|15|N|||3200
+coimcimp|nominativo_pres||varchar|4000|N|||8500
+coimcimp|dich_conformita|DICHIARAZIONE CONFORMITA|varchar|2|N|||8600
+coimcimp|mis_port_combust|MISURA PORTATA COMBUSTIBILE|numeric|9,2|N|||8700
+coimcimp|strumento|TIPO STRUMENTO|varchar|100|N|||8800
+coimcimp|marca_strum|MARCA STRUMENTO|varchar|50|N|||8900
+coimcimp|modello_strum|MODELLO STRUMENTO|varchar|50|N|||9000
+coimcimp|matr_strum|MATRICOLA STRUMENTO|varchar|50|N|||9100
+coimcimp|dt_tar_strum|DATA ULTIMA TARATURA STRUMENTO|date||N|||9200
+coimcimp|tipologia_costo|TIPOLOGIA COSTO|varchar|2|N|||9300
+coimcimp|riferimento_pag|RIFERIMENTO PAGAMENTO|varchar|20|N|||9400
+coimcimp|utente|UTENTE OPERANTE ULTIMA MODIFICA|varchar|20|N|||9500
+coimcimp|data_ins|DATA INSERIMENTO|date||N|||9600
+coimcimp|flag_pericolosita|FLAG PERICOLOSITA|varchar|1|N|||9700
+coimcimp|flag_tracciato|FLAG TRACCIATO|varchar|2|N|||9800
+coimcimp|new1_note_manu|NOTE MANUTENTORE|varchar|4000|N|||9900
+coimcimp|new1_dimp_pres||varchar|1|N|||10000
+coimcimp|new1_dimp_prescriz||varchar|1|N|||10100
+coimcimp|new1_manu_prec_8a||varchar|1|N|||10200
+coimcimp|new1_flag_peri_8p||varchar|1|N|||10300
+coimcimp|pendenza|PENDENZA TUBAZIONI|varchar|1|N|||10400
+coimcimp|ventilaz_lib_ostruz|FORO DI VENITLAZIONE LIBERO DA OSTRUZIONI|varchar|1|N|||10500
+coimcimp|disp_reg_cont_pre||varchar|1|N|||10600
+coimcimp|disp_reg_cont_funz||varchar|1|N|||10700
+coimcimp|disp_reg_clim_funz|DISPOSITIVO REGOLAZIONE CLIMATICA|varchar|1|N|||10800
+coimcimp|volumetria|VOLUMETRIA STANZA|numeric|9,2|N|||10900
+coimcimp|comsumi_ultima_stag|CONSUMI ULTIMA STAGIONE|numeric|9,2|N|||11000
+coimcimp|data_prot|DATA PROTOCOLLO|date||N|||11100
+coimcimp|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||11200
+coimanom|cod_cimp_dimp|CODICE CIMP O DIMP|varchar|8|S|||100
+coimgend|cod_impianto|CODICE IMPIANTO|varchar|8|S|||100
+coimgend|gen_prog|PROGRESSIVO GENERATORE|numeric|8,0|S|||200
+coimgend|gen_prog_est|PROGRESSIVO GENERATORE ESTERNO|numeric|8,0|S|||300
+coimgend|descrizione|DESCRIZIONE GENERATORE|varchar|100|N|||400
+coimgend|matricola|MATRICOLA GENERATORE|varchar|35|N|||500
+coimgend|modello|MODELLO GENERATORE|varchar|40|N|||600
+coimgend|cod_cost|CODICE COSTRUTTORE GENERATORE|varchar|8|N|||700
+coimgend|matricola_bruc|MATRICOLA BRUCIATORE GENERATORE|varchar|35|N|||800
+coimgend|modello_bruc|MODELLO BRUCIATORE GENERATORE|varchar|40|N|||900
+coimgend|cod_cost_bruc|CODICE COSTRUTTORE BRUCIATORE GENERATORE|varchar|35|N|||1000
+coimgend|tipo_foco|TIPO FOCOLARE GENERATORE|varchar|1|N|||1100
+coimgend|mod_funz|FUNZIONAMENTO GENERATORE|varchar|1|N|||1200
+coimgend|cod_utgi|CODICE UTGI GENERATORE|varchar|8|N|||1300
+coimgend|tipo_bruciatore|TIPO BRUCIATORE GENERATORE|varchar|1|N|||1400
+coimgend|tiraggio|TIRAGGIO GENERATORE|varchar|1|N|||1500
+coimgend|locale|LOCALE GENERATORE|varchar|1|N|||1600
+coimgend|cod_emissione|CODICE EMISSIONE GENERATORE|varchar|8|N|||1700
+coimgend|cod_combustibile|CODICE COMBUSTIBILE GENERATORE|varchar|8|N|||1800
+coimgend|data_installaz_gend|DATA INSTALLAZIONE GENERATORE|date||N|||1900
+coimgend|pot_focolare_lib|POTENZA FOCOLARE DA LIBRETTO  GENERATORE|numeric|9,2|N|||2000
+coimgend|pot_utile_lib|POTENZA UTILE DA LIBRETT GENERATORE|numeric|9,2|N|||2100
+coimgend|pot_focolare_nom|POTENZA FOCOLARE NOMINALE GENERATORE|numeric|9,2|N|||2200
+coimgend|pot_utile_nom|POTENZA UTILE NOMINALE GENERATORE|numeric|9,2|N|||2300
+coimgend|note|NOTE GENERATORE|varchar|4000|N|||2400
+coimcimp|cod_cimp|CODICE RAPPORTO DI VERIFICA|varchar|8|S|||100
+coimcimp|cod_impianto|CODICE IMPIANTO|varchar|8|S|||200
+coimcimp|gen_prog|PROGRESSIVO GENERATORI|numeric|8,0|N|||300
+coimcimp|data_controllo|DATA CONTROLLO|date||S|||400
+coimcimp|presenza_libretto|PRESENZA LIBRETTO|varchar|2|N|||500
+coimdimp|disp_comando|DISPOSITIVI DI COMANDO|varchar|1|N|||3000
+coimdimp|valvola_sicur|VALVOLA SICUREZZA|varchar|1|N|||3100
+coimdimp|vaso_esp||varchar|1|N|||3200
+coimdimp|disp_sic_manom||varchar|1|N|||3300
+coimdimp|organi_integri||varchar|1|N|||3400
+coimdimp|circ_aria|CIRCOLAZIONE ARIA|varchar|1|N|||3500
+coimdimp|guarn_accop|GUARNIZIONI ACCOPPIAMENTO|varchar|1|N|||3600
+coimdimp|assenza_fughe|ASSENZA FUGHE|varchar|1|N|||3700
+coimdimp|coibentazione|COIBENTAZIONE|varchar|1|N|||3800
+coimcimp|temp_h2o_out_3a|TEMPERATURA H2O IN USCITA 3|numeric|6,2|N|||1700
+coimcimp|temp_h2o_out_md|TEMPERATURA H2O IN USCITA MEDIO|numeric|6,2|N|||1800
+coimcimp|t_aria_comb_1a|TEMPERATURA ARIA 1|numeric|6,2|N|||1900
+coimcimp|t_aria_comb_2a|TEMPERATURA ARIA 2|numeric|6,2|N|||2000
+coimcimp|t_aria_comb_3a|TEMPERATURA ARIA 3|numeric|6,2|N|||2100
+coimcimp|t_aria_comb_md|TEMPERATURA ARIA MEDIA|numeric|6,2|N|||2200
+coimcimp|temp_fumi_1a|TEMPERATURA FUMI 1|numeric|6,2|N|||2300
+coimcimp|temp_fumi_2a|TEMPERATURA FUMI 2|numeric|6,2|N|||2400
+coimcimp|temp_fumi_3a|TEMPERATURA FUMI 3|numeric|6,2|N|||2500
+coimcimp|temp_fumi_md|TEMPERATURA FUMI MEDIA|numeric|6,2|N|||2600
+coimcimp|co_1a|VALORE CO 1|numeric|10,4|N|||2700
+coimcimp|co_2a|VALORE CO 2 |numeric|10,4|N|||2800
+coimcimp|co_3a|VALORE CO 3|numeric|10,4|N|||2900
+coimcimp|co_md|VALORE CO MEDIO|numeric|10,4|N|||3000
+coimcimp|co2_1a|VALORE CO2 1|numeric|6,2|N|||3100
+coimcimp|co2_2a|VALORE CO2 2|numeric|6,2|N|||3200
+coimcimp|co2_3a|VALORE CO2 3|numeric|6,2|N|||3300
+coimcimp|co2_md|VALORE CO2 MEDIO|numeric|6,2|N|||3400
+coimcimp|o2_1a|VALORE O2 1|numeric|6,2|N|||3500
+coimcimp|o2_2a|VALORE O2 2|numeric|6,2|N|||3600
+coimcimp|o2_3a|VALORE O2 3|numeric|6,2|N|||3700
+coimcimp|o2_md|VALORE O2 MEDIO|numeric|6,2|N|||3800
+coimcimp|temp_mant_1a|TEMPERATURA MANTELLO 1|numeric|6,2|N|||3900
+coimcimp|temp_mant_2a|TEMPERATURA MANTELLO 2|numeric|6,2|N|||4000
+coimcimp|temp_mant_3a|TEMPERATURA MANTELLO 3|numeric|6,2|N|||4100
+coimcimp|temp_mant_md|TEMPERATURA MANTELLO MEDIA|numeric|6,2|N|||4200
+coimcimp|note_conf|NOTE CONFORMITA|varchar|4000|N|||4300
+coimcitt|cognome|COGNOME CITTADINO |varchar|100|N|||300
+coimcitt|nome|NOME CITTADINO|varchar|100|N|||400
+coimcitt|indirizzo|INDIRIZZO CITTADINO|varchar|40|N|||500
+coimcitt|numero|CIVICO CITTADINO|varchar|8|N|||600
+coimcitt|cap|CAP CITTADINO|varchar|5|N|||700
+coimcitt|localita|LOCALITA DITTADINO|varchar|40|N|||800
+coimcitt|comune|COMUNE CITTADINO|varchar|40|N|||900
+coimcitt|provincia|PROVINCIA CITTADINO|varchar|4|N|||1000
+coimcitt|cod_fiscale|CODICE FISCALE CITTADINO|varchar|16|N|||1100
+coimcitt|telefono|TELEFONO CITTADINO|varchar|15|N|||1200
+coimmanu|cod_manutentore|CODICE MANUTENTORE|varchar|8|S|||100
+coimmanu|cognome|COGNOME MANUTENTORE|varchar|40|N|||200
+coimmanu|nome|NOME MANUTENTORE|varchar|40|N|||300
+coimmanu|indirizzo|INDIRIZZO MANUTENTORE|varchar|40|N|||400
+coimmanu|cap|CAP MANUTENTORE|varchar|5|N|||500
+coimmanu|comune|COMUNE MANUTENTORE|varchar|40|N|||600
+coimmanu|cod_fiscale|CODICE FISCALE MANUTENTORE|varchar|16|N|||700
+coimmanu|telefono|TELEFONO MANUTENTORE|varchar|15|N|||800
+coimcost|cod_cost|CODICE COSTRUTTORE|varchar|8|S|||100
+coimcost|descr_cost|DESCRIZIONE COSTRUTTORE|varchar|35|S|||200
+coimaimp|cod_impianto|CODICE IMPIANTO|varchar|8|S|||100
+coimaimp|cod_impianto_est|CODICE IMPIANTO ESTERNO|varchar|10|N|||200
+coimaimp|cod_combustibile|CODICE COMBUSTIBILE|varchar|8|N|||300
+coimaimp|potenza|POTENZA IMPIANTO|numeric|9,2|N|||400
+coimaimp|potenza_utile|POTENZA UTILE IMPIANTO|numeric|9,2|N|||500
+coimaimp|data_installaz|DATA INSTALLAZIONE IMPIANTO|date||N|||600
+coimaimp|data_attivaz|DATA ATTIVAZIONE IMPIANTO|date||N|||700
+coimaimp|data_rottamaz|DATA ROTTAMAZIONE IMPIANTO|date||N|||800
+coimaimp|note|NOTE IMPIANTO|varchar|4000|N|||900
+coimaimp|stato|STATO IMPIANTO|varchar|1|N|||1000
+coimaimp|flag_dichiarato|DICHIARAZIONE IMPIANTO|varchar|1|N|||1100
+coimcimp|new1_disp_regolaz|DISPOSITIVO REGOLAZIONE|varchar|1|N|||7400
+coimcimp|new1_foro_presente|FORO PRESENTE|varchar|1|N|||7500
+coimcimp|new1_foro_corretto|FORO CORRETTO|varchar|1|N|||7600
+coimcimp|new1_foro_accessibile|FORO ACCESSIBILE|varchar|1|N|||7700
+coimcimp|new1_canali_a_norma|CANALI A NORMA|varchar|1|N|||7800
+coimcimp|new1_lavoro_nom_iniz||numeric|9,2|N|||7900
+coimcimp|new1_lavoro_nom_fine||numeric|9,2|N|||8000
+coimcimp|new1_data_ultima_manu|DATA ULTIMA MODIFICA|date||N|||8100
+coimcimp|new1_data_ultima_anal|DATA ULTIMA ANALISI|date||N|||8200
+coimcimp|new1_co_rilevato|CO RILEVATO|numeric|6,2|N|||8300
+coimcimp|costo|COSTO|numeric|9,2|N|||8400
+coimaimp|localita|LOCALITA IMPIANTO|varchar|40|N|||2600
+coimaimp|cod_via|CODICE VIA IMPIANTO|varchar|8|N|||2700
+coimaimp|toponimo|TOPONIMO IMPIANTO|varchar|20|N|||2800
+coimaimp|indirizzo|INDIRIZZO IMPIANTO|varchar|100|N|||2900
+coimaimp|numero|NUMERO CIVICO IMPIANTO|varchar|8|N|||3000
+coimaimp|esponente|ESPONENTE IMPIANTO|varchar|3|N|||3100
+coimaimp|scala|SCALA IMPIANTO|varchar|5|N|||3200
+coimaimp|piano|PIANO IMPIANTO|varchar|5|N|||3300
+coimaimp|interno|INTERNO IMPIANTO|varchar|3|N|||3400
+coimaimp|cod_comune|CODICE COMUNE IMPIANTO|varchar|8|N|||3500
+coimaimp|cod_provincia|CODICE PROVINCIA IMPIANTO|varchar|8|N|||3600
+coimaimp|cap|CAP IMPIANTO|varchar|5|N|||3700
+coimaimp|cod_tpdu|CODICE TPDU IMPIANTO|varchar|8|N|||3800
+coimaimp|cod_qua|CODICE QUA IMPIANTO|varchar|8|N|||3900
+coimaimp|cod_urb|CODICE URB IMPIANTO|varchar|8|N|||4000
+coimaimp|data_ins|DATA INSERIMENTO IMPIANTO|date||N|||4100
+coimaimp|data_mod|DATA MODIFICA IMPIANTO|date||N|||4200
+coimaimp|utente|UTENTE|varchar|10|N|||4300
+coimaimp|flag_dpr412|FLAG DPR 412|varchar|1|N|||4400
+coimaimp|cod_impianto_dest|CODICE IMPIANTO DESTINAZIONE|varchar|8|N|||4500
+coimaimp|anno_costruzione|ANNO COSTRUZIONE IMPIANTO|date||N|||4600
+coimaimp|marc_effic_energ|MARCATORE EFFIC|varchar|10|N|||4700
+coimaimp|volimetria_risc|VOLUMETRIA RISCALDATA IMPIANTO|numeric|9,2|N|||4800
+coimaimp|gb_x|COORDINATE X IMPIANTO|varchar|50|N|||4900
+coimaimp|gb_y|COORDINATE Y IMPIANTO|varchar|50|N|||5000
+dimpmanu|indirizzo|INDIRIZZO|varchar|50|S|||12600
+dimpmanu|civico|CIVICO|varchar|8|N|||12700
+dimpmanu|esponente|ESPONENTE|varchar|3|N|||12900
+dimpmanu|scala|SCALA|varchar|5|N|||13000
+dimpmanu|piano|PIANO|varchar|5|N|||13100
+modellog|palazzo|PALAZZO|varchar|40|N|||15300
+dimpmanu|comune|COMUNE|varchar|40|S|||13400
+dimpmanu|provincia|PROVINCIA|varchar|40|S|||13500
+dimpmanu|interno|INTERNO|varchar|5|N|||13200
+dimpmanu|comune_occu|COMUNE OCCUPANTE|varchar|40|N|||3500
+dimpmanu|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE|varchar|1|N||G,F|3700
+dimpmanu|cap_occu|CAP OCCUPANTE|varchar|5|N|||3800
+dimpmanu|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||3900
+dimpmanu|telefono|TELEFONO OCCUPANTE|varchar|15|N|||4000
+dimpmanu|nome_prop|NOME PROPRIETARIO|varchar|100|N|||4100
+dimpmanu|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||4200
+dimpmanu|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||4300
+dimpmanu|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||4400
+dimpmanu|natura_giuridica_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||G,F|4600
+dimpmanu|cap_prop|CAP PROPRIETARIO|varchar|5|N|||4700
+dimpmanu|cod_fiscale_prop|IDENTIFICATIVO FISCALE PROPRIETARIO|varchar|16|N|||4800
+dimpmanu|modello|MODELLO|varchar|40|S|||1300
+dimpmanu|nome_int|NOME INTESTATARIO|varchar|100|N|||5000
+dimpmanu|cognome_int|COGNOME INTESTATARIO|varchar|100|N|||5100
+dimpmanu|anomalie_dimp|ANOMALIE|varchar|6000|N|||12525
+dimpmanu|localita|LOCALITA|varchar|40|N|||12530
+dimpmanu|cap|CAP|varchar|5|N|||13530
+dimpmanu|cod_impianto_est|CODICE IMPIANTO|varchar|20|N|||100
+dimpmanu|cod_manutentore|CODICE MANUTENTORE|varchar|8|N|||1500
+dimpmanu|marca|MARCA|varchar|35|S|||13600
+dimpmanu|prev_incendi|CERTIFICATO PREVENZIONE INCENDI|varchar|1|N|S|S,N|6800
+coimcimp|libretto_manutenz|LIBRETTO MANUTENZIONE|varchar|2|N|||600
+coimcimp|stato_coiben|STATO COIBEN|varchar|2|N|||700
+coimcimp|verifica_areaz|VERIFICA AREAZIONE|varchar|2|N|||800
+coimcimp|rend_comb_conv|RENDIMENTO COMBUSTIBILE CONVENZIONALE|numeric|9,2|N|||900
+coimcimp|rend_comb_min|RENDIMENTO COMBUSTIBILE MINIMO|numeric|9,2|N|||1000
+coimcimp|indic_fumosita_1a|INDICE DI FUMOSITA VALORE 1|numeric|6,2|N|||1100
+coimcimp|indic_fumosita_2a|INDICE DI FUMOSITA VALORE 2|numeric|6,2|N|||1200
+coimcimp|indic_fumosita_3a|INDICE DI FUMOSITA VALORE 3|numeric|6,2|N|||1300
+coimcimp|indic_fumosita_md|INDICE DI FUMOSITA VALORE MEDIO|numeric|6,2|N|||1400
+coimcimp|temp_h2o_out_1a|TEMPERATURA H2O IN USCITA 1|numeric|6,2|N|||1500
+coimcimp|temp_h2o_out_2a|TEMPERATURA H2O IN USCITA 2|numeric|6,2|N|||1600
+dimpmanu|cap_manu|CAP MANUTENTORE|varchar|5|N|||2100
+dimpmanu|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||2200
+dimpmanu|nome_resp|NOME RESPONSABILE|varchar|100|N|||2300
+dimpmanu|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|N|||2500
+dimpmanu|comune_resp|COMUNE RESPONSABILE|varchar|40|N|||2600
+dimpmanu|combustibile|COMBUSTIBILE|varchar|40|S|NON NOTO||1350
+dimpmanu|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|N||G,F|2800
+dimpmanu|cap_resp|CAP RESPONSABILE|varchar|5|N|||2900
+coimcomb|cod_combustibile|CODICE COMBUSTIBILE|varchar|8|S|||100
+coimcomb|descr_comb|DESCRIZIONE COMBUSTIBILE|varchar|35|S|||200
+coimtopo|cod_topo|CODICE TOPONIMO|varchar|8|S|||100
+coimtopo|descr_topo|DESCRIZIONE TOPONIMO|varchar|50|S|||200
+coimviae|cod_via|CODICE VIA|varchar|8|S|||100
+coimviae|cod_comune|CODICE COMUNE|varchar|8|S|||200
+coimviae|descrizione|DESCRIZIONE VIA|varchar|50|N|||300
+coimviae|descr_topo|DESCRIZIONE TOPONIMO|varchar|50|S|||400
+coimviae|descr_estesa|DESCRIZIONE VIA ALTERNATIVA|varchar|50|N|||500
+coimopve|cod_opve|CODICE VERIFICATORE|varchar|8|S|||100
+coimopve|cod_enve|CODICE ENTE|varchar|8|S|||200
+coimopve|cognome_veri|COGNOME VERIFICATORE|varchar|40|N|||300
+coimopve|nome_veri|NOME VERIFICATORE|varchar|40|N|||400
+coimcitt|cod_cittadino|CODICE CITTADINO|varchar|8|S|||100
+coimcitt|natura_giuridica|NATURA GIURIDICA CITTADINO|varchar|1|N|||200
+dimpmanu|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|N|||10000
+dimpmanu|o2|O2|numeric|6,2|N|||10100
+dimpmanu|co2|CO2|numeric|6,2|N|||10200
+dimpmanu|bacharach|BACHARACH|numeric|6,2|N|||10300
+iterman|lib_impianto_note|NOTE LIBRETTO IMPIANTO|varchar|4000|N|||15200
+dimpmanu|co|CO|numeric|10,4|N|||10500
+dimpmanu|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|N|||10600
+dimpmanu|tiraggio|TIRAGGIO|numeric|9,2|N|||10700
+dimpmanu|osservazioni|OSSERVAZIONI|varchar|4000|N|||10800
+dimpmanu|raccomandazioni|RACCOMANDAZIONI|varchar|4000|N|||10900
+dimpmanu|prescrizioni|PRESCRIZIONI|varchar|4000|N|||11000
+dimpmanu|data_utile_inter|DATA UTILE INTERVENTO|date||N|||11100
+dimpmanu|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||11200
+dimpmanu|data_controllo|DATA CONTROLLO|date||S|||200
+dimpmanu|flag_status|ESITO CONTROLLO|varchar|2|N||P,N|300
+dimpmanu|flag_tracciato|TIPO DOCUMENTO|varchar|2|N||H,G,F,HB|500
+dimpmanu|provincia_int|PROVINCIA INTESTATARIO|varchar|2|N|||5400
+dimpmanu|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||600
+dimpmanu|ora_fine|ORARIO FINE CONTROLLO|varchar|8|N|||700
+dimpmanu|data_scadenza|DATA SCADENZA AUTOCERTIFICAZIONE|date||N|||800
+dimpmanu|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||900
+dimpmanu|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||1000
+dimpmanu|data_prot|DATA PROTOCOLLO|date||N|||1100
+dimpmanu|matricola|MATRICOLA|varchar|35|S|||1200
+iterman|cap_manu|CAP MANUTENTORE|varchar|5|N|||2100
+dimpmanu|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||1600
+dimpmanu|nome_manu|NOME MANUTENTORE|varchar|100|N|||1700
+dimpmanu|indirizzo_manu|INDIRIZZO MANUTENTORE|varchar|40|N|||1800
+dimpmanu|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||1900
+dimpmanu|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||2000
+dimpmanu|delega_manut|DELEGA MANUTENTORE|varchar|50|N|||11300
+coimaimp|data_prima_dich|PRIMA DICHIARAZIONE IMPIANTO|date||N|||1200
+coimaimp|data_ultim_dich|ULTIMA DICHIARAZIONE IMPIANTO|date||N|||1300
+coimaimp|consumo_annuo|COMSUMO ANNUO IMPIANTO|numeric|9,2|N|||1400
+coimaimp|n_generatori|NUMERO GENERATORI IMPIANTO|numeric|2,0|N|||1500
+coimaimp|stato_conformita|STATO CONFORMITA IMPIANTO|varchar|1|N|||1600
+coimaimp|cod_cted|CODICE CTED IMPIANTO|varchar|8|N|||1700
+coimaimp|tariffa|TARIFFA IMPIANTO|varchar|8|N|||1800
+coimaimp|cod_responsabile|CODICE RESPONSABILE IMPIANTO|varchar|8|N|||1900
+coimaimp|flag_resp|FLAG RESPONSABILE|varchar|1|N|||2000
+coimaimp|cod_intestatario|CODICE INTESTATARIO IMPIANTO|varchar|8|N|||2100
+coimaimp|cod_proprietario|CODICE PROPRIETARIO IMPIANTO|varchar|8|N|||2200
+coimaimp|cod_occupante|CODICE OCCUPANTE IMPIANTO|varchar|8|N|||2300
+coimaimp|cod_amministratore|CODICE AMMINISTRATORE IMPIANTO|varchar|8|N|||2400
+coimaimp|cod_manutentore|CODICE MANUTENTORE IMPIANTO|varchar|8|N|||2500
+dimpmanu|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE|varchar|16|N|||3000
+dimpmanu|telefono_resp|TELEFONO RESPONSABILE|varchar|15|N|||3100
+dimpmanu|nome_occu|NOME OCCUPANTE|varchar|100|N|||3200
+dimpmanu|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||3300
+dimpmanu|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||3400
+dimpmanu|tiraggio_gend|TIRAGGIO GENERATORE|varchar|1|N||N,F|1450
+dimpmanu|provincia_resp|PROVINCIA RESPONSABILE|varchar|2|N|||2700
+dimpmanu|provincia_occu|PROVINCIA OCCUPANTE|varchar|2|N|||3600
+dimpmanu|fluido_termovettore_gend|FLUIDO TERMOVETTORE GENERATORE|varchar|1|N||0,1,2,3|1475
+iterman|interno|INTERNO|varchar|5|N|||13200
+dimpmanu|data_installazione_aimp|DATA INSTALLAZIONE IMPIANTO|date||N|19010101||350
+dimpmanu|provincia_prop|PROVINCIA PROPRIETARIO|varchar|2|N|||4500
+dimpmanu|flag_status_g|IMPIANTO PUO FUNZIONARE|varchar|2|N||S,N|325
+dimpmanu|data_costruzione_gend|DATA COSTRUZIONE GENERATORE|date||N|||1480
+dimpmanu|cod_utgi|DESTINAZIONE USO GENERATORE|varchar|1|N||0,A,E,R,X|1485
+dimpmanu|tipo_foco|TIPO GENERATORE|varchar|1|N||A,C|1490
+dimpmanu|locale|LOCALE INSTALLAZIONE|varchar|1|N||T,E,I|1493
+dimpmanu|marc_effic_energ|MARCATURA EFFICIENZA ENERGETICA|varchar|1|N||1,2,3,4,5|1496
+dimpmanu|cod_tpim|TIPOLOGIA IMPIANTO|varchar|1|N||0,A,C|375
+dimpmanu|utente_ins|UTENTE INSERIMENTO|varchar|10|N|||12500
+iterman|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|N||G,F|2800
+iterman|cap_resp|CAP RESPONSABILE|varchar|5|N|||2900
+iterman|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE|varchar|16|N|||3000
+iterman|telefono_resp|TELEFONO RESPONSABILE|varchar|15|N|||3100
+iterman|nome_occu|NOME OCCUPANTE|varchar|100|N|||3200
+iterman|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||3300
+iterman|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||3400
+iterman|tiraggio_gend|TIRAGGIO GENERATORE|varchar|1|N||N,F|1450
+iterman|provincia_resp|PROVINCIA RESPONSABILE|varchar|2|N|||2700
+iterman|provincia_occu|PROVINCIA OCCUPANTE|varchar|2|N|||3600
+iterman|fluido_termovettore_gend|FLUIDO TERMOVETTORE GENERATORE|varchar|1|N||0,1,2,3|1475
+iterman|data_installazione_aimp|DATA INSTALLAZIONE IMPIANTO|date||N|19010101||350
+iterman|provincia_prop|PROVINCIA PROPRIETARIO|varchar|2|N|||4500
+iterman|flag_status_g|IMPIANTO PUO FUNZIONARE|varchar|2|N||S,N|325
+iterman|data_costruzione_gend|DATA COSTRUZIONE GENERATORE|date||N|||1480
+iterman|cod_utgi|DESTINAZIONE USO GENERATORE|varchar|1|N||0,A,E,R,X|1485
+iterman|tipo_foco|TIPO GENERATORE|varchar|1|N||A,C|1490
+iterman|locale|LOCALE INSTALLAZIONE|varchar|1|N||T,E,I|1493
+iterman|marc_effic_energ|MARCATURA EFFICIENZA ENERGETICA|varchar|1|N||1,2,3,4,5|1496
+iterman|cod_tpim|TIPOLOGIA IMPIANTO|varchar|1|N||0,A,C|375
+iterman|utente_ins|UTENTE INSERIMENTO|varchar|10|N|||12500
+iterman|indirizzo|INDIRIZZO|varchar|50|S|||12600
+iterman|civico|CIVICO|varchar|8|N|||12700
+iterman|esponente|ESPONENTE|varchar|3|N|||12900
+iterman|scala|SCALA|varchar|5|N|||13000
+iterman|piano|PIANO|varchar|5|N|||13100
+modellof|palazzo|PALAZZO|varchar|40|N|||10400
+iterman|comune|COMUNE|varchar|40|S|||13400
+iterman|provincia|PROVINCIA|varchar|40|S|||13500
+dimpmanu|esame_vis_l_elet|ESAME VISIVO LINEE ELETTRICHE|varchar|1|N|S|S,N|6900
+dimpmanu|funz_corr_bruc|FUNZIONAMENTO CORRETTO DEL BRUCIATORE|varchar|1|N|S|S,N|7000
+dimpmanu|idoneita_locale|IDONEITA LOCALE|varchar|1|N||S,N,E|7100
+dimpmanu|ap_ventilaz|APERTURA VENTILAZIONE|varchar|1|N||S,N,C|7200
+dimpmanu|ap_vent_ostruz|APERTURA VENTIALZIONE OSTRUITA|varchar|1|N||S,N,C|7300
+dimpmanu|pendenza|PENDENZA CANALI|varchar|1|N||S,N,C|7400
+dimpmanu|sezioni|SEZIONI|varchar|1|N||S,N,C|7500
+dimpmanu|curve|CURVE|varchar|1|N||S,N,C|7600
+dimpmanu|lunghezza|LUNGHEZZA|varchar|1|N||S,N,C|7700
+dimpmanu|conservazione|BUONO STATO DI CONSERVAZIONE|varchar|1|N||S,N,C|7800
+dimpmanu|scar_ca_si|SCARICO A CAMINO SINGOLO|varchar|1|N||S,N,C|7900
+dimpmanu|scar_parete|SCARICO A PARETE|varchar|1|N||S,N,C|8000
+dimpmanu|riflussi_locale|NON ESISTONO RIFLUSSI NEL LOCALE|varchar|1|N||S,N,C|8100
+dimpmanu|assenza_perdite|ASSENZA PERDITE SCARICO|varchar|1|N||S,N,C|8200
+dimpmanu|pulizia_ugelli|PULIZIA UGELLI|varchar|1|N||S,N,C|8300
+dimpmanu|antivento|SISTEMA ANTIVENTO NON DETERIORATO|varchar|1|N||S,N,C|8400
+dimpmanu|scambiatore|SCAMBIATORE PULITO|varchar|1|N||S,N,C|8500
+dimpmanu|accens_reg|ACCENSIONE REGOLARE|varchar|1|N||S,N,C|8600
+dimpmanu|disp_comando|DISPOSITIVI DI COMANDO|varchar|1|N||S,N,C|8700
+dimpmanu|ass_perdite|ASSENZA DI PERDITE NEI RACCORDI|varchar|1|N||S,N,C|8800
+dimpmanu|valvola_sicur|VALVOLA DI SICUREZZA|varchar|1|N||S,N,C|8900
+dimpmanu|vaso_esp|VASO ESPANSORE|varchar|1|N||S,N,C|9000
+dimpmanu|disp_sic_manom|DISPOSITIVI DI SICUREZZA NON MANOMESSI|varchar|1|N||S,N,C|9100
+dimpmanu|organi_integri|ORGANI INTEGRI|varchar|1|N||S,N,C|9200
+dimpmanu|circ_aria|CIRCUITO ARIA PULITO|varchar|1|N||S,N,C|9300
+dimpmanu|guarn_accop|GUARNIZIONE ACCOPPIAMENTO INTEGRA|varchar|1|N||S,N,C|9400
+dimpmanu|assenza_fughe|ASSENZA FUGHE GAS|varchar|1|N||P,N,A|9500
+dimpmanu|coibentazione|COIBENTAZIONE|varchar|1|N||P,N,A|9600
+dimpmanu|eff_evac_fum|EFFICIENZA EVACUAZIONE FUMI|varchar|1|N||P,N,A|9700
+dimpmanu|cont_rend|CONTROLLO RENDIMENTO|varchar|1|N||S,N|9800
+dimpmanu|temp_fumi|TEMPERATURA FUMI|numeric|6,2|N|||9900
+iterman|scar_ca_si|SCARICO A CAMINO SINGOLO|varchar|1|N||S,N,C|7900
+iterman|palazzo|PALAZZO|varchar|40|N|||13300
+iterman|scar_parete|SCARICO A PARETE|varchar|1|N||S,N,C|8000
+iterman|riflussi_locale|NON ESISTONO RIFLUSSI NEL LOCALE|varchar|1|N||S,N,C|8100
+iterman|assenza_perdite|ASSENZA PERDITE SCARICO|varchar|1|N||S,N,C|8200
+iterman|pulizia_ugelli|PULIZIA UGELLI|varchar|1|N||S,N,C|8300
+iterman|antivento|SISTEMA ANTIVENTO NON DETERIORATO|varchar|1|N||S,N,C|8400
+iterman|scambiatore|SCAMBIATORE PULITO|varchar|1|N||S,N,C|8500
+iterman|accens_reg|ACCENSIONE REGOLARE|varchar|1|N||S,N,C|8600
+iterman|disp_comando|DISPOSITIVI DI COMANDO|varchar|1|N||S,N,C|8700
+iterman|ass_perdite|ASSENZA DI PERDITE NEI RACCORDI|varchar|1|N||S,N,C|8800
+iterman|valvola_sicur|VALVOLA DI SICUREZZA|varchar|1|N||S,N,C|8900
+iterman|vaso_esp|VASO ESPANSORE|varchar|1|N||S,N,C|9000
+iterman|disp_sic_manom|DISPOSITIVI DI SICUREZZA NON MANOMESSI|varchar|1|N||S,N,C|9100
+iterman|organi_integri|ORGANI INTEGRI|varchar|1|N||S,N,C|9200
+iterman|circ_aria|CIRCUITO ARIA PULITO|varchar|1|N||S,N,C|9300
+iterman|guarn_accop|GUARNIZIONE ACCOPPIAMENTO INTEGRA|varchar|1|N||S,N,C|9400
+iterman|assenza_fughe|ASSENZA FUGHE GAS|varchar|1|N||P,N,A|9500
+iterman|coibentazione|COIBENTAZIONE|varchar|1|N||P,N,A|9600
+iterman|eff_evac_fum|EFFICIENZA EVACUAZIONE FUMI|varchar|1|N||P,N,A|9700
+iterman|cont_rend|CONTROLLO RENDIMENTO|varchar|1|N||S,N|9800
+iterman|temp_fumi|TEMPERATURA FUMI|numeric|6,2|N|||9900
+iterman|toponimo|TOPONIMO|varchar|20|S|||12550
+iterman|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|N|||10000
+iterman|o2|O2|numeric|6,2|N|||10100
+iterman|co2|CO2|numeric|6,2|N|||10200
+iterman|bacharach|BACHARACH|numeric|6,2|N|||10300
+iterman|rapp_contr_note|NOTE RAPPORTO DI CONTROLLO|varchar|4000|N|||15300
+iterman|co|CO|numeric|10,4|N|||10500
+iterman|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|N|||10600
+dimpmanu|num_bollo|NUMERO BOLLINO|varchar|20|N|||11400
+dimpmanu|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||11500
+iterman|cod_opmanu|CODICE OPERATORE MANUTENTORE|varchar|16|N|||14300
+dimpmanu|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|N|||11700
+dimpmanu|potenza_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|N|||11800
+dimpmanu|potenza_foc_nom|POTENZA FOCOLARE NOMINALE |numeric|6,2|N|||11900
+dimpmanu|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||12000
+dimpmanu|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||12100
+dimpmanu|data_ins|DATA INSERIMENTO|date||N|||12300
+dimpmanu|data_mod|DATA MODIFICA|date||N|||12400
+dimpmanu|scarico_fumi_gend|SCARICO FUMI GENERATORE|varchar|8|N||0,I,C,P|1425
+dimpmanu|telefono_pop|TELEFONO PROPRIETARIO|varchar|15|N|||4900
+dimpmanu|indirizzo_int|INDIRIZZO INTESTATARIO|varchar|40|N|||5200
+dimpmanu|comune_int|COMUNE INTESTATARIO|varchar|40|N|||5300
+dimpmanu|gen_prog|PROGRESSIVO GENERATORE |numeric|8,0|N|1||400
+dimpmanu|natura_giuridica_int|NATURA GIURIDICA INTESTATARIO|varchar|1|N||G,F|5500
+dimpmanu|cap_int|CAP INTESTATARIO|varchar|5|N|||5600
+dimpmanu|cod_fiscale_int|IDENTIFICATIVO FISCALE INTESTATARIO|varchar|16|N|||5700
+dimpmanu|telefono_int|TELEFONO INTESTATARIO|varchar|15|N|||5800
+dimpmanu|conformita|CONFORMITA|varchar|1|N||S,N,C|6000
+dimpmanu|lib_impianto|LIBRETTO IMPIANTO|varchar|1|N||S,N,C|6100
+dimpmanu|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|N||S,N,C|6200
+dimpmanu|inst_in_out|INSTALLAZIONE INTERNA/ESTERNA|varchar|1|N||S,N,E|6300
+dimpmanu|rapp_contr|CERTIFICAZIONE EX UNI 10435|varchar|1|N|S|S,N|6400
+dimpmanu|certificaz|CERTIFICAZIONE EX UNI 8364|varchar|1|N|S|S,N|6500
+dimpmanu|libretto_bruc|LIBRETTO USO E MANUTENZIONE BRUCIATORE|varchar|1|N|S|S,N|6600
+dimpmanu|ispesl|PRATICA ISPESL|varchar|1|N|S|S,N|6700
+dimpmanu|cognome_resp|COGNOME RESPONSABILE|varchar|100|N|||2400
+iterman|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||2200
+iterman|nome_resp|NOME RESPONSABILE|varchar|100|N|||2300
+iterman|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|N|||2500
+iterman|combustibile|COMBUSTIBILE|varchar|40|S|NON NOTO||1350
+iterman|telefono_pop|TELEFONO PROPRIETARIO|varchar|15|N|||4900
+iterman|indirizzo_int|INDIRIZZO INTESTATARIO|varchar|40|N|||5200
+iterman|comune_int|COMUNE INTESTATARIO|varchar|40|N|||5300
+iterman|gen_prog|PROGRESSIVO GENERATORE |numeric|8,0|N|1||400
+iterman|natura_giuridica_int|NATURA GIURIDICA INTESTATARIO|varchar|1|N||G,F|5500
+iterman|cap_int|CAP INTESTATARIO|varchar|5|N|||5600
+iterman|cod_fiscale_int|IDENTIFICATIVO FISCALE INTESTATARIO|varchar|16|N|||5700
+iterman|telefono_int|TELEFONO INTESTATARIO|varchar|15|N|||5800
+iterman|conformita|CONFORMITA|varchar|1|N||S,N,C|6000
+iterman|lib_impianto|LIBRETTO IMPIANTO|varchar|1|N||S,N,C|6100
+iterman|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|N||S,N,C|6200
+iterman|inst_in_out|INSTALLAZIONE INTERNA/ESTERNA|varchar|1|N||S,N,E|6300
+iterman|rapp_contr|CERTIFICAZIONE EX UNI 10435|varchar|1|N|S|S,N|6400
+iterman|certificaz|CERTIFICAZIONE EX UNI 8364|varchar|1|N|S|S,N|6500
+iterman|libretto_bruc|LIBRETTO USO E MANUTENZIONE BRUCIATORE|varchar|1|N|S|S,N|6600
+iterman|ispesl|PRATICA ISPESL|varchar|1|N|S|S,N|6700
+iterman|cognome_resp|COGNOME RESPONSABILE|varchar|100|N|||2400
+iterman|cod_cost_bruc|COSTRUTORE BRUCIATORE|varchar|35|N|||13700
+iterman|modello_bruc|MODELLO BRUCIATORE|varchar|40|N|||13800
+iterman|matricola_bruc|MATRICOLA BRUCIATORE|varchar|35|N|||13900
+iterman|tipo_bruciatore|TIPO BRUCIATORE|varchar|1|N||A,P,M|14000
+iterman|data_costruz_bruc|DATA COSTRUZIONE BRUCIATORE|date||N|||14100
+iterman|consumo_annuo2|CONSUMO ANNUO2|numeric|9,2|N|||14500
+iterman|certificaz_note|NOTE CERTIFICAZIONE EX UNI|varchar|4000|N|||15400
+iterman|stagione_risc|STAGIONE RISCALDAMENTO|varchar|40|N|||14600
+iterman|stagione_risc2|STAGIONE RISCALDAMENTO2|varchar|40|N|||14700
+iterman|schemi_funz_idr|SCHEMI FUZIONALI IDRAULICI|varchar|1|N||S,N|14800
+iterman|schemi_funz_ele|SCHEMI FUZIONALI ELETTRICI|varchar|1|N||S,N|14900
+iterman|comune_occu|COMUNE OCCUPANTE|varchar|40|N|||3500
+iterman|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE|varchar|1|N||G,F|3700
+iterman|cap_occu|CAP OCCUPANTE|varchar|5|N|||3800
+iterman|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||3900
+iterman|telefono|TELEFONO OCCUPANTE|varchar|15|N|||4000
+iterman|nome_prop|NOME PROPRIETARIO|varchar|100|N|||4100
+iterman|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||4200
+iterman|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||4300
+iterman|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||4400
+iterman|natura_giuridica_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||G,F|4600
+iterman|cap_prop|CAP PROPRIETARIO|varchar|5|N|||4700
+iterman|cod_fiscale_prop|IDENTIFICATIVO FISCALE PROPRIETARIO|varchar|16|N|||4800
+iterman|modello|MODELLO|varchar|40|S|||1300
+iterman|nome_int|NOME INTESTATARIO|varchar|100|N|||5000
+iterman|cognome_int|COGNOME INTESTATARIO|varchar|100|N|||5100
+iterman|anomalie_dimp|ANOMALIE|varchar|6000|N|||12525
+iterman|localita|LOCALITA|varchar|40|N|||12530
+iterman|cap|CAP|varchar|5|N|||13530
+iterman|cod_impianto_est|CODICE IMPIANTO|varchar|20|N|||100
+iterman|cod_manutentore|CODICE MANUTENTORE|varchar|8|N|||1500
+iterman|marca|MARCA|varchar|35|S|||13600
+iterman|prev_incendi|CERTIFICATO PREVENZIONE INCENDI|varchar|1|N|S|S,N|6800
+iterman|esame_vis_l_elet|ESAME VISIVO LINEE ELETTRICHE|varchar|1|N|S|S,N|6900
+iterman|funz_corr_bruc|FUNZIONAMENTO CORRETTO DEL BRUCIATORE|varchar|1|N|S|S,N|7000
+iterman|idoneita_locale|IDONEITA LOCALE|varchar|1|N||S,N,E|7100
+iterman|ap_ventilaz|APERTURA VENTILAZIONE|varchar|1|N||S,N,C|7200
+iterman|ap_vent_ostruz|APERTURA VENTIALZIONE OSTRUITA|varchar|1|N||S,N,C|7300
+iterman|pendenza|PENDENZA CANALI|varchar|1|N||S,N,C|7400
+iterman|sezioni|SEZIONI|varchar|1|N||S,N,C|7500
+iterman|curve|CURVE|varchar|1|N||S,N,C|7600
+iterman|lunghezza|LUNGHEZZA|varchar|1|N||S,N,C|7700
+iterman|comune_resp|COMUNE RESPONSABILE|varchar|40|N|||2600
+iterman|conservazione|BUONO STATO DI CONSERVAZIONE|varchar|1|N||S,N,C|7800
+modellog|data_costruzione_gend|DATA COSTRUZIONE GENERATORE|date||N|||3000
+modellog|prescrizioni|PRESCRIZIONI|varchar|4000|N|||12900
+modellof|num_tot_gen|NUMERO TOTALE GENERATORI|numeric|8,0|S|||1100
+modellof|locale|TIPO LOCALE|varchar|1|N||T,E,I|3800
+modellof|cod_cost_bruc|COSTRUTTORE BRUCIATORE|varchar|35|N|||4100
+modellof|data_prot|DATA PROTOCOLLO|date||N|||2500
+modellof|tiraggio_gend|TIRAGGIO GENERATORE|varchar|1|N||N,F|3200
+modellof|anomalie_dimp|ANOMALIE|varchar|6000|N|||17000
+modellof|flag_responsabile|FLAG RESPONSABILE|varchar|1|S||T,A,O,P|17200
+modellof|pot_utile_nom_mod|POTENZA UTILE NOMINALE MOD.|numeric|9,2|S|||14100
+modellof|scambiatore|SCAMBIATORE LATO FUMI|varchar|1|N||S,N,C|14400
+modellof|o2|O2|numeric|6,2|S|||15500
+modellof|localita_imp|LOCALITA IMPIANTO|varchar|40|N|||9600
+modellof|cap|CAP|varchar|5|N|||10700
+modellof|certificaz|CERTIFICAZIONE EX UNI 8364|varchar|1|N|S|S,N|11500
+modellof|dich_conf|DICHIARAZIONE CONFORMITA MOD. F|varchar|1|N||S,N|11600
+modellog|tiraggio_gend|TIRAGGIO GENERATORE|varchar|1|S||N,F|2800
+modellof|libretto_bruc|LIBRETTO USO E MANUTENZIONE BRUCIATORE|varchar|1|N|S|S,N|11800
+modellof|schemi_funz_idr|SCHEMI FUZIONALI IDRAULICI|varchar|1|N||S,N|11900
+modellog|data_installazione_aimp|DATA INSTALLAZIONE IMPIANTO|date||S|19010101||1400
+modellof|ispesl|PRATICA ISPESL|varchar|1|N|S|S,N|12100
+modellof|prev_incendi|CERTIFICATO PREVENZIONE INCENDI|varchar|1|N|S|S,N|12300
+modellof|schemi_funz_idr_note|NOTE SCHEMI FUZIONALI IDRAULICI|varchar|4000|N|||12400
+modellof|schemi_funz_ele_note|NOTE SCHEMI FUZIONALI ELETTRICI|varchar|4000|N|||12500
+modellof|lib_impianto_note|NOTE LIBRETTO IMPIANTO|varchar|4000|N|||12600
+modellof|rapp_contr_note|NOTE RAPPORTO DI CONTROLLO|varchar|4000|N|||12700
+modellof|ap_vent_ostruz|APERTURA VENTILAZIONE OSTRUITA|varchar|1|S||S,N,C|13600
+modellof|pot_nom_foc_gen|POTENZA NOMINALE FOCOLARE GEN.|numeric|9,2|S|||5100
+modellof|matricola_bruc|MATRICOLA BRUCIATORE|varchar|35|N|||4300
+modellof|tipo_bruciatore|TIPO BRUCIATORE|varchar|1|N||A,P,M|4400
+iterman|tiraggio|TIRAGGIO|numeric|9,2|N|||10700
+iterman|osservazioni|OSSERVAZIONI|varchar|4000|N|||10800
+iterman|raccomandazioni|RACCOMANDAZIONI|varchar|4000|N|||10900
+iterman|prescrizioni|PRESCRIZIONI|varchar|4000|N|||11000
+iterman|data_utile_inter|DATA UTILE INTERVENTO|date||N|||11100
+iterman|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||11200
+iterman|data_controllo|DATA CONTROLLO|date||S|||200
+iterman|flag_status|ESITO CONTROLLO|varchar|2|N||P,N|300
+iterman|flag_tracciato|TIPO DOCUMENTO|varchar|2|N||H,G,F,HB|500
+iterman|provincia_int|PROVINCIA INTESTATARIO|varchar|2|N|||5400
+iterman|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||600
+iterman|ora_fine|ORARIO FINE CONTROLLO|varchar|8|N|||700
+iterman|data_scadenza|DATA SCADENZA AUTOCERTIFICAZIONE|date||N|||800
+iterman|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||900
+iterman|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||1000
+iterman|data_prot|DATA PROTOCOLLO|date||N|||1100
+iterman|matricola|MATRICOLA|varchar|35|S|||1200
+iterman|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||1600
+iterman|nome_manu|NOME MANUTENTORE|varchar|100|N|||1700
+iterman|indirizzo_manu|INDIRIZZO MANUTENTORE|varchar|40|N|||1800
+iterman|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||1900
+iterman|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||2000
+iterman|delega_manut|DELEGA MANUTENTORE|varchar|50|N|||11300
+iterman|num_bollo|NUMERO BOLLINO|varchar|20|N|||11400
+iterman|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||11500
+iterman|scar_can_fu|SCARICO CANNA FUMARIA COLLETIVA|varchar|1|N||S,N,C|14400
+iterman|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|N|||11700
+iterman|potenza_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|N|||11800
+iterman|potenza_foc_nom|POTENZA FOCOLARE NOMINALE |numeric|6,2|N|||11900
+iterman|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||12000
+iterman|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||12100
+iterman|data_ins|DATA INSERIMENTO|date||N|||12300
+iterman|data_mod|DATA MODIFICA|date||N|||12400
+iterman|scarico_fumi_gend|SCARICO FUMI GENERATORE|varchar|8|N||0,I,C,P|1425
+modellog|data_utile_inter|DATA UTILE INTERVENTO|date||N|||13000
+modellog|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||13100
+modellog|delega_manut|DELEGA MANUTENTORE|varchar|50|N|||13200
+modellog|num_bollo|NUMERO BOLLINO|varchar|20|N|||13300
+modellog|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||13400
+modellog|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|S|||13600
+modellog|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||13900
+modellog|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||14000
+modellog|data_ins|DATA INSERIMENTO|date||N|||14100
+modellog|data_mod|DATA MODIFICA|date||N|||14200
+modellog|utente_ins|UTENTE INSERIMENTO|varchar|10|N|||14300
+modellog|anomalie_dimp|ANOMALIE|varchar|6000|N|||14400
+modellog|toponimo|TOPONIMO|varchar|20|S|||14600
+modellog|indirizzo|INDIRIZZO|varchar|50|S|||14700
+modellog|civico|CIVICO|varchar|8|N|||14800
+modellog|esponente|ESPONENTE|varchar|3|N|||14900
+modellog|scala|SCALA|varchar|5|N|||15000
+modellog|piano|PIANO|varchar|5|N|||15100
+modellog|interno|INTERNO|varchar|5|N|||15200
+dimpmanu|palazzo|PALAZZO|varchar|40|N|||13300
+modellog|comune|COMUNE|varchar|40|S|||15400
+modellog|provincia|PROVINCIA|varchar|40|S|||15500
+modellog|cap|CAP|varchar|5|N|||15600
+modellog|cod_opmanu|CODICE OPERATORE MANUTENTORE|varchar|16|N|||16300
+modellog|consumo_annuo2|CONSUMO ANNUO2|numeric|9,2|N|||16500
+modellog|stagione_risc|STAGIONE RISCALDAMENTO|varchar|40|N|||16600
+modellog|stagione_risc2|STAGIONE RISCALDAMENTO2|varchar|40|N|||16700
+modellog|valvola_sicur|VALVOLA DI SICUREZZA|varchar|1|S||S,N,C|10800
+modellog|vaso_esp|VASO ESPANSORE|varchar|1|S||S,N,C|10900
+modellog|disp_sic_manom|DISPOSITIVI DI SICUREZZA NON MANOMESSI|varchar|1|S||S,N,C|11000
+modellog|organi_integri|ORGANI INTEGRI|varchar|1|S||S,N,C|11100
+modellog|circ_aria|CIRCUITO ARIA PULITO|varchar|1|S||S,N,C|11200
+modellog|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||2100
+modellog|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||2200
+modellog|data_prot|DATA PROTOCOLLO|date||N|||2300
+modellog|matricola|MATRICOLA|varchar|35|S|||2400
+modellog|modello|MODELLO|varchar|40|S|||2500
+modellog|combustibile|COMBUSTIBILE|varchar|40|S|NON NOTO||2600
+modellog|cod_utgi|DESTINAZIONE USO GENERATORE|varchar|1|S||0,A,E,R,X|3100
+modellog|tipo_foco|TIPO GENERATORE|varchar|1|S||A,C|3200
+modellog|fluido_termovettore_gend|FLUIDO TERMOVETTORE GENERATORE|varchar|1|N||0,1,2,3|2900
+modellog|locale|LOCALE INSTALLAZIONE|varchar|1|S||T,E,I|3300
+modellog|cognome_resp|COGNOME RESPONSABILE|varchar|100|S|||4400
+modellog|cod_manutentore|CODICE MANUTENTORE|varchar|8|S|||3500
+modellog|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||3600
+modellog|nome_manu|NOME MANUTENTORE|varchar|100|N|||3700
+modellog|indirizzo_manu|INDIRIZZO MANUTENTORE|varchar|40|N|||3800
+modellog|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||3900
+modellog|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||4000
+modellog|cap_manu|CAP MANUTENTORE|varchar|5|N|||4100
+modellog|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||4200
+modellog|nome_resp|NOME RESPONSABILE|varchar|100|N|||4300
+modellog|inst_in_out|INSTALLAZIONE INTERNA/ESTERNA|varchar|1|S||S,N,E|8200
+modellog|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|N|||4500
+modellog|comune_resp|COMUNE RESPONSABILE|varchar|40|N|||4600
+modellog|provincia_resp|PROVINCIA RESPONSABILE|varchar|2|N|||4700
+modellog|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|N||G,F|4800
+modellog|cap_resp|CAP RESPONSABILE|varchar|5|N|||4900
+modellog|telefono_resp|TELEFONO RESPONSABILE|varchar|15|N|||5100
+modellog|nome_occu|NOME OCCUPANTE|varchar|100|N|||5200
+modellog|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||5300
+modellog|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||5400
+modellog|comune_occu|COMUNE OCCUPANTE|varchar|40|N|||5500
+modellog|provincia_occu|PROVINCIA OCCUPANTE|varchar|2|N|||5600
+modellog|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE|varchar|1|N||G,F|5700
+modellog|cap_occu|CAP OCCUPANTE|varchar|5|N|||5800
+modellog|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||5900
+modellog|nome_prop|NOME PROPRIETARIO|varchar|100|N|||6100
+modellog|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||6200
+modellog|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||6300
+modellog|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||6400
+modellog|provincia_prop|PROVINCIA PROPRIETARIO|varchar|2|N|||6500
+modellog|natura_giuridica_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||G,F|6600
+modellog|cap_prop|CAP PROPRIETARIO|varchar|5|N|||6700
+modellog|cod_fiscale_prop|IDENTIFICATIVO FISCALE PROPRIETARIO|varchar|16|N|||6800
+modellog|nome_int|NOME INTESTATARIO|varchar|100|N|||7000
+modellog|cognome_int|COGNOME INTESTATARIO|varchar|100|N|||7100
+modellog|indirizzo_int|INDIRIZZO INTESTATARIO|varchar|40|N|||7200
+modellog|comune_int|COMUNE INTESTATARIO|varchar|40|N|||7300
+modellog|provincia_int|PROVINCIA INTESTATARIO|varchar|2|N|||7400
+modellog|natura_giuridica_int|NATURA GIURIDICA INTESTATARIO|varchar|1|N||G,F|7500
+modellog|cap_int|CAP INTESTATARIO|varchar|5|N|||7600
+modellog|rapp_contr|CERTIFICAZIONE EX UNI 10435|varchar|1|N|S|S,N|8300
+modellog|certificaz|CERTIFICAZIONE EX UNI 8364|varchar|1|N|S|S,N|8400
+modellog|libretto_bruc|LIBRETTO USO E MANUTENZIONE BRUCIATORE|varchar|1|N|S|S,N|8500
+modellog|ispesl|PRATICA ISPESL|varchar|1|N|S|S,N|8600
+modellog|prev_incendi|CERTIFICATO PREVENZIONE INCENDI|varchar|1|N|S|S,N|8700
+modellog|esame_vis_l_elet|ESAME VISIVO LINEE ELETTRICHE|varchar|1|N|S|S,N|8800
+modellog|funz_corr_bruc|FUNZIONAMENTO CORRETTO DEL BRUCIATORE|varchar|1|N|S|S,N|8900
+modellog|disp_comando|DISPOSITIVI DI COMANDO|varchar|1|N||S,N,C|10600
+modellog|bacharach|BACHARACH|numeric|6,2|N|||12200
+modellog|tiraggio|TIRAGGIO|numeric|9,2|N|||12600
+modellog|osservazioni|OSSERVAZIONI|varchar|4000|N|||12700
+modellog|raccomandazioni|RACCOMANDAZIONI|varchar|4000|N|||12800
+modellog|potenza_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|S|||13700
+modellog|marca|COSTRUTTORE|varchar|35|S|||15700
+modellog|stato|STATO IMPIANTO|varchar|1|S||A,R,N,L|16800
+modellog|flag_responsabile|FLAG RESPONSABILE|varchar|1|S||T,A,O,P|17700
+modellog|potenza_foc_nom|POTENZA FOCOLARE NOMINALE|numeric|6,2|S|||13800
+modellog|telefono_prop|TELEFONO PROPRIETARIO|varchar|15|N|||6900
+modellog|telefono_occu|TELEFONO OCCUPANTE|varchar|15|N|||6000
+modellog|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE|varchar|16|S|||5000
+modellog|conformita|CONFORMITA|varchar|1|S||S,N,C|7900
+modellog|lib_impianto|LIBRETTO IMPIANTO|varchar|1|S||S,N,C|8000
+modellog|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|S||S,N,C|8100
+modellof|combustibile|COMBUSTIBILE|varchar|40|S|NON NOTO||3000
+modellog|idoneita_locale|IDONEITA LOCALE|varchar|1|S||S,N,E|9000
+modellog|ap_ventilaz|APERTURA VENTILAZIONE|varchar|1|S||S,N,C|9100
+modellog|ap_vent_ostruz|APERTURA VENTILAZIONE OSTRUITA|varchar|1|S||S,N,C|9200
+modellog|pendenza|PENDENZA CANALI|varchar|1|S||S,N,C|9300
+modellog|sezioni|SEZIONI|varchar|1|S||S,N,C|9400
+modellog|curve|CURVE|varchar|1|S||S,N,C|9500
+modellog|lunghezza|LUNGHEZZA|varchar|1|S||S,N,C|9600
+modellog|conservazione|BUONO STATO DI CONSERVAZIONE|varchar|1|S||S,N,C|9700
+modellog|scar_ca_si|SCARICO A CAMINO SINGOLO|varchar|1|S||S,N,C|9800
+modellog|scar_parete|SCARICO A PARETE|varchar|1|S||S,N,C|9900
+modellog|riflussi_locale|NON ESISTONO RIFLUSSI NEL LOCALE|varchar|1|S||S,N,C|10000
+modellog|assenza_perdite|ASSENZA PERDITE SCARICO|varchar|1|S||S,N,C|10100
+modellog|pulizia_ugelli|PULIZIA UGELLI|varchar|1|S||S,N,C|10200
+modellog|antivento|SISTEMA ANTIVENTO NON DETERIORATO|varchar|1|S||S,N,C|10300
+modellog|guarn_accop|GUARNIZIONE ACCOPPIAMENTO INTEGRA|varchar|1|S||S,N,C|11300
+modellog|assenza_fughe|ASSENZA FUGHE GAS|varchar|1|S||P,N,A|11400
+modellog|coibentazione|COIBENTAZIONE|varchar|1|S||P,N,A|11500
+modellog|eff_evac_fum|EFFICIENZA EVACUAZIONE FUMI|varchar|1|S||P,N,A|11600
+modellog|cont_rend|CONTROLLO RENDIMENTO|varchar|1|S||S,N|11700
+modellog|temp_fumi|TEMPERATURA FUMI|numeric|6,2|S|||11800
+modellog|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|S|||11900
+modellog|o2|O2|numeric|6,2|S|||12000
+modellog|co2|CO2|numeric|6,2|S|||12100
+modellog|flag_co_perc|CO UM|varchar|3|S|||12300
+modellog|co|CO|numeric|10,4|S|||12400
+modellog|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|S|||12500
+modellog|scar_can_fu|SCARICO CANNA FUMARIA COLLETIVA|varchar|1|S||S,N,C|16400
+modellog|flag_attivo|GENERATORE ATTIVO|varchar|1|S|||17200
+modellof|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||1000
+modellof|scarico_fumi_gend|SCARICO FUMI GENERATORE|varchar|8|S||0,I,C,P|3100
+modellog|marc_effic_energ|MARCATURA EFFICIENZA ENERGETICA|varchar|1|N||1,2,3,4,5|3400
+modellog|localita|LOCALITA|varchar|40|N|||14500
+modellog|gen_prog|PROGRESSIVO GENERATORE |numeric|8,0|N|1||1600
+modellog|cod_fiscale_int|IDENTIFICATIVO FISCALE INTESTATARIO|varchar|16|N|||7700
+modellog|telefono_int|TELEFONO INTESTATARIO|varchar|15|N|||7800
+modellog|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N||BO,BP,CN,BB,CC,POS,PS|13500
+modellog|data_rottamaz|DATA ROTTAMAZIONE IMP.|date||N|||16900
+modellog|data_rottamaz_gen|DATA ROTTAMAZIONE GEN.|date||N|||17100
+modellog|data_installaz|DATA INSTALLAZIONE GEN.|date||S|||17000
+modellof|data_installaz|DATA INSTALLAZIONE GEN.|date||S|||4600
+modellog|data_controllo|DATA CONTROLLO|date||S|||1100
+modellof|cod_utgi|DESTINAZIONE USO GENERATORE|varchar|1|S||0,A,E,R,X|3600
+modellog|flag_status_g|IMPIANTO PUO FUNZIONARE|varchar|2|S||S,N|1300
+modellof|lib_impianto|LIBRETTO IMPIANTO|varchar|1|S||S,N,C|11300
+modellof|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|S||S,N,C|11700
+modellog|flag_tracciato|TIPO DOCUMENTO|varchar|2|S||H,G,F,HB|1700
+modellog|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||1800
+modellog|ora_fine|ORARIO FINE CONTROLLO|varchar|8|N|||1900
+modellog|data_scadenza|DATA SCADENZA AUTOCERTIFICAZIONE|date||N|||2000
+modellof|cap_occu|CAP OCCUPANTE|varchar|5|N|||7500
+modellof|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||7600
+modellof|nome_prop|NOME PROPRIETARIO|varchar|100|N|||7800
+modellof|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||7900
+modellof|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||8000
+modellof|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||8100
+modellof|provincia_prop|PROVINCIA PROPRIETARIO|varchar|2|N|||8200
+modellof|natura_giuridica_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||G,F|8300
+modellof|cap_prop|CAP PROPRIETARIO|varchar|5|N|||8400
+modellof|cod_fiscale_prop|IDENTIFICATIVO FISCALE PROPRIETARIO|varchar|16|N|||8500
+modellof|nome_int|NOME INTESTATARIO|varchar|100|N|||8700
+modellof|cognome_int|COGNOME INTESTATARIO|varchar|100|N|||8800
+modellof|indirizzo_int|INDIRIZZO INTESTATARIO|varchar|40|N|||8900
+modellof|comune_int|COMUNE INTESTATARIO|varchar|40|N|||9000
+modellof|provincia_int|PROVINCIA INTESTATARIO|varchar|2|N|||9100
+modellof|natura_giuridica_int|NATURA GIURIDICA INTESTATARIO|varchar|1|N||G,F|9200
+modellof|cap_int|CAP INTESTATARIO|varchar|5|N|||9300
+modellof|cod_fiscale_int|IDENTIFICATIVO FISCALE INTESTATARIO|varchar|16|N|||9400
+modellof|telefono_int|TELEFONO INTESTATARIO|varchar|15|N|||9500
+modellof|toponimo|TOPONIMO|varchar|20|S|||9700
+modellof|indirizzo|INDIRIZZO|varchar|50|S|||9800
+modellof|civico|CIVICO|varchar|8|N|||9900
+modellof|esponente|ESPONENTE|varchar|3|N|||10000
+modellof|scala|SCALA|varchar|5|N|||10100
+modellof|piano|PIANO|varchar|5|N|||10200
+modellof|interno|INTERNO|varchar|5|N|||10300
+modellof|cognome_resp|COGNOME RESPONSABILE|varchar|100|S|||6100
+modellof|comune|COMUNE|varchar|40|S|||10500
+modellof|provincia|PROVINCIA|varchar|40|S|||10600
+modellof|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||10800
+modellof|consumo_annuo2|CONSUMO ANNUO2|numeric|9,2|N|||10900
+modellof|stagione_risc|STAGIONE RISCALDAMENTO|varchar|40|N|||11000
+modellof|stagione_risc2|STAGIONE RISCALDAMENTO2|varchar|40|N|||11100
+modellof|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||11200
+modellof|pot_nom_utile_gen|POTENZA NOMINALE UTILE GEN.|numeric|9,2|S|||5200
+modellof|rapp_contr|CERTIFICAZIONE EX UNI 10435|varchar|1|N|S|S,N|11400
+modellof|esame_vis_camino_canale_f|ESAME VISIVO CAMINO E CANALE FUMO|varchar|1|S||S,N,C|14000
+modellof|funz_corr_bruc|FUNZIONAMENTO CORRETTO DEL BRUCIATORE|varchar|1|N|S|S,N|14300
+modellof|disp_comando|DISPOSITIVI DI COMANDO|varchar|1|N||S,N,C|14500
+modellof|accens_reg|ACCENSIONE REGOLARE|varchar|1|N||S,N,C|14800
+modellof|ass_perdite|ASSENZA DI PERDITE NEI RACCORDI|varchar|1|N||S,N,C|14900
+modellof|vaso_esp|VASO ESPANSORE|varchar|1|S||S,N,C|15000
+modellof|cont_rend|CONTROLLO RENDIMENTO|varchar|1|S||S,N|15200
+modellof|temp_fumi|TEMPERATURA FUMI|numeric|6,2|S|||15300
+modellof|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|S|||15400
+modellof|co2|CO2|numeric|6,2|S|||15600
+modellof|bacharach|BACHARACH|numeric|6,2|N|||15700
+modellof|tiraggio|TIRAGGIO|numeric|9,2|N|||16100
+modellof|osservazioni|OSSERVAZIONI|varchar|4000|N|||16200
+modellof|raccomandazioni|RACCOMANDAZIONI|varchar|4000|N|||16300
+modellof|prescrizioni|PRESCRIZIONI|varchar|4000|N|||16400
+modellof|fluido_termovettore_gend|FLUIDO TERMOVETTORE GENERATORE|varchar|1|N||0,1,2,3|3400
+modellof|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||16600
+modellof|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N||BO,BP,CN,BB,CC,POS,PS|16700
+modellof|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|N|||16800
+modellof|pulizia_ugelli|PULIZIA UGELLI|varchar|1|N||S,N,C|14200
+modellof|disp_sic_manom|DISPOSITIVI DI SICUREZZA NON MANOMESSI|varchar|1|N||S,N,C|14600
+modellof|organi_integri|ORGANI INTEGRI|varchar|1|N||S,N,C|14700
+modellof|assenza_perdite|ASSENZA PERDITE SCARICO|varchar|1|N||S,N,C|15100
+modellof|gen_prog|PROGRESSIVO GENERATORE |numeric|8,0|S|1||2600
+modellog|scambiatore|SCAMBIATORE PULITO|varchar|1|S||S,N,C|10400
+modellog|accens_reg|ACCENSIONE REGOLARE|varchar|1|S||S,N,C|10500
+modellog|ass_perdite|ASSENZA DI PERDITE NEI RACCORDI|varchar|1|S||S,N,C|10700
+modellof|data_costruz_bruc|DATA COSTRUZIONE BRUCIATORE|date||N|||4500
+modellof|data_costruzione_gend|DATA COSTRUZIONE GENERATORE|date||N|||3500
+modellof|data_rottamaz_gen|DATA ROTTAMAZIONE GEN.|date||N|||4700
+modellof|flag_attivo|GENERATORE ATTIVO|varchar|1|N|||4800
+modellof|data_installaz_bruc|DATA INSTALLAZIONE BRUC.|date||N|||4900
+modellof|data_rottamaz_bruc|DATA ROTTAMAZIONE BRUC.|date||N|||5000
+modellof|nome_manu|NOME MANUTENTORE|varchar|100|N|||5300
+modellof|certificaz_note|NOTE CERTIFICAZIONE EX UNI|varchar|4000|N|||12800
+modellof|dich_conf_note|NOTE DICHIARAZIONE CONF.|varchar|4000|N|||12900
+modellof|lib_uso_man_note|NOTE LIBRETTO USO E MANUTENZIONE|varchar|4000|N|||13000
+modellof|libretto_bruc_note|NOTE LIBRETTO USO E MANUTENZIONE BRUC.|varchar|4000|N|||13100
+modellof|ispesl_note|NOTE ISPESL|varchar|4000|N|||13200
+modellof|prev_incendi_note|NOTE PREV. INCENDI|varchar|4000|N|||13300
+modellof|idoneita_locale|IDONEITA LOCALE|varchar|1|S||S,N,E|13400
+modellof|ap_ventilaz|APERTURA VENTILAZIONE|varchar|1|S||S,N,C|13500
+modellof|assenza_fughe|ASSENZA FUGHE GAS|varchar|1|S||P,N,A|13800
+modellof|coibentazione|COIBENTAZIONE|varchar|1|S||P,N,A|13900
+modellof|esame_vis_l_elet|ESAME VISIVO LINEE ELETTRICHE|varchar|1|S|S|S,N|13700
+modellof|tipo_foco|TIPO GENERATORE|varchar|1|N||A,C|3700
+modellof|cod_manutentore|CODICE MANUTENTORE|varchar|8|S|||5250
+modellof|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||5280
+modellof|data_controllo|DATA CONTROLLO|date||S|||1200
+modellof|data_installazione_aimp|DATA INSTALLAZIONE IMPIANTO|date||S|19010101||1400
+modellof|cod_tpim|TIPOLOGIA IMPIANTO|varchar|1|N||0,C|1500
+modellof|data_rottamaz|DATA ROTTAMAZIONE IMP.|date||N|||1800
+modellof|flag_tracciato|TIPO DOCUMENTO|varchar|2|S||H,G,F,HB|2000
+modellof|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||2100
+modellof|ora_fine|ORARIO FINE CONTROLLO|varchar|8|N|||2200
+modellof|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||2300
+modellof|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||2400
+modellof|matricola|MATRICOLA|varchar|35|S|||2700
+modellof|modello|MODELLO|varchar|40|S|||2800
+modellof|marc_effic_energ|MARCATURA EFFICIENZA ENERGETICA|varchar|1|N||1,2,3,4,5|3900
+modellof|modello_bruc|MODELLO BRUCIATORE|varchar|40|N|||4200
+modellof|indirizzo_manu|INDIRIZZO MANUTENTORE|varchar|40|N|||5400
+modellof|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||5500
+modellof|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||5600
+modellof|cap_manu|CAP MANUTENTORE|varchar|5|N|||5700
+modellof|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||5800
+modellof|cod_opmanu|CODICE OPERATORE MANUTENTORE|varchar|16|N|||5900
+modellof|nome_resp|NOME RESPONSABILE|varchar|100|N|||6000
+modellof|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|N|||6200
+modellof|comune_resp|COMUNE RESPONSABILE|varchar|40|N|||6300
+modellof|provincia_resp|PROVINCIA RESPONSABILE|varchar|2|N|||6400
+modellof|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|N||G,F|6500
+modellof|cap_resp|CAP RESPONSABILE|varchar|5|N|||6600
+modellof|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE|varchar|16|S|||6700
+modellof|telefono_resp|TELEFONO RESPONSABILE|varchar|15|N|||6800
+modellof|nome_occu|NOME OCCUPANTE|varchar|100|N|||6900
+modellof|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||7000
+modellof|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||7100
+modellof|comune_occu|COMUNE OCCUPANTE|varchar|40|N|||7200
+modellof|provincia_occu|PROVINCIA OCCUPANTE|varchar|2|N|||7300
+modellof|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE|varchar|1|N||G,F|7400
+iterman|schemi_funz_idr_note|NOTE SCHEMI FUZIONALI IDRAULICI|varchar|4000|N|||15000
+iterman|schemi_funz_ele_note|NOTE SCHEMI FUZIONALI ELETTRICI|varchar|4000|N|||15100
+iterman|dich_conf_note|NOTE DICHIARAZIONE CONF.|varchar|4000|N|||15500
+iterman|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N||BO,BP,CN,BB,CC,POS,PS|11600
+dimpmanu|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N||BO,BP,CN,BB,CC,POS,PS|11600
+iterman|lib_uso_man_note|NOTE LIBRETTO USO E MANUTENZIONE|varchar|4000|N|||15600
+iterman|libretto_bruc_note|NOTE LIBRETTO USO E MANUTENZIONE BRUC.|varchar|4000|N|||15700
+iterman|ispesl_note|NOTE ISPESL|varchar|4000|N|||15800
+iterman|prev_incendi_note|NOTE PREV. INCENDI|varchar|4000|N|||15900
+iterman|cod_iterman|CODICE DI ITERMAN|varchar|30|N|||16100
+autocert|flag_co_perc|CO UM|numeric|3|N|||7450
+iterman|data_rottamaz|DATA ROTTAMAZIONE IMP.|date||N|||16300
+iterman|dich_conf|DICHIARAZIONE CONFORMITA MOD. F|varchar|1|N||S,N|16000
+iterman|data_installaz|DATA INSTALLAZIONE GEN.|date||N|||16400
+dimpmanu|flag_co_perc|CO UM|varchar|3|N|||10400
+iterman|flag_attivo|GENERATORE ATTIVO|varchar|1|N|||16600
+iterman|flag_co_perc|CO UM|varchar|3|N|||10400
+iterman|data_installaz_bruc|DATA INSTALLAZIONE BRUC.|date||N|||16800
+iterman|data_rottamaz_bruc|DATA ROTTAMAZIONE BRUC.|date||N|||16900
+iterman|pot_focolare_lib|POTENZA A LIBRETTO FOCOLARE|numeric|9,2|N|||17000
+iterman|pot_utile_lib|POTENZA A LIBRETTO UTILE|numeric|9,2|N|||17100
+iterman|data_rottamaz_gen|DATA ROTTAMAZIONE GEN.|date||N|||16500
+iterman|stato|STATO|varchar|1|N||A,R,N,L|16200
+modellof|stato_impianto|STATO IMPIANTO|varchar|1|S||A,R,N,L|1700
+modellof|marca|COSTRUTTORE|varchar|35|S|||4000
+modellof|potenza_foc_nom|POTENZA FOCOLARE NOMINALE IMP.|numeric|9,2|S|||1900
+modellof|telefono_prop|TELEFONO PROPRIETARIO|varchar|15|N|||8600
+modellof|telefono_occu|TELEFONO OCCUPANTE|varchar|15|N|||7700
+modellof|flag_status|IMPIANTO PUO FUNZIONARE|varchar|2|S||S,N|1300
+modellof|flag_co_perc|CO UM|varchar|3|S|||15800
+modellof|co|CO|numeric|10,4|S|||15900
+modellof|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|S|||16000
+modellog|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||1000
+modellog|flag_status|ESITO CONTROLLO|varchar|2|S||P,N|1200
+modellog|cod_tpim|TIPOLOGIA IMPIANTO|varchar|1|S||0,A,C|1500
+modellof|schemi_funz_ele|SCHEMI FUZIONALI ELETTRICI|varchar|1|N||S,N|12000
+iterman|rct_dur_acqua||numeric|10,2|N|||17200
+iterman|rct_tratt_in_risc||varchar|2|N|||17300
+iterman|rct_tratt_in_acs||varchar|2|N|||17400
+iterman|rct_install_interna||varchar|1|N|||17500
+iterman|rct_install_esterna||varchar|1|N|||17600
+iterman|rct_canale_fumo_idoneo||varchar|1|N|||17700
+iterman|rct_sistema_reg_temp_amb||varchar|1|N|||17800
+iterman|rct_assenza_per_comb||varchar|1|N|||17901
+iterman|rct_idonea_tenuta||varchar|1|N|||18000
+iterman|rct_scambiatore_lato_fumi||varchar|1|N|||18100
+iterman|rct_riflussi_comb||varchar|1|N|||18200
+iterman|rct_uni_10389||varchar|1|N|||18300
+iterman|rct_rend_min_legge||numeric|10,2|N|||18400
+iterman|rct_check_list_1||varchar|1|N|||18500
+iterman|rct_check_list_2||varchar|1|N|||18600
+iterman|rct_check_list_3||varchar|1|N|||18600
+iterman|rct_check_list_4||varchar|1|N|||18700
+iterman|rct_gruppo_termico||varchar|2|N|||18800
+iterman|rct_valv_sicurezza||varchar|1|N|||18850
+iterman|rct_lib_uso_man_comp||varchar|1|N|||18900
+iterman|fr_linee_ele||varchar|1|N|||19001
+iter|fr_coibentazione||varchar|1|N|||19100
+iterman|fr_assorb_recupero||varchar|1|N|||19200
+iterman|fr_assorb_fiamma||varchar|1|N|||19300
+iterman|fr_ciclo_compressione||varchar|1|N|||19400
+iterman|fr_assenza_perdita_ref||varchar|1|N|||19500
+iterman|fr_leak_detector||varchar|1|N|||19550
+iterman|fr_pres_ril_fughe||varchar|1|N|||19600
+iterman|fr_scambiatore_puliti||varchar|1|N|||19600
+iterman|fr_prova_modalita||varchar|1|N|||19650
+iterman|fr_surrisc||numeric|10,2|N|||19700
+iterman|fr_sottoraff||numeric|10,2|N|||19750
+iterman|fr_tcondens||numeric|10,2|N|||19780
+iterman|fr_tevapor||numeric|10,2|N|||19800
+iterman|fr_t_ing_lato_est||numeric|10,2|N|||19850
+iterman|fr_t_usc_lato_est||numeric|10,2|N|||19870
+iterman|fr_t_ing_lato_ute||numeric|10,2|N|||19900
+iterman|fr_t_usc_lato_ute||numeric|10,2|N|||19910
+iterman|fr_nr_circuito||numeric|10,0|N|||19920
+iterman|fr_check_list_1||varchar|1|N|||19930
+iterman|fr_check_list_2||varchar|1|N|||19940
+iterman|fr_check_list_3||varchar|1|N|||19960
+iterman|fr_check_list_4||varchar|1|N|||19970
+rcee1|cod_impianto_est|CODICE IMPIANTO|varchar|20|S|||1000
+rcee1|data_controllo|DATA CONTROLLO|date||S|||1010
+rcee1|flag_status|ESITO CONTROLLO|varchar|2|S||P,N|1020
+rcee1|data_installazione_aimp|DATA INSTALLAZIONE IMPIANTO|date||S|19010101||1030
+rcee1|anno_costruzione_aimp|DATA ICOSTRUZIONE IMPIANTO|date||S|19010101||1040
+rcee1|pdr|PDR|varchar|20|N|||1070
+rcee1|pod|POD|varchar|20|N|||1080
+rcee1|marca|COSTRUTTORE |varchar|40|S|||1090
+rcee1|matricola|MATRICOLA|varchar|40|S|||1100
+rcee1|modello|MODELLO|varchar|40|S|||1110
+rcee1|combustibile|COMBUSTIBILE|varchar|40|S|NON NOTO||1120
+rcee1|data_costruzione_gend|DATA COSTRUZIONE GENERATORE|date||N|||1160
+rcee1|cod_manutentore|CODICE MANUTENTORE|varchar|8|S|||1240
+rcee1|cognome_manu|COGNOME MANUTENTORE O RAGIONE SOCIALE|varchar|100|N|||1250
+rcee1|indirizzo_manu|INDIRIZZO MANUTENTORE |varchar|40|N|||1270
+rcee1|cap_manu|CAP MANUTENTORE|varchar|5|N|||1300
+rcee1|cod_fiscale_manu|IDENTIFICATIVO FISCALE MANUTENTORE|varchar|16|N|||1310
+rcee1|cod_opmanu_new|CODICE OPERATORE MANUTENTORE|varchar|16|N|||1320
+rcee1|cognome_resp|COGNOME RESPONSABILE|varchar|100|S|||1350
+rcee1|indirizzo_resp|INDIRIZZO RESPONSABILE|varchar|40|S|||1360
+rcee1|provincia_resp|PROVINCIA RESPONSABILE|varchar|2|S|||1380
+rcee1|cap_resp|CAP RESPONSABILE |varchar|5|S|||1400
+rcee1|cod_fiscale_resp|IDENTIFICATIVO FISCALE RESPONSABILE |varchar|16|S|||1410
+rcee1|cognome_occu|COGNOME OCCUPANTE|varchar|100|N|||1440
+rcee1|data_installaz_gend|DATA INSTALLAZIONE GEN. |date||S|||1170
+rcee1|indirizzo_occu|INDIRIZZO OCCUPANTE|varchar|40|N|||1450
+rcee1|provincia_occu|PROVINCIA OCCUPANTE|varchar|2|N|||1470
+rcee1|scarico_fumi_gend|SCARICO FUMI GENERATORE |varchar|8|S||0,I,C,P|1130
+rcee1|cod_utgi|DESTINAZIONE USO GENERATORE|varchar|1|S||0,A,E,R,X|1180
+rcee1|cod_tpim|TIPOLOGIA IMPIANTO|varchar|1|S||0,A,C|1050
+rcee1|fluido_termovettore_gend|FLUIDO TERMOVETTORE GENERATORE|varchar|1|N||0,1,2,3|1150
+rcee1|locale|LOCALE INSTALLAZIONE|varchar|1|S||T,E,I|1200
+rcee1|marc_effic_energ|MARCATURA EFFICIENZA ENERGETICA |varchar|1|N||1,2,3,4,5|1210
+rcee1|nome_manu|NOME MANUTENTORE |varchar|100|N|||1260
+rcee1|flag_responsabile|FLAG RESPONSABILE|varchar|1|S||T,A,O,P|1330
+rcee1|tipo_foco|TIPO GENERATORE|varchar|1|S||A,C|1190
+rcee1|cap_occu|CAP OCCUPANTE |varchar|5|N|||1490
+rcee1|cod_fiscale_occu|IDENTIFICATIVO FISCALE OCCUPANTE|varchar|16|N|||1500
+rcee1|cognome_prop|COGNOME PROPRIETARIO|varchar|100|N|||1530
+rcee1|indirizzo_prop|INDIRIZZO PROPRIETARIO|varchar|40|N|||1540
+rcee1|provincia_prop|PROVINCIA PROPRIETARIO|varchar|2|N|||1560
+rcee1|cap_prop|CAP PROPRIETARIO |varchar|5|N|||1580
+rcee1|cod_fiscale_prop|IDENTIFICATIVO FISCALE PROPRIETARIO |varchar|16|N|||1590
+rcee1|nome_int|NOME INTESTATARIO|varchar|100|N|||1610
+rcee1|comune_int|COMUNE INTESTATARIO|varchar|40|N|||1640
+rcee1|natura_giuridica_int|NATURA GIURIDICA INTESTATARIO|varchar|1|N||G,F|1670
+rcee1|cap_int|CAP INTESTATARIO |varchar|5|N|||1680
+rcee1|cod_fiscale_int|IDENTIFICATIVO FISCALE INTESTATARIO |varchar|16|N|||1690
+rcee1|telefono_int|TELEFONO INTESTATARIO|varchar|15|N|||1700
+rcee1|ora_inizio|ORARIO INIZIO CONTROLLO|varchar|8|N|||1710
+rcee1|ora_fine|ORARIO FINE CONTROLLO |varchar|8|N|||1720
+rcee1|num_autocert|NUMERO RAPPORTO DI CONTROLLO|varchar|20|N|||1730
+rcee1|n_prot|NUMERO PROTOCOLLO|varchar|20|N|||1740
+rcee1|data_prot|DATA PROTOCOLLO|date||N|||1750
+rcee1|conformita|CONFORMITA|varchar|1|S||S,N,C|1760
+rcee1|lib_impianto|LIBRETTO IMPIANTO|varchar|1|S||S,N,C|1770
+rcee1|rct_lib_uso_man_comp|LIBRETTO compilato IN TUTTE LE SUE PARTI|varchar|1|S||S,N,C|1790
+rcee1|rct_tratt_in_risc|Trattamento in riscaldamento|varchar|1|N|S|R,A,F,D,C,K,J,W,T|1810
+rcee1|rct_tratt_in_acs|Trattamento in ACS|varchar|1|N|S|R,A,F,D,C,K,J,W,T|1820
+rcee1|rct_install_interna|Per installazione esterna:generatori idonei|varchar|1|N|S|S,N,C|1830
+rcee1|ap_vent_ostruz|Aperture di ventilazione/areazione libere da ostruzioni|varchar|1|N|S|S,N,C|1840
+rcee1|ap_ventilaz|Adeguate dimensione aperture ventilazione/areazione|varchar|1|N|S|S,N,C|1850
+rcee1|rct_canale_fumo_idoneo|Canali da fumo e condotti di scarico idonei|varchar|1|N|S|S,N,C|1860
+rcee1|rct_sistema_reg_temp_amb|Sistema di regolazione temp. ambiente funzionante|varchar|1|S||S,N,C|1870
+rcee1|rct_assenza_per_comb|Assenza di perdite di combustibile liquido|varchar|1|S||S,N,C|1880
+rcee1|rct_idonea_tenuta|Idonea tenuta dell'impianto interno e raccordi con il generatore|varchar|1|S||S,N,C|1890
+rcee1|disp_comando|Dispositivi di comando funzionanti correttamente|varchar|1|S||S,N,C|1910
+rcee1|disp_sic_manom|Dispositivi di sicurezza non manomessi e/o cortocircuitati|varchar|1|S||S,N,C|1920
+rcee1|rct_valv_sicurezza|Valvola di sicurezza alla sovrapressione a scarico libero|varchar|1|S||S,N,C|1930
+rcee1|rct_scambiatore_lato_fumi|Controllato e pulito scambiatore lato fumi|varchar|1|S||S,N,C|1940
+rcee1|rct_riflussi_comb|Presenza dei riflussi della combustione|varchar|1|S||S,N,C|1950
+rcee1|rct_uni_10389|Risultati controllo secondo norma UNI 10389-1 conformi alla legge|varchar|1|S||S,N,C|1960
+rcee1|rct_modulo_termico|Modulo termico|varchar|8|N|||2070
+rcee1|rct_check_list_1|Adozione di valvole termostatiche sui corpi scaldanti|varchar|1|S||S,N|2080
+rcee1|rct_check_list_2|L'isolamento della rete di distribuzione nei locali non riscaldati|varchar|1|S||S,N|2090
+rcee1|osservazioni|OSSERVAZIONI|varchar|4000|N|||2120
+rcee1|raccomandazioni|RACCOMANDAZIONI |varchar|4000|N|||2130
+rcee1|prescrizioni|PRESCRIZIONI|varchar|4000|N|||2140
+rcee1|data_utile_inter|DATA UTILE INTERVENTO|date||N|||2150
+rcee1|delega_resp|DELEGA RESPONSABILE|varchar|50|N|||2160
+rcee1|riferimento_pag|RIFERIMENTI PAGAMENTO|varchar|20|S|||2170
+rcee1|tipologia_costo|TIPO PAGAMENTO AUTOCERTIFICAZIONE|varchar|2|N||BO,BP,CN,BB,CC,POS,PS|2190
+rcee1|stagione_risc2|STAGIONE RISCALDAMENTO2|varchar|40|N|||2240
+rcee1|localita|LOCALITA|varchar|40|N|||2260
+rcee1|toponimo|TOPONIMO|varchar|20|S|||2270
+rcee1|civico|CIVICO|varchar|8|N|||2290
+rcee1|comune|COMUNE|varchar|40|S|||2340
+rcee1|cap|CAP |varchar|5|N|||2360
+rcee1|rct_check_list_4|Sostituzione di un sistema di regolazione on/off|varchar|1|S||S,N|2110
+rcee1|rct_dur_acqua|Durezza totale|numeric|6,2|S|||1800
+rcee1|tiraggio_gend|TIRAGGIO GENERATORE|varchar|1|S||N,F|1140
+rcee1|natura_giuridica_occu|NATURA GIURIDICA OCCUPANTE |varchar|1|N||G,F|1480
+rcee1|rct_gruppo_termico|Gruppo Termico|varchar|2|N|||1900
+rcee1|rct_check_list_3|Introduzione di un sistema di trattamento dell'acqua sanitaria e per riscaldamento ove assente|varchar|1|S||S,N|2100
+rcee1|potenza_foc_nom|POTENZA FOCOLARE NOMINALE |numeric|6,2|S|||1220
+rcee1|potenza_utile_nom|POTENZA UTILE NOMINALE|numeric|9,2|S|||1230
+rcee1|o2|O2|numeric|6,2|S|||2000
+rcee1|co|CO   PPM |numeric|10,4|S|||2030
+rcee1|rend_combust|RENDIMENTO COMBUSTIONE|numeric|6,2|S|||2040
+rcee1|tiraggio|TIRAGGIO|numeric|9,2|N|||2050
+rcee1|rct_rend_min_legge|Rend.to combustione minimo di legge|numeric|6,2|S|||2060
+rcee1|volimetria_risc|VOLUMETRIA RISCALDATA|numeric|9,2|N|||2200
+rcee1|consumo_annuo2|CONSUMO ANNUO2|numeric|9,2|N|||2220
+rcee1|gen_prog|PROGRESSIVO GENERATORE|numeric|8,0|S|1||1060
+autocert|certificaz|CERTIFICAZIONE EX UNI 8364|varchar|1|N|S|S,N|4028
+rcee1|comune_manu|COMUNE MANUTENTORE|varchar|40|N|||1280
+rcee1|telefono_manu|TELEFONO MANUTENTORE|varchar|15|N|||1290
+rcee1|nome_resp|NOME RESPONSABILE|varchar|100|S|||1340
+rcee1|comune_resp|COMUNE RESPONSABILE|varchar|40|S|||1370
+rcee1|natura_giuridica_resp|NATURA GIURIDICA RESPONSABILE|varchar|1|S||G,F|1390
+rcee1|telefono_resp|TELEFONO RESPONSABILE |varchar|15|N|||1420
+rcee1|nome_occu|NOME OCCUPANTE|varchar|100|N|||1430
+rcee1|comune_occu|COMUNE OCCUPANTE |varchar|40|N|||1460
+rcee1|telefono_occu|TELEFONO OCCUPANTE|varchar|15|N|||1510
+rcee1|nome_prop|NOME PROPRIETARIO|varchar|100|N|||1520
+rcee1|comune_prop|COMUNE PROPRIETARIO|varchar|40|N|||1550
+rcee1|natura_giuridica_prop|NATURA GIURIDICA PROPRIETARIO|varchar|1|N||G,F|1570
+rcee1|telefono_prop|TELEFONO PROPRIETARIO |varchar|15|N|||1600
+rcee1|cognome_int|COGNOME INTESTATARIO|varchar|100|N|||1620
+rcee1|indirizzo_int|INDIRIZZO INTESTATARIO|varchar|40|N|||1630
+rcee1|provincia_int|PROVINCIA INTESTATARIO|varchar|2|N|||1660
+rcee1|lib_uso_man|LIBRETTO USO E MANUTENZIONE IMPIANTO - CALDAIA|varchar|1|S||S,N,C|1780
+rcee1|cont_rend|CONTROLLO RENDIMENTO|varchar|1|S||S,N,C|1970
+rcee1|temp_fumi|TEMPERATURA FUMI |numeric|6,2|S|||1980
+rcee1|stagione_risc|STAGIONE RISCALDAMENTO|varchar|40|N|||2230
+rcee1|anomalie_dimp|ANOMALIE|varchar|6000|N|||2250
+rcee1|indirizzo|INDIRIZZO|varchar|50|S|||2280
+rcee1|esponente|ESPONENTE|varchar|3|N|||2300
+rcee1|scala|SCALA |varchar|5|N|||2310
+rcee1|piano|PIANO |varchar|5|N|||2320
+rcee1|interno|INTERNO |varchar|5|N|||2330
+rcee1|provincia|PROVINCIA|varchar|40|S|||2350
+rcee1|temp_ambi|TEMPERATURA AMBIENTE|numeric|6,2|S|||1990
+rcee1|co2|CO2 |numeric|6,2|S|||2010
+rcee1|bacharach|BACHARACH|numeric|6,2|N|||2020
+rcee1|costo|COSTO AUTOCERTIFICAZIONE / BOLLINO|numeric|6,2|N|||2180
+rcee1|consumo_annuo|CONSUMO ANNUO|numeric|9,2|N|||2210
+rcee1|idoneita_locale||varchar|1|N||S,N,C|1829
+autocert|rct_dur_acqua|TRATTAMENNTO ACQUA|numeric|10,2|N|||9400
+autocert|rct_tratt_in_risc|TRATTAMENNTO RISC|varchar|2|N|||9500
+autocert|rct_tratt_in_acs|TRATTAMENNTO ACS|varchar|2|N|||9600
+autocert|rct_install_interna|IDONEITA INST INTERNA|varchar|1|N|||9700
+autocert|rct_install_esterna|IDONEITA INST ESTERNA|varchar|1|N|||9800
+autocert|rct_canale_fumo_idoneo|CANALE FUMO ID|varchar|1|N|||9900
+autocert|rct_sistema_reg_temp_amb|SISTEMA REG.FUNZ|varchar|1|N|||10000
+autocert|rct_assenza_per_comb|ASS.PERD.COMB.|varchar|1|N|||10100
+autocert|rct_idonea_tenuta|IDONEA TENUTA|varchar|1|N|||10200
+autocert|rct_scambiatore_lato_fumi|CONTROLLATO E PULITO SCAMB LATO FUMI|varchar|1|N|||10300
+autocert|rct_riflussi_comb|PRESENZA RIFLUSSI COMB.|varchar|1|N|||10400
+autocert|rct_uni_10389|RISPETTA UNI 10389|varchar|1|N|||10500
+autocert|rct_rend_min_legge|RENDIMENTO MINIMO|numeric|10,2|N|||10600
+autocert|rct_check_list_1|CHK LIST 1|varchar|1|N|||10700
+autocert|rct_check_list_2|CHK LIST 2|varchar|1|N|||10800
+autocert|rct_check_list_3|CHK LIST 3|varchar|1|N|||10900
+autocert|rct_check_list_4|CHK LIST 4|varchar|1|N|||11000
+autocert|rct_gruppo_termico|GRUPPO TERMICO|varchar|2|N|||11100
+autocert|rct_valv_sicurezza|VALVOLA SIC.|varchar|1|N|||11200
+autocert|rct_lib_uso_man_comp|LIB USO MAN COMP|varchar|1|N|||11300
+rapporti|potenza_effettiva_nom|POT.EFFETTIVA NOM. FOCOLARE|numeric|9,2|N|null|null|12000
+rapporti|potenza_effettiva_util|POT. EFFETTIVA UTILE AL FOCOLARE|numeric|9,2|N|null|null|12100
+rapporti|interna_locale_idoneo|INSTALL.INT.LOC.IDONEO|varchar|1|N|null|null|12200
+rapporti|esterna_generatore_idoneo|INSTALL.EST.LOC.IDONEO|varchar|1|N|null|null|12300
+rapporti|canale_fumo_idoneo|CANALE DA FUMO|varchar|1|N|null|null|12400
+rapporti|ventilazione_locali|VENTILAIONE LOCALI|varchar|1|N|null|null|12500
+rapporti|areazione_locali|VERIFICA AREAZIONI LOCALI|varchar|1|N|null|null|12600
+rapporti|verifica_disp_regolazione|VERIFICA DISP.REOLAZIONE|varchar|1|N|null|null|12800
+rapporti|frequenza_manut|FREQUENZA MANUTENZIONI|varchar|1|N|null|null|12900
+rapporti|rcee_osservazioni|OSSERVAZIONI RCEE|varchar|1|N|null|null|13100
+rapporti|rcee_raccomandazioni|RACCOMANDAZIONI RCEE|varchar|1|N|null|null|13200
+rapporti|misurazione_rendimento|MIS.RENDIMENTO|varchar|1|N|null|null|13300
+rapporti|check_valvole|ADOZIONE VALVOLE TERM.|varchar|1|N|null|null|13400
+rapporti|check_isolamento|ISOLAMENTO|varchar|1|N|null|null|13500
+rapporti|check_regolazione|SISTEMA DI REGOLAZIONE|varchar|1|N|null|null|13700
+rapporti|dimensionamento_gen|STIMA DEL DIMENSIONAMENTO|varchar|1|N|null|null|13800
+rapporti|potenza_nom_tot_foc|POT.TERMICA NOM. FOCOLARE|numeric|9,2|N|null|null|14100
+rapporti|potenza_nom_tot_util|POT.TERMICA UTIL. FOCOLARE|numeric|9,2|N|null|null|14200
+rapporti|tratt_in_risc|TRATTAMENTO ACQUA IN RISC.|varchar|2|N|null|null|14300
+rapporti|frequenza_manut_altro|ALTRA FREQ.MANUT.|numeric|4,0|N|null|null|14000
+rapporti|tratt_in_acs|TRATTAMENTO ACQUA IN ACS|varchar|2|N|null|null|14400
+rapporti|norm_7a|RISPETTA 7a|varchar|1|N|null|null|14500
+rapporti|norm_9a|RISPETTA 9a|varchar|1|N|null|null|14600
+rapporti|norm_9b|RISPETTA 9b|varchar|1|N|null|null|14700
+rapporti|norm_9c|RISPETTA 9c|varchar|1|N|null|null|14800
+rapporti|ass_perdite_comb|ASSENZA PERDITE COMB.ESAME VISIVO|varchar|1|N|null|null|15300

@@ -1,0 +1,53 @@
+SET echo OFF feedback OFF head OFF linesize       4570
+SET pagesize 0 space 0 tab OFF trimspool ON termout OFF verify OFF colsep "|"
+COLUMN cod_cittadino                    FORMAT A8                                       HEADING 'X'
+COLUMN natura_giuridica                 FORMAT A1                                       HEADING 'X'
+COLUMN cognome                          FORMAT A100                                     HEADING 'X'
+COLUMN nome                             FORMAT A100                                     HEADING 'X'
+COLUMN indirizzo                        FORMAT A40                                      HEADING 'X'
+COLUMN numero                           FORMAT A8                                       HEADING 'X'
+COLUMN cap                              FORMAT A5                                       HEADING 'X'
+COLUMN localita                         FORMAT A40                                      HEADING 'X'
+COLUMN comune                           FORMAT A40                                      HEADING 'X'
+COLUMN provincia                        FORMAT A4                                       HEADING 'X'
+COLUMN cod_fiscale                      FORMAT A16                                      HEADING 'X'
+COLUMN cod_piva                         FORMAT A16                                      HEADING 'X'
+COLUMN telefono                         FORMAT A15                                      HEADING 'X'
+COLUMN cellulare                        FORMAT A15                                      HEADING 'X'
+COLUMN fax                              FORMAT A15                                      HEADING 'X'
+COLUMN email                            FORMAT A35                                      HEADING 'X'
+COLUMN data_nas                         FORMAT A10                                      HEADING 'X'
+COLUMN comune_nas                       FORMAT A40                                      HEADING 'X'
+COLUMN utente                           FORMAT A10                                      HEADING 'X'
+COLUMN data_ins                         FORMAT A10                                      HEADING 'X'
+COLUMN data_mod                         FORMAT A10                                      HEADING 'X'
+COLUMN utente_ult                       FORMAT A10                                      HEADING 'X'
+COLUMN note                             FORMAT A4000                                    HEADING 'X'
+SELECT cod_cittadino
+      ,natura_giuridica
+      ,cognome
+      ,nome
+      ,indirizzo
+      ,numero
+      ,cap
+      ,localita
+      ,comune
+      ,provincia
+      ,cod_fiscale
+      ,cod_piva
+      ,telefono
+      ,cellulare
+      ,fax
+      ,email
+      ,TO_CHAR(data_nas,'YYYY-MM-DD') data_nas
+      ,comune_nas
+      ,utente
+      ,TO_CHAR(data_ins,'YYYY-MM-DD') data_ins
+      ,TO_CHAR(data_mod,'YYYY-MM-DD') data_mod
+      ,utente_ult
+      ,note
+  FROM coimcitt
+
+spool file/\coimcitt.dat
+/
+spool OFF

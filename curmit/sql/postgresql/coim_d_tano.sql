@@ -1,0 +1,25 @@
+/*====================================================================*/
+/* table coim_d_tano:                                                 */
+/*====================================================================*/
+
+create table coim_d_tano
+     ( cod_tano		  varchar(08)
+     , descr_tano	  varchar(200)
+     , descr_breve	  varchar(80)
+     , data_ins		  date
+     , data_mod		  date
+     , utente		  varchar(10)
+     , flag_scatenante	  char(01)
+     , norma		  varchar(100)
+     , flag_stp_esito	  char(01)
+     , gg_adattamento	  numeric(03)
+     , flag_report	  char(01)
+     , flag_modello	  char(01)
+     , data_fine_valid	  date
+     , clas_funz	  varchar(08)	  
+     );
+
+create unique index coim_d_tano_00
+    on coim_d_tano
+     ( cod_tano
+     );

@@ -1,0 +1,12 @@
+livello|scelta_1|scelta_2|scelta_3|scelta_4|tipo|descrizione|nome_funz
+2|22|41|0|0|funzione|Stampa Targa|targa
+2|22|42|0|0|funzione|Statistiche per Regioni|stat-reg
+2|11|37|0|0|funzione|Inserimento scheda tecnica per Raffreddamento|isrt_manu_fr
+3|23|51|72|0|funzione|Messaggi inviati|tmsg
+3|23|51|73|0|funzione|Messaggi ricevuti|dmsg
+3|31|14|44|0|funzione|Gestione tipi condizionatori|tpco
+3|31|14|45|0|funzione|Gestione fluido refrigerante|flre
+3|31|31|18|0|funzione|Associazione Comuni agli Utenti|cout
+3|31|14|42|0|funzione|Gestione causali di pagamento|caus
+3|31|14|43|0|funzione|Gestione struttura file caricamenti massivi|coimtabs
+(10 rows)

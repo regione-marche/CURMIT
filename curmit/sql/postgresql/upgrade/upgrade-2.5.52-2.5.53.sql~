@@ -1,0 +1,339 @@
+
+begin;
+
+--Luca R. I menù di inserimento impianto verranno richiamati da un'unico programma di scelta del tipo impianto da inserire
+
+delete from coimmenu 
+USING coimogge ogg
+where coimmenu.livello = ogg.livello
+  and coimmenu.scelta_1 = ogg.scelta_1
+  and coimmenu.scelta_2 = ogg.scelta_2
+  and coimmenu.scelta_3 = ogg.scelta_3
+  and coimmenu.scelta_4 = ogg.scelta_4
+  and ogg.nome_funz in ('isrt_manu_fr' , 'isrt_manu_te');
+
+update coimogge 
+--set descrizione = 'Inserimento scheda tecnica' 
+set descrizione = 'Inserisci nuovo Impianto' --Luca R.
+where nome_funz = 'isrt_manu' ;
+
+delete from coimogge 
+where nome_funz in ('isrt_manu_fr' , 'isrt_manu_te' ) ;
+
+update coimfunz 
+   set tipo_funz = 'secondario' 
+     , nome_funz = 'isrt_manu'     
+where nome_funz in ('isrt_manu' , 'isrt_manu_fr' , 'isrt_manu_te') ;
+
+insert into coimfunz 
+       (nome_funz
+       , desc_funz
+       , tipo_funz
+       , dett_funz
+       , azione) 
+values ( 'isrt_manu'
+--     , 'Inserimento scheda tecnica'
+       , 'Inserisci nuovo Impianto' --Luca R.
+       , 'primario'
+       , 'coimaimp-isrt-manu-chose'
+       , 'src/' ) ;
+
+
+--Luca R. sdoppiamento del menù "Selezione impianto con dichiarazione in scadenza".
+insert into coimfunz 
+select 'maim-dich'
+     , desc_funz
+     , tipo_funz 
+     , dett_funz
+     , azione
+     , 'tipo_filtro=DICH'
+  from coimfunz 
+ where nome_funz='maim'
+   and tipo_funz = 'primario';
+
+update coimfunz 
+   set parametri = 'tipo_filtro=MAN'
+where nome_funz='maim'
+   and tipo_funz = 'primario';
+
+insert into coimogge 
+       ( livello
+       , scelta_1
+       , scelta_2
+       , scelta_3
+       , scelta_4
+       , tipo
+       , descrizione
+       , nome_funz)
+select livello
+     , scelta_1
+     , max(scelta_2::integer) + 1
+     , scelta_3
+     , scelta_4
+     , 'funzione'
+     , 'Selezione impianto con dichiarazione in scadenza'
+     , 'maim-dich'
+from coimogge
+where livello = '2'
+  and scelta_1='11'
+  and scelta_3='0'
+  and scelta_4='0'
+group by livello
+     , scelta_1
+     , scelta_3
+     , scelta_4;
+
+update coimogge
+   set descrizione='Selezione impianto con manutenzione in scadenza'
+ where nome_funz='maim';
+
+insert into coimmenu
+select a.nome_menu
+  , o.livello
+  , o.scelta_1
+  , o.scelta_2
+  , o.scelta_3
+  , o.scelta_4
+  , a.lvl
+  , (a.seq -1)
+from coimogge o
+,(select m.lvl
+     , m.nome_menu
+      , m.seq
+from coimogge o
+   ,coimmenu m
+where nome_funz='maim'
+and m.livello      = o.livello      
+and m.scelta_1     = o.scelta_1     
+and m.scelta_2     = o.scelta_2     
+and m.scelta_3     = o.scelta_3     
+and m.scelta_4     = o.scelta_4  ) a
+where nome_funz='maim-dich';
+
+--    COGENERAZIONE
+
+--Gac01 alter per cogenerazione
+alter table coimgend add tipologia_cogenerazione varchar(1); -- M motore endotermico, C Caldaia cogenerativa, T turbogas e A altro
+alter table coimgend add temp_h2o_uscita_min decimal(18,2);
+alter table coimgend add temp_h2o_uscita_max decimal(18,2);
+alter table coimgend add temp_h2o_ingresso_min decimal(18,2);
+alter table coimgend add temp_h2o_ingresso_max decimal(18,2);
+alter table coimgend add temp_h2o_motore_min decimal(18,2);
+alter table coimgend add temp_h2o_motore_max decimal(18,2);
+alter table coimgend add temp_fumi_valle_min decimal(18,2);
+alter table coimgend add temp_fumi_valle_max decimal(18,2);
+alter table coimgend add temp_fumi_monte_min decimal(18,2);
+alter table coimgend add temp_fumi_monte_max decimal(18,2);
+alter table coimgend add emissioni_monossido_co_max decimal(18,2);
+alter table coimgend add emissioni_monossido_co_min decimal(18,2);
+
+--Luca R. insert su coimfunz per cogenerazione
+insert into coimfunz 
+          ( nome_funz
+          , desc_funz
+          , tipo_funz
+          , dett_funz
+          , azione 
+          ) values 
+          ( 'isrt_manu'
+          , 'Inserimento impianto di cogenerazione'
+          , 'secondario'
+          , 'coimaimp-isrt-manu-co'
+          , 'src/' ) ;
+
+--Luca R. insert fasca di potenza del cogeneratore
+ insert into coimpote 
+           ( cod_potenza
+           , descr_potenza
+           , potenza_min
+           , potenza_max
+           , data_ins
+           , utente
+	   , flag_tipo_impianto
+	   ) values
+	   ( 'CA'
+           , 'POTENZA DA O A 999 KW'		   
+           , 0.00     	    
+           , 999.00		   
+           , '2018-02-12'		   
+           , 'romitti'
+           , 'C'
+           ) ;
+
+--Luca R. insert per tariffa cogenerazione
+insert into coimtari
+          ( tipo_costo
+          , cod_potenza			 
+          , data_inizio				 
+          , importo					 
+          , cod_listino						 
+          , flag_tariffa_impianti_vecchi				 
+          ) values 
+	  ( 10
+	  , 'CA'
+	  , '2018-01-01'
+	  , 56.00
+	  , '0'
+	  , 'f'
+	  ) ;
+
+insert into coimfunz 
+          ( nome_funz
+ 	  , desc_funz
+	  , tipo_funz
+	  , dett_funz
+	  , azione
+	  ) values
+	  ( 'dimp'
+	  , 'Nuovi allegati'
+	  , 'secondario'
+	  , 'coimdimp-r4-gest'
+	  , 'src/' 
+	  ) ;
+
+insert into coimfunz 
+          ( nome_funz
+ 	  , desc_funz
+	  , tipo_funz
+	  , dett_funz
+	  , azione
+	  ) values
+	  ( 'dimp'
+	  , 'Nuovi allegati'
+	  , 'secondario'
+	  , 'coimdimp-r4-layout'
+	  , 'src/' 
+	  ) ;
+
+
+--Luca R. alter su coimdimp per i nuovi campi per cogenerazione.
+
+alter table coimdimp add cog_capsula_insonorizzata varchar(1);
+alter table coimdimp add cog_tenuta_circ_idraulico varchar(1);
+alter table coimdimp add cog_tenuta_circ_olio varchar(1);
+alter table coimdimp add cog_tenuta_circ_alim_combustibile varchar(1);
+alter table coimdimp add cog_funzionalita_scambiatore varchar(1);
+alter table coimdimp add cog_potenza_assorbita_comb  decimal(18,2);
+alter table coimdimp add cog_potenza_termica_piena_pot decimal(18,2);
+alter table coimdimp add cog_emissioni_monossido_co decimal(18,2);
+alter table coimdimp add cog_temp_aria_comburente  decimal(18,2);
+alter table coimdimp add cog_temp_h2o_uscita  decimal(18,2);
+alter table coimdimp add cog_temp_h2o_ingresso  decimal(18,2);
+alter table coimdimp add cog_potenza_morsetti_gen decimal(18,2);
+alter table coimdimp add cog_temp_h2o_motore  decimal(18,2);
+alter table coimdimp add cog_temp_fumi_valle decimal(18,2);
+alter table coimdimp add cog_temp_fumi_monte decimal(18,2);
+
+--Luca R. alter su coimdimp_stn  per i nuovi campi per cogenerazione.
+
+alter table coimdimp_stn add cog_capsula_insonorizzata varchar(1);
+alter table coimdimp_stn add cog_tenuta_circ_idraulico varchar(1);
+alter table coimdimp_stn add cog_tenuta_circ_olio varchar(1);
+alter table coimdimp_stn add cog_tenuta_circ_alim_combustibile varchar(1);
+alter table coimdimp_stn add cog_funzionalita_scambiatore varchar(1);
+alter table coimdimp_stn add cog_potenza_assorbita_comb  decimal(18,2);
+alter table coimdimp_stn add cog_potenza_termica_piena_pot decimal(18,2);
+alter table coimdimp_stn add cog_emissioni_monossido_co decimal(18,2);
+alter table coimdimp_stn add cog_temp_aria_comburente  decimal(18,2);
+alter table coimdimp_stn add cog_temp_h2o_uscita  decimal(18,2);
+alter table coimdimp_stn add cog_temp_h2o_ingresso  decimal(18,2);
+alter table coimdimp_stn add cog_potenza_morsetti_gen decimal(18,2);
+alter table coimdimp_stn add cog_temp_h2o_motore  decimal(18,2);
+alter table coimdimp_stn add cog_temp_fumi_valle decimal(18,2);
+alter table coimdimp_stn add cog_temp_fumi_monte decimal(18,2);
+
+--Gacalin alter su coimcitt e coimopma 
+alter table coimcitt add patentino boolean not null default 'f';
+alter table coimcitt add patentino_fgas boolean not null default 'f';
+
+alter table coimopma add patentino boolean not null default 'f';
+alter table coimopma add patentino_fgas boolean not null default 'f';
+
+
+--Luca R. aggiunto flag su coimtgen.
+alter table coimtgen add flag_single_sign_on char(1) default 'f';
+
+--Luca R. upgrade di 2 voci di menù. Bisogna chiedere a Sandro se vanno bene per tutti gli enti o se bisogna lanciarli manualmente.
+update coimogge 
+   set descrizione= 'Creazione distinta consegna per manutentore' 
+ where livello ='3' 
+   and scelta_1='11' 
+   and scelta_2='55'
+   and scelta_3='20' 
+   and scelta_4='0' ;
+
+update coimogge 
+   set descrizione= 'Creazione distinta consegna per amministratore' 
+ where livello ='3' 
+   and scelta_1='11' 
+   and scelta_2='55' 
+   and scelta_3='15' 
+   and scelta_4='0' ;
+ 
+--LucaR. create e insert della tabella coimtpin (tipologia impianti su cui una ditta opera)
+create table coimtpin 
+           ( cod_coimtpin integer     not null
+           , codice       varchar(50) 
+           , descrizione  varchar(250) 
+	        );
+
+create unique index coimtpin_00
+          on coimtpin
+    	     ( cod_coimtp_in
+	     );
+			   
+				   
+insert into  coimtpin  values 
+(1
+,’CALDO_GAS_LIQ’
+,’Impianti dotati di gruppi termici o caldaie alimentati da combustibili gassosi o liquidi’);
+
+insert into  coimtpin  values 
+(2,
+’CALDO_SOLIDI’
+,’Impianti dotati di gruppi termici o caldaie alimentati da combustibili solidi/biomasse legnose’);
+
+insert into  coimtpin  values 
+(3
+,’FREDDO’
+,’Impianti dotati di macchine frigorifere/pompe di calore’);
+
+insert into  coimtpin  values 
+(4,’TELERISCALDAMENTO’
+,’Impianti di teleriscaldamento/teleraffrescamento’);
+
+insert into  coimtpin  values 
+(5
+,’COGENERATORI’
+,’Cogeneratori/Trigeneratori’);
+
+insert into  coimtpin  values 
+(6
+,’CAMPI_SOLARI’
+,’Campi solari termici’);
+insert into  coimtpin  values 
+(7
+,’ALTRO’
+,’Altre tipologie di generatori’);		   
+		  	    
+--LucaR. create della tabella coimtpin_manu (tipologie d'installazione su cui un manutentore può operare)			  
+Create table coimtpin_manu 
+           ( cod_coimtpin_manu      integer    not null
+           , cod_manutentore        varchar(8) not null
+           , cod_coimtpin           integer    not null
+           , creation_user          integer               
+           , creation_date          date
+                   
+);
+create unique index coimtpin_manu_00
+    on coimtpin_manu
+     ( cod_coimtpin_manu
+     );
+create unique index coimtpin_manu_01
+    on coimtpin_manu
+     ( cod_manutentore
+     , cod_coimtpin_manu
+     );
+	    
+
+end;
