@@ -91,8 +91,7 @@ it:
     pagopa: true
     spid: true
 legal:
-  authorsFile: |-
-    https://raw.githubusercontent.com/regione-marche/CURMIT/master/AUTHORS.txt
+  authorsFile: AUTHORS.txt
   license: OSL-2.0
   mainCopyrightOwner: Regione Marche
   repoOwner: Regione Marche
