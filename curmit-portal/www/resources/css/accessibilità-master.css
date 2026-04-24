@@ -1,0 +1,12 @@
+﻿@charset "UTF-8";
+	
+	
+.h1_like_h4  {
+    border-bottom: 4px solid #C75100 !important;
+    text-align: center !important;
+
+    font-size: 20px !important;
+    color: #222222 !important;
+    padding: 6px 3px 12px !important;
+
+}

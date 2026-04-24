@@ -1,0 +1,110 @@
+BODY {
+    margin-top: 0px; 
+    margin-nottom: 0px; 
+    background-color: #e8e8e8;
+}
+
+TABLE {
+   font-family: verdana, arial;
+   font-size: 12px;
+}
+
+A {
+   text-decoration: none;
+}
+
+.cage {
+    border-right: #666666 1px solid; 
+    border-top: #cccccc 1px solid; 
+    border-left: #666666 1px solid; 
+    background-color: #feeeef;
+    width: 240px;
+}
+.doppiobordo {
+    border-bottom: #999999 3px double;
+}
+.bordi-l {
+    border-top: #cccccc 1px solid; 
+    border-left: #666666 1px solid; 
+    background-color: #f1f1f1
+}
+.bordi-r {
+    border-right: #666666 1px solid; 
+    border-top: #cccccc 1px solid; 
+    background-color: #f1f1f1
+}
+.titoli {  
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #FFFFFF; 
+    text-decoration: none;
+    background-color: #000088; 
+}
+.sottotitoli {  
+    font-size: 11px; 
+    color: #333333; 
+    text-decoration: none
+}
+.context {
+    font-size: 11px; 
+    font-weight: normal; 
+    color: #333399; 
+    text-decoration: none;
+    background-color: #B5CCFF;
+}
+.footer1 {
+    font-size: 11px;
+    color: #333399; 
+    background-color: #B5CCFF;
+}
+.footer2 {
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #000088;
+}
+.footer_link {
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #000088;
+}
+
+
+
+.form_title {
+   padding-top: 6px;
+}
+.form_element {
+   font-family: 'Courier New';
+   font-size: 12px;
+}
+.form_submit {
+   font-family: verdana, arial;
+   font-size: 12px;
+}
+.errori {
+   color: red;
+   font-weight: bold;
+   vertical-align: bottom;
+}
+
+.ric_table {
+}
+.ric_element {
+   font-family: 'Courier New';
+   font-size: 12px;
+}
+.ric_submit {
+   font-family: verdana, arial;
+   font-size: 12px;
+}
+
+.table_display {
+}
+.table_header  {
+}
+.odd {
+   vertical-align: top;
+}
+.even {
+   vertical-align: top;
+}

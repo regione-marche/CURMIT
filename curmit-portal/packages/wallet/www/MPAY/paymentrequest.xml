@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PaymentRequest>
+<PortaleID>@portaleid@</PortaleID>
+<Funzione>@funzione@</Funzione>
+<URLDiRitorno>@urldiritorno@</URLDiRitorno>
+<URLDiNotifica>@urldinotifica@</URLDiNotifica>
+<URLBack>@urlback@</URLBack>
+<CommitNotifica>@commitnotifica@</CommitNotifica>
+<UserData>
+<EmailUtente>@emailutente@</EmailUtente>
+<IdentificativoUtente>@identificativoutente@</IdentificativoUtente>
+</UserData>
+<MultiEnte>
+   <Valuta>@valuta@</Valuta>
+   <ImportoTotale>@importo_tot@</ImportoTotale>
+   <NumeroOperazione>@numerooperazione@</NumeroOperazione>
+   <Ente>
+     <CodiceUtente>@codiceutente@</CodiceUtente>
+     <CodiceEnte>@codiceente@</CodiceEnte>
+     <TipoUfficio>@tipoufficio@</TipoUfficio>
+     <CodiceUfficio>@codiceufficio@</CodiceUfficio>
+     <TipologiaServizio>@tipologiaservizio@</TipologiaServizio>
+     <NumeroDocumento>@numerodocumento@</NumeroDocumento>
+     <AnnoDocumento>@annodocumento@</AnnoDocumento>
+     <Importo>@importo@</Importo>
+     @tag_datispecifici;noquote@
+   </Ente>
+   <Ente>
+     <CodiceUtente>@codiceutente_reg@</CodiceUtente>
+     <CodiceEnte>@codiceente_reg@</CodiceEnte>
+     <TipoUfficio>@tipoufficio_reg@</TipoUfficio>
+     <CodiceUfficio>@codiceufficio_reg@</CodiceUfficio>
+     <TipologiaServizio>@tipologiaservizio_reg@</TipologiaServizio>
+     <NumeroDocumento>@numerodocumento_reg@</NumeroDocumento>
+     <AnnoDocumento>@annodocumento_reg@</AnnoDocumento>
+     <Importo>@importo_reg@</Importo>
+     @tag_datispecifici_reg;noquote@
+   </Ente>
+</MultiEnte>
+</PaymentRequest>
