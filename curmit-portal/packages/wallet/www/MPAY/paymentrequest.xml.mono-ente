@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PaymentRequest>
+<PortaleID>@portaleid@</PortaleID>
+<Funzione>@funzione@</Funzione>
+<URLDiRitorno>@urldiritorno@</URLDiRitorno>
+<URLDiNotifica>@urldinotifica@</URLDiNotifica>
+<URLBack>@urlback@</URLBack>
+<CommitNotifica>@commitnotifica@</CommitNotifica>
+<UserData>
+<EmailUtente>@emailutente@</EmailUtente>
+<IdentificativoUtente>@identificativoutente@</IdentificativoUtente>
+</UserData>
+<ServiceData>
+<CodiceUtente>@codiceutente@</CodiceUtente>
+<CodiceEnte>@codiceente@</CodiceEnte>
+<TipoUfficio>@tipoufficio@</TipoUfficio>
+<CodiceUfficio>@codiceufficio@</CodiceUfficio>
+<TipologiaServizio>@tipologiaservizio@</TipologiaServizio>
+<NumeroOperazione>@numerooperazione@</NumeroOperazione>
+<NumeroDocumento>@numerodocumento@</NumeroDocumento>
+<AnnoDocumento>@annodocumento@</AnnoDocumento>
+<Valuta>@valuta@</Valuta>
+<Importo>@importo@</Importo>
+</ServiceData>
+</PaymentRequest>

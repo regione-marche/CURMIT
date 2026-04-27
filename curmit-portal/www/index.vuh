@@ -1,0 +1,18 @@
+::xowiki::Package initialize -ad_doc {
+
+  The script uses an XoWiki page as root page
+  of the site. Here, the start page is /xowiki/ followed
+  by the actual URL, as specified as the value after -url below.
+  Replace this value, in case a different XoWiki instance
+  name should be used.
+
+  @author Gustaf Neumann (gustaf.neumann@wu-wien.ac.at)
+  @creation-date July, 2006
+  @cvs-id $Id: index.vuh,v 1.5 2006/09/15 16:45:00 gustafn Exp $
+  } -parameter {
+    {-m view}
+    {-folder_id:integer 0}
+  } -url /xowiki[ns_conn url]
+
+  ::$package_id reply_to_user [::$package_id invoke -method $m]
+  ad_script_abort

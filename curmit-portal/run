@@ -1,0 +1,9 @@
+#!/bin/sh 
+
+# give time for Postgres to come up
+#sleep 4
+
+/usr/local/ns/bin/nsd -t /var/lib/ns/iter-portal-dev/etc/config-ns.tcl -u claudio -g web -b 80.88.161.159:8004
+
+# For AOLserver 4 using privileged ports (usually < 1024), add the flag
+# -b youraddress:yourport

@@ -1,0 +1,1398 @@
+﻿@charset "UTF-8";
+
+/* CSS Document */
+
+/* mat01 ho sostituito tutte le occorrenze di #f48420 con #C75100. Avevo messo una variabile ma a mauve++ non piaceva */
+
+/*inizio mat01*/
+input[type="hidden"],
+.hidden-field,
+.form-element input[type="hidden"],
+.form-group input[type="hidden"] {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+/*fine mat01 */
+
+
+/* Main navigation */ 
+ 
+#main-navigation { 
+	float:left; 
+	width:100%; 
+	background: url("/resources/openacs-default-theme/images/bg.gif") repeat-x bottom; 
+	clear: both; 
+	display: block; 
+} 
+	 
+#main-navigation ul { 
+	margin:0; 
+	padding:10px 10px 0; 
+	list-style:none; 
+} 
+  
+#main-navigation li { 
+	float:left; 
+	background:url("/resources/openacs-default-theme/images/left.gif") no-repeat left top; 
+	margin:0; 
+	padding:0 0 0 9px; 
+} 
+  
+#main-navigation a { 
+	float:left; 
+	display:block; 
+	background:url("/resources/openacs-default-theme/images/right.gif") no-repeat right top; 
+	padding:5px 15px 4px 6px; 
+	text-decoration:none; 
+	font-weight:bold; 
+	font-size: .95em; 
+	color:#666666; 
+} 
+	 
+  
+#main-navigation #main-navigation-active { 
+	background-image:url("/resources/openacs-default-theme/images/left_on.gif"); 
+} 
+	 
+#main-navigation #main-navigation-active a { 
+	background-image:url("/resources/openacs-default-theme/images/right_on.gif"); 
+	color:#000; 
+	padding-bottom:5px; 
+} 
+  
+#main-navigation a:hover { 
+    color: #000; 
+    text-decoration: underline; 
+} 
+  
+/* End of main navigation */ 
+ 
+/* Subnavigation */ 
+ 
+#sub-navigation { 
+    float: left; 
+    width:100%; 
+    background: url("/resources/openacs-default-theme/images/bg.gif") repeat-x bottom; 
+    clear: both; 
+    padding-top: 5px;  /* remove this padding to make the subnavigation links to appear completly enclosed */ 
+    padding-bottom: 5px  /* remove this padding to make the subnavigation links to appear completly enclosed */ 
+} 
+	 
+#sub-navigation ul { 
+    margin: 0; 
+    padding:0px 10px 10px 10px; 
+    list-style:none; 
+    line-height: .7em; 
+} 
+	 
+#sub-navigation li { 
+    float:left; 
+    border-right: 1px solid #a0a3a1; 
+    padding: 0px 20px 0px 20px ;  
+} 
+	 
+#sub-navigation a { 
+    float:left; 
+    display:block; 
+    color:#666666; 
+    padding:4px 0px 6px 0px; 
+    text-decoration: none; 
+    font-weight:bold; 
+    font-size: .95em; 
+} 
+ 
+#sub-navigation li a:hover { 
+    color: #000; 
+    text-decoration: underline; 
+} 
+ 
+#sub-navigation li#sub-navigation-active a { 
+    color: #000; 
+} 
+ 
+/* End of subnavigation */ 
+ 
+/* Calendar widget css */ 
+ 
+/* The main calendar widget.  div containing a table. */ 
+ 
+div.calendar { position: relative; } 
+ 
+.calendar, .calendar table { 
+  border: 1px solid #556; 
+  font-size: 11px; 
+  color: #000; 
+  cursor: default; 
+  background: #eef; 
+  font-family: tahoma,verdana,sans-serif; 
+} 
+ 
+/* Header part -- contains navigation buttons and day names. */ 
+ 
+.calendar .button { /* "<<", "<", ">", ">>" buttons have this class */ 
+  text-align: center;    /* They are the navigation buttons */ 
+  padding: 2px;          /* Make the buttons seem like they're pressing */ 
+} 
+ 
+.calendar thead .title { /* This holds the current "month, year" */ 
+  font-weight: bold;      /* Pressing it will take you to the current date */ 
+  text-align: center; 
+  background: #fff; 
+  color: #000; 
+  padding: 2px; 
+} 
+ 
+.calendar thead .headrow { /* Row <tr> containing navigation buttons */ 
+  background: #778; 
+  color: #fff; 
+} 
+ 
+.calendar thead .daynames { /* Row <tr> containing the day names */ 
+  background: #bdf; 
+} 
+ 
+.calendar thead .name { /* Cells <TD> containing the day names */ 
+  border-bottom: 1px solid #556; 
+  padding: 2px; 
+  text-align: center; 
+  color: #000; 
+} 
+ 
+.calendar thead .weekend { /* How a weekend day name shows in header */ 
+  color: #a66; 
+} 
+ 
+.calendar thead .hilite { /* How do the buttons in header appear when hover */ 
+  background: #aaf; 
+  color: #000; 
+  border: 1px solid #04f; 
+  padding: 1px; 
+} 
+ 
+.calendar thead .active { /* Active (pressed) buttons in header */ 
+  background: #77c; 
+  padding: 2px 0px 0px 2px; 
+} 
+ 
+/* The body part -- contains all the days in month. */ 
+ 
+.calendar tbody .day { /* Cells <TD> containing month days dates */ 
+  width: 2em; 
+  color: #456; 
+  text-align: right; 
+  padding: 2px 4px 2px 2px; 
+} 
+ 
+.calendar table .wn { 
+  padding: 2px 3px 2px 2px; 
+  border-right: 1px solid #000; 
+  background: #bdf; 
+} 
+ 
+.calendar tbody .rowhilite td { 
+  background: #def; 
+} 
+ 
+.calendar tbody .rowhilite td.wn { 
+  background: #eef; 
+} 
+ 
+.calendar tbody td.hilite { /* Hovered cells <TD> */ 
+  background: #def; 
+  padding: 1px 3px 1px 1px; 
+  border: 1px solid #bbb; 
+} 
+ 
+.calendar tbody td.active { /* Active (pressed) cells <TD> */ 
+  background: #cde; 
+  padding: 2px 2px 0px 2px; 
+} 
+ 
+.calendar tbody td.selected { /* Cell showing today date */ 
+  font-weight: bold; 
+  border: 1px solid #000; 
+  padding: 1px 3px 1px 1px; 
+  background: #fff; 
+  color: #000; 
+} 
+ 
+.calendar tbody td.weekend { /* Cells showing weekend days */ 
+  color: #a66; 
+} 
+ 
+.calendar tbody td.today { /* Cell showing selected date */ 
+  font-weight: bold; 
+  color: #00f; 
+} 
+ 
+.calendar tbody .disabled { color: #999; } 
+ 
+.calendar tbody .emptycell { /* Empty cells (the best is to hide them) */ 
+  visibility: hidden; 
+} 
+ 
+.calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */ 
+  display: none; 
+} 
+ 
+/* The footer part -- status bar and "Close" button */ 
+ 
+.calendar tfoot .footrow { /* The <tr> in footer (only one right now) */ 
+  text-align: center; 
+  background: #556; 
+  color: #fff; 
+} 
+ 
+.calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */ 
+  background: #fff; 
+  color: #445; 
+  border-top: 1px solid #556; 
+  padding: 1px; 
+} 
+ 
+.calendar tfoot .hilite { /* Hover style for buttons in footer */ 
+  background: #aaf; 
+  border: 1px solid #04f; 
+  color: #000; 
+  padding: 1px; 
+} 
+ 
+.calendar tfoot .active { /* Active (pressed) style for buttons in footer */ 
+  background: #77c; 
+  padding: 2px 0px 0px 2px; 
+} 
+ 
+/* inizio tentativo onclick menu */
+.dropbtn {
+/*gac	padding: 4px 8px;
+	margin-right: 10px; 
+	color: #FFFF;*/ /* #595959;*/
+/*gac	vertical-align: middle;
+	font-weight: bold;
+
+	font-family: 'Open Sans',Arial, sans-serif;
+	font-size:13px;*/
+
+/*gac	background-color: #C75100;
+	border: none;
+	width: 100%;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;*/
+
+	background-color: #f5f5f5;
+	display: inline-block;
+	text-align: left;
+/*	padding: 14px 16px;*/
+
+	text-decoration: none;
+	width:320px;
+	border: 1px solid #C75100;
+
+	font-size: 12px;
+	padding-left: 20px;
+	line-height: 22px;
+	padding: 8px 10px 8px 18px;
+
+	font-family: "Open Sans", Arial, sans-serif;
+
+ 
+
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, dropbtn:focus {
+    background-color: #C75100;
+    color: white;
+    border: 1px solid #C75100;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+ul.dropdown-content {
+    display: none;
+    position: relative;
+    /*    min-width: 160px; */
+
+    /*gac aggiunto width e border*/
+    width:318px;
+    border: 1px solid #C75100;    
+    margin: 0px;
+}
+
+
+.dropdown-content li:hover {
+    background-color: #C75100;
+    display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #C75100;
+    display: block; 
+    text-decoration: none;
+    border: none;
+    color: white;
+
+}
+
+/* Show the dropdown menu (use JS to add this class to the dropdown-content container when the user clicks on the dropdown button) */
+ul.show {display:block;
+}
+
+/* fine tentativo onclick menu */
+
+
+/* Combo boxes (
+s that display months/years for direct selection) */ 
+ 
+.combo { 
+  position: absolute; 
+  display: none; 
+  top: 0px; 
+  left: 0px; 
+  width: 4em; 
+  cursor: default; 
+  border: 1px solid #655; 
+  background: #def; 
+  color: #000; 
+  font-size: smaller; 
+} 
+ 
+.combo .label { 
+  width: 100%; 
+  text-align: center; 
+} 
+ 
+.combo .hilite { 
+  background: #acf; 
+} 
+ 
+.combo .active { 
+  border-top: 1px solid #46a; 
+  border-bottom: 1px solid #46a; 
+  background: #eef; 
+  font-weight: bold; 
+} 
+ 
+#login-box { 
+  border: black 1px solid; 
+  padding: 4px; 
+} 
+ 
+table.table-display { 
+  font-family: tahoma, verdana, helvetica;  
+  font-size: 85%; 
+} 
+ 
+tr.table-header { 
+  background-color: #cccccc;  
+} 
+ 
+tr.even { 
+  background-color: #ffffff; 
+} 
+ 
+tr.odd { 
+  background-color: #f0eff0; 
+} 
+ 
+/* Replace deprecated center tags in forms. Eventually all forms should use form builder and this tag should not be used */ 
+ 
+div.submit-button { 
+  text-align: center; 
+} 
+ 
+#skiptocontent { 
+  display: none; 
+} 
+ 
+.block-marker {display: none;} 
+ 
+/* User Messages */ 
+ 
+#alert-message { 
+  background-color: #ccff99;  
+  padding: 4px; 
+  padding-top: 6px; 
+  padding-bottom: 6px; 
+  font-size: 85%; 
+} 
+ 
+#alert-message .alert { 
+  margin-left: 0; 
+  padding-left: 2px; 
+  border: none; 
+} 
+ 
+ 
+/* Boxed User Message */ 
+ 
+.boxed-user-message { 
+  background-color: #ccff99;  
+  padding-left: 12px; 
+  padding-right: 12px; 
+  padding-top: 8px; 
+  padding-bottom: 8px; 
+  font-size: 85%; 
+  border: 1px solid #dd9988; 
+} 
+ 
+.boxed-user-message h3 { 
+  color: #990000; 
+  margin-top: 0px; 
+} 
+ 
+.boxed-user-message .body { 
+  color: #990000; 
+} 
+ 
+ 
+/* Subsite Name */ 
+ 
+#subsite-name {  
+  font-weight: bold;  
+  font-size: 120%; 
+  font-family: verdana;  
+  padding-left: 8px; 
+} 
+a.subsite-name { 
+  color: black; 
+  text-decoration: none; 
+} 
+a.subsite-name:hover { 
+  color: black; 
+  text-decoration: none; 
+} 
+ 
+ 
+/* Site Footer */ 
+ 
+#footer { 
+  clear: both; 
+  border-top: 1px solid #ccc; 
+  font-family: tahoma, verdana, helvetica, sans-serif; 
+  font-size: 85%; 
+  margin-top: 0px; 
+  padding-top: 8px; 
+  padding-bottom: 3px; 
+  padding-left: 8px; 
+  padding-right: 8px; 
+  text-align: center; 
+/*sim    background-color: #EFEFEF;  
+  color: #444444; */
+/*sim aggiunti poi  */ 
+background: #333;
+    line-height: 30px;
+    padding: 5px 0;
+color: #fff !important;
+line-height: 130%;
+} 
+ 
+#footer a {
+    color: #65dcdf;
+}
+
+#footer ul { 
+  display: inline; 
+  margin-left: 0; 
+  padding-left: 0; 
+  border: none; 
+} 
+ 
+#footer ul li { 
+  margin-left: 0; 
+  padding-left: 10px; 
+  border: none; 
+  list-style: none; 
+  display: inline; 
+} 
+ 
+#footer .action-list { 
+  float: left; 
+} 
+ 
+#wrapper {
+    min-width: 100%;
+    max-width: 1000%; 
+    float: left;  
+} 
+ 
+#content-wrapper { 
+  clear: both; 
+  border-top: 0px solid #fff; 
+  padding-bottom: 5px;
+/*sim  background-image:url(/resources/openacs-default-theme/img/ombra_orizzontale.png); */
+  background-repeat: repeat-x;
+  background-position: top;
+  
+} 
+ 
+ 
+/********************************************************************** 
+/* Widgets 
+/**********************************************************************/ 
+ 
+/* STANDARD TAGS -----------------------------------------------------------*/ 
+/* standard html (body, h1, p, form...) */ 
+ 
+body { 
+    margin: 0;
+    padding: 0;
+    font: normal 14px/1.5 'Open Sans',Arial, sans-serif;
+    color: #555;
+    
+/*sim  margin:0px; 
+  padding:0;
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #414141;
+  font-size: 80%;
+*/
+/*  font:small/1.5em Tahoma, "Lucida Grande", sans-serif; voice-family: "\"}\""; voice-family:inherit; */
+} 
+ 
+h1 { 
+/*  font-size: 1.2em; 
+  font-weight: bold; 
+  color: #666666; 
+  margin-bottom: 12px; 
+*/
+  font-size: 20px !important;
+  color: #222222 !important;
+  border-bottom: 4px double #e6e6e6 !important;
+  padding: 6px 3px 12px !important;
+
+} 
+ 
+h2 { 
+  font-size: 1.1em; 
+  font-weight:bold; 
+  color: #555555; 
+  margin-bottom: 12px; 
+} 
+ 
+h3 { 
+  font-size: 1.05em; 
+  font-weight:bold; 
+  color: #444444; 
+  margin-bottom: 12px; 
+} 
+ 
+h3 { 
+  font-size: 1.00em; 
+  font-weight:bold; 
+  color: #444444; 
+  margin-bottom: 12px; 
+} 
+ 
+a:link { 
+  color: #235c96; 
+  text-decoration:underline; 
+} 
+ 
+a:visited { 
+  color: #235c96; 
+} 
+ 
+a:hover { 
+  color: #999; 
+ -- background: #CCCCCC;
+} */
+
+a:link {
+  color: #235c96; /* Colore del link non visitato */
+  text-decoration: underline; /* Sottolineatura */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transizione per il colore e la decorazione */
+}
+
+a:visited {
+  color: #235c96; /* Colore del link visitato */
+}
+
+a:hover {
+  color: #0056b3; /* Colore più scuro al passaggio del mouse */
+  text-decoration: none; /* Rimuove la sottolineatura al passaggio del mouse */
+  /*mat01 background-color: rgba(0, 86, 179, 0.1); /* Colore di sfondo leggero per il hover */
+  background-color: rgba(199, 81, 0, 0.25);/*mat01*/
+  border-radius: 4px; /* Bordi arrotondati per un effetto pulito */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera per profondità */
+  /*mat01 padding: 2px 4px; /* Spazio interno per l'effetto di sfondo */
+}
+
+a:active {
+  color: #004085; /* Colore più scuro al clic */
+  transform: translateY(1px); /* Effetto di discesa al clic */
+}
+
+a:focus {
+  outline: none; /* Rimuove il contorno di default */
+  box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5); /* Ombra per evidenziare il focus */
+}
+
+/* BUTTON ---- 
+a.button {  
+  font: .85em arial; 
+  border: solid 1px black; 
+  background-color: #E1E1E1; 
+  text-align: center;  
+  padding: 1px; 
+  padding-left: 8px; 
+  padding-right: 8px; 
+  color: black; 
+  text-decoration: none; 
+  white-space: nowrap; 
+} 
+ 
+a.button:link {  
+  text-decoration: none; 
+  border: solid 1px black; 
+} 
+ 
+a.button:hover {  
+  text-decoration: none; 
+  background-color: #CCCCCC; 
+  border: solid 1px black; 
+} 
+ 
+a.button:active {  
+  text-decoration: none; 
+  border: solid 1px black; 
+} 
+ 
+a.button .disabled 
+{ 
+    color: #A0A0A0; 
+    background-color: #E0E0E0; 
+    cursor: not-allowed; 
+} 
+ 
+a.button .disabled:hover 
+{ 
+    text-decoration: none; 
+} 
+*/
+
+a.button {
+    font-size: 1em !important;
+    font-weight: bold;
+    color: #333333 !important; /* Colore del testo per contrasto */
+    background-color: #fffacd !important; /* Giallo chiaro principale */
+    border: 2px solid #e6953b; /* Arancione leggermente più scuro per il bordo */
+    border-radius: 8px;
+    padding: 7px 15px !important;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important; /* Ombra per profondità */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none; /* Rimuove la sottolineatura */
+    display: inline-block; /* Permette il padding */
+    text-align: center;
+}
+
+a.button:hover {
+    background-color: #e6953b !important; /* Arancione leggermente più scuro per hover */
+    transform: translateY(-2px); /* Effetto di sollevamento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più intensa */
+}
+
+a.button:active {
+    background-color: #cc7a2f !important; /* Arancione ancora più scuro al clic */
+    transform: translateY(0); /* Ritorna alla posizione iniziale */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Ombra ridotta */
+}
+
+/* END BUTTON ---- */ 
+ 
+.center {text-align: center;} 
+.small {font-size: x-small;} 
+.bold {font-weight: bold;} 
+ 
+/*  ARE THESE NEEDED ??? -----------------------------------------------------------*/ 
+ 
+/* Various forms of links */ 
+ 
+.action-list {  
+  padding: 0; 
+} 
+ 
+.action-list ul {  
+  margin: 0; 
+  padding: 0; 
+  display: inline; 
+  border: none; 
+} 
+                 
+.action-list ul li { 
+  margin: 0; 
+  padding: 0; 
+  border: none; 
+  list-style: none; 
+  display: inline; 
+} 
+ 
+div.subsite-context-bar { 
+  font-size: 85%; 
+  margin-bottom: 4px; 
+  position: relative; 
+} 
+ 
+a.admin-button {  
+  font: 85% arial; 
+  border: solid 1px black; 
+  background-color: #aaa; 
+  text-align: center;  
+  padding: 1px; 
+  padding-left: 8px; 
+  padding-right: 8px; 
+  color: #fff; 
+  text-decoration: none; 
+  white-space: nowrap; 
+} 
+a.admin-button:link {  
+  text-decoration: none; 
+  border: solid 1px black; 
+  color: #111; 
+} 
+a.admin-button:visited {  
+  text-decoration: none; 
+  border: solid 1px black; 
+} 
+a.admin-button:hover {  
+  text-decoration: none; 
+  background-color: #ccc; 
+  border: solid 1px black; 
+} 
+a.admin-button:active {  
+  text-decoration: none; 
+  border: solid 1px black; 
+} 
+ 
+a.admin:link, a.admin:visited { 
+  color: #f00; 
+  font-family: verdana; 
+  font-size: 11px; 
+  font-weight: normal; 
+} 
+ 
+a.admin:hover {  
+  color: #fff;  
+  background: #f00; 
+} 
+ 
+.highlight {  
+  background-color: #ffc;  
+} 
+ 
+ul.action-links li { 
+  list-style: circle url(/resources/acs-subsite/action-link-marker.png); 
+  margin: 8px; 
+  margin-left: -16px; 
+} 
+ 
+/*  END ARE THESE NEEDED -----------------------------------------------------------*/ 
+ 
+/* END STANDARD TAGS ---------------------------------------------------------------*/ 
+ 
+/* HEADER TAGS ---------------------------------------------------------------------*/ 
+ 
+#header { 
+    font-size: 1.1em;/*0.92em; */
+  background-color: #EFEFEF; 
+  color: #444444; 
+  padding-top: 0px; 
+  padding-bottom: 0px;
+/*sim  background-image: url(/resources/openacs-default-theme/img/bg_testata.png); */
+  background-repeat: repeat-x;
+  background-position: top left;
+  height: 147px;
+ } 
+ 
+#system-name { 
+  font-size: 1.4em; 
+  font-weight: bold; 
+  float: left;
+  padding-left: 0.2em;
+  visibility:hidden;
+
+} 
+ 
+#system-name a { 
+  color: #333333; 
+  text-decoration: none; 
+} 
+ 
+#header-navigation { 
+  float: right; 
+  padding-right: 0.4em; 
+}
+
+#header-navigation a:link,
+#header-navigation a:visited{
+    color: #FFF !important;
+    vertical-align: middle;
+    float: none !important;
+    text-decoration: underline !important;
+}
+
+/* mat01 aggiungo header-navigation-left perchè mauve++ da errore se ho 2 id uguali e intanto ne approfitto per fare quello allineato a sinistra */
+
+#header-navigation-left {
+    float: left;
+    padding-right: 0.4em;
+}
+
+#header-navigation-left a:link,
+#header-navigation-left a:visited{
+    color: #FFF !important;
+    vertical-align: middle;
+    float: none !important;
+    text-decoration: underline !important;
+}
+
+
+/*mat01 fine*/
+
+ 
+/* CONTEXT BAR ---- */ 
+ 
+#breadcrumbs { 
+  clear: right; 
+  padding-left: 0.4em;
+/*sim  background-image:url(/resources/img/bg_breadcrumbs.png); */
+  background-color: #C75100;
+  background-repeat: repeat-x;
+  background-position: top left;
+  color: #FFF;
+  /*mat01 height: 41px;*/
+  max-height: 41px;/*mat01*/
+  max-height: 80px;/*mat01*/
+ 
+} 
+
+
+#breadcrumbs a:link,
+#breadcrumbs a:visited{
+	color: #000;
+	text-decoration: none;
+
+	}
+ 
+/* END CONTEXT BAR ---- */  
+ 
+/* END HEADER TAGS -----------------------------------------------------------*/ 
+ 
+/* LISTS -----------------------------------------------------------*/ 
+ 
+ul.compact, .action-list ul{ 
+  margin: 0px; 
+  padding: 10px 0 0 0; 
+} 
+ul.compact li, .action-list ul li { 
+  list-style:none; 
+  display: inline; 
+} 
+ 
+/* END OF LISTS */ 
+ 
+/* PORTLETS */ 
+ 
+.portlet-sidebar { 
+  width: 30%; 
+} 
+ 
+.portlet-wrapper { 
+  margin: 4px 4px 4px 4px; 
+} 
+ 
+.portlet-header { 
+    padding: 2px 8px 2px 8px;  
+    border-top: 1px solid #fff; 
+    background: #ddd;  
+    height: 21px; 
+} 
+ 
+.portlet-title { 
+    float: left; /* comment out if portlet-controls display:none */ 
+    display: inline; 
+} 
+ 
+.portlet-title h1 { 
+    margin: 0px; 
+    font-size: 1em; 
+    font-weight:bold; 
+    color:#000; 
+} 
+     
+.portlet-controls { 
+    display: block; /* future development */ 
+    padding-top: 2px; 
+    text-align: right;     
+} 
+ 
+.portlet-controls img { 
+    border: 0px; 
+} 
+ 
+.portlet-controls a:link { 
+    color: #fff; 
+} 
+ 
+.portlet-controls a:hover { 
+    color: #000; 
+} 
+ 
+.portlet { 
+  border: 1px dotted #999;  
+  border-top: 0px; 
+  padding: 6px 8px 6px 8px; 
+  clear:left; 
+  overflow: auto; 
+} 
+ 
+/* END OF PORTLETS */ 
+ 
+.portal-page { 
+  border: 1px solid #888; 
+  padding: 6px 8px 6px 8px; 
+  clear:left;
+} 
+ 
+/********************************************************************** 
+/* DEPRECATED CLASSES 
+/**********************************************************************/ 
+ 
+/* Deprecated, not sure what it's replaced with just yet */ 
+a.action { 
+  margin: 8px; 
+  margin-left: 24px; 
+  display: list-item; 
+  list-style: circle url(/resources/acs-subsite/right.gif); 
+} 
+ 
+
+#left{
+	/*sim  background-color: #c7d7e5;
+	background-image: url(/resources/openacs-default-theme/img/ombra_orizzontale_colonna.png); */
+	width: 140px;
+/*	background-repeat: repeat-x;*/
+	background-position:top;
+	padding: 0px 0 30px 0;
+	margin: 0px;
+	white-space: nowrap;
+	}
+
+
+.menu h2{
+/*sim	background-image:url(/resources/openacs-default-theme/img/boxtitle.gif);
+	background-repeat:repeat-x;
+	color: #FFF;
+*/
+/*gac	padding: 4px 8px; */
+/*sim	border-radius: 8px; */
+/*gac	margin-right: 10px; */
+/*sim	border: 1px solid #FFF; */
+	/*sim aggiunto sotto*/
+	/*sim border-bottom: 2px solid #C75100; */
+	color: #595959;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: 'Open Sans',Arial, sans-serif;
+	font-size: 12px; color:#222222;	
+	margin: 0px;
+/*gac	border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+	background-color: #C75100;
+	border-bottom: 2px solid #444444;*/
+}
+
+.menu li a span {
+display:block; 
+
+font-size: 12px;
+padding-left: 20px;
+line-height: 22px;
+padding: 8px 10px 8px 18px;
+
+font-family: "Open Sans", Arial, sans-serif;
+
+ 
+
+/* font-size:13px; */
+  /*+color:#555555; font-weight:bold;
+ white-space:nowrap; 
+ padding:8px 10px 8px 18px; text-shadow:none; text-transform:none; margin:0; */
+}
+
+.menu li.selected > a > span {
+    background-color: #C75100 !important;
+    color: #fff !important;
+
+font-size: 12px;
+padding-left: 20px;
+line-height: 22px;
+padding: 8px 10px 8px 18px;
+
+font-family: "Open Sans", Arial, sans-serif;
+}
+
+.menu li.selected {
+    font-size: 12px;
+    padding-left: 20px;
+    line-height: 22px;
+    padding: 8px 10px 8px 18px;
+    
+    font-family: "Open Sans", Arial, sans-serif;
+    background-color: #C75100 !important;
+    color: #fff !important;
+}
+	
+.menu li
+{
+font-size: 12px;
+padding-left: 20px;
+line-height: 22px;
+padding: 8px 10px 8px 18px;
+
+font-family: "Open Sans", Arial, sans-serif;
+
+margin-left: 0px !important;
+/* sim
+display: block;
+margin-left: 15px;
+font-size: 90%;
+height: 20px;
+line-height: 20px;
+*/
+/*sim aggiunti questi sotto */
+/*gac text-decoration: none;
+color: #595959;
+
+  position: relative;
+  display: block;
+  padding: 10px 15px;*/
+/*  margin-bottom: -1px;
+  background-color: #ffffff;
+  border: none;
+  border-left: 1px dashed #C75100;*/
+    display: block;
+    color: #595959;
+    text-align: left;
+/*    padding: 8px 10px 8px 18px; */
+    text-decoration: none;
+/*    font-size: 12px; */
+    margin: 0px;
+/*background-image: url(/resources/openacs-default-theme/img/arrows.png);
+background-position:top left;
+padding-left: 20px;*/
+
+}
+
+.menu a:link, .menu a:visited
+{
+/*sim color: #333333; */
+/*sim background-image: url(/resources/openacs-default-theme/img/arrows.png);
+background-position:top left;
+padding-left: 20px;
+display: block;
+background-repeat:no-repeat;
+*/
+
+/*sim aggiunti questi sotto */
+
+    border: none;
+    text-decoration: none;
+    color: #595959;
+    box-shadow: none;
+    margin-bottom: 0px;
+
+}
+
+.menu a:hover, .menu a:active,
+
+{
+
+    /*gac color: #595959;*/ /*sim #6e89a1; */
+/*    height: 18px;*/
+    /*sim background-image: url(/resources/openacs-default-theme/img/arrows_hover.png); 
+      background-position:top left;
+      background-repeat:no-repeat;
+      padding-left: 20px;
+      display: block;
+      */
+    /*sim aggiunte sotto */
+    text-decoration: none;
+    border: none;
+    color: white;
+    background-color: #C75100;
+    display: block;
+
+}
+
+#wikicmds {
+    padding: 2px 0px 0 20px;
+	}
+
+
+/*simone inizio test per slide delle news*/
+
+#slideshow {
+    border:solid;
+    border-color: #C75100;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin: 10px !important;
+    position: relative !important;
+    width: 90% !important;
+    height: 80px !important;
+    padding: 10px !important;
+}
+
+#slideshow > div {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+}
+
+/*simone fine test per slide delle news*/
+
+
+h4 {
+/*    font-size: 1.4em;
+    font-weight: bold;
+*/
+    border-bottom: 4px solid #C75100;
+/*    color: #444444;
+*/
+    text-align: center;
+
+    font-size: 20px !important;
+    color: #222222 !important;
+/*    border-bottom: 4px double #e6e6e6 !important; */
+    padding: 6px 3px 12px !important;
+
+}
+
+hr{
+  border-top: 3px solid #C75100;
+}
+/* ROM 03/11/2022 Modifiche per elenco puntato su pagina di admin richiesto da Carlo.*/
+
+.ul_admin {
+    display: block;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+.ul_admin li {
+    display: block;
+    position: relative;
+}
+
+.ul_admin li:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.ul_admin li:before {
+    content: "";
+    position: absolute;
+    top: 1.2em;
+    left: -30px;
+    margin-top: -.9em;
+    background: #f69ec4;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #c7d7e5, #546d82);  /* linear-gradient(rgba(168,216,239,1), rgba(205,233,245,1)) linear-gradient(45deg, #f69ec4, #f9dd94) */
+}
+
+fieldset {
+border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e6953b;/*#007BFF;*/
+  margin: 15px;
+}
+
+legend {
+  font-size: 1.2em; /* Dimensione font leggermente più grande */
+  font-weight: bold;
+  color: black;/*#007BFF; Stesso colore del bordo */
+  padding: 0 10px; /* Spazio attorno al testo del legend */
+}
+
+fieldset p {
+  margin: 10px 0; /* Spazio tra i paragrafi */
+  color: #333333; /* Colore del testo */
+}
+
+/*mat01 tolto .form-button*/
+
+input[type="submit"] {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333333; /* Colore del testo per contrasto */
+    background-color: #fffacd; /* Giallo chiaro principale */
+    border: 2px solid #e6953b; /* Arancione leggermente più scuro per il bordo */
+    border-radius: 8px;
+    padding: 7px 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombra per profondità */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 15px; /*mat01*/ 
+}
+
+/*mat01 tolto .form-button*/
+
+input[type="submit"]:hover {
+    background-color: #e6953b; /* Arancione leggermente più scuro per hover */
+    transform: translateY(-2px); /* Effetto sollevamento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più intensa */
+    margin: 15px;/*mat01*/
+}
+
+/*mat01 tolto .form-button*/
+
+input[type="submit"]:active {
+    background-color: #cc7a2f; /* Arancione ancora più scuro al clic */
+    transform: translateY(0); /* Ritorna alla posizione iniziale */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Ombra ridotta */
+    margin: 15px;/*mat01*/
+}
+
+.form_submit {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333333; /* Colore del testo per contrasto */
+    background-color: #fffacd; /* Giallo chiaro principale */
+    border: 2px solid #e6953b; /* Arancione leggermente più scuro per il bordo */
+    border-radius: 8px;
+    padding: 7px 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombra per profondità */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form_submit:hover {
+    background-color: #e6953b; /* Arancione leggermente più scuro per hover */
+    transform: translateY(-2px); /* Effetto sollevamento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più intensa */
+}
+
+.form_submit:active {
+    background-color: #cc7a2f; /* Arancione ancora più scuro al clic */
+    transform: translateY(0); /* Ritorna alla posizione iniziale */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Ombra ridotta */
+}
+
+input.button {
+    font-size: 1em !important;
+    font-weight: bold;
+    color: #333333 !important; /* Colore del testo per contrasto */
+    background-color: #fffacd !important; /* Giallo chiaro principale */
+    border: 2px solid #e6953b; /* Arancione leggermente più scuro per il bordo */
+    border-radius: 8px;
+    padding: 7px 15px !important;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important; /* Ombra per profondità */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+input.button:hover {
+    background-color: #e6953b !important; /* Arancione leggermente più scuro per hover */
+    transform: translateY(-2px); /* Effetto sollevamento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più intensa */
+}
+
+input.button:active {
+    background-color: #cc7a2f !important; /* Arancione ancora più scuro al clic */
+    transform: translateY(0); /* Ritorna alla posizione iniziale */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Ombra ridotta */
+}
+
+.styled-list {
+  padding: 0; /* Rimuove il padding dell'elenco */
+  margin: 0; /* Rimuove il margine */
+  list-style-type: none; /* Rimuove i punti elenco */
+}
+
+.styled-list li {
+  margin-bottom: 12px; /* Spazio tra gli elementi */
+  position: relative;
+  padding-left: 20px; /* Spazio per l'indicatore */
+}
+
+.styled-list li::before {
+  content: "•"; /* Indicatore personalizzato */
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  color: #C75100; /* Colore dell'indicatore */
+}
+
+.styled-list a {
+  font-size: 1em;
+  color: #C75100; /* Colore del testo */
+  text-decoration: none; /* Rimuove la sottolineatura di base */
+  padding: 8px 0; /* Spazio interno per un look più curato */
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.styled-list a:hover {
+  text-decoration: underline; /* Sottolinea al passaggio del mouse */
+}
+
+.table_s {
+    width: 95%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    mat01 background-color: #f9f9f9;*/
+}
+
+.table_s th,
+.table_s td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table_s .td_int {
+    background-color: #cc7a2f; /* Sfondo  */
+    color: #ffffff; /* Testo bianco */
+}
+
+.table_s th {
+    /*mat01 background-color: #e6953b; /* Sfondo modificato */
+    background-color:#C75100;/* mat01*/
+    color: #ffffff; /* Testo bianco per contrasto */
+    text-align: center;
+    font-weight: bold !important;
+    font-size: 1em;
+}
+
+.table_s td {
+    color: #333; /* Testo scuro */
+    /* text-align: left;*/
+}
+
+.table_s tr:nth-child(even) {
+    background-color: #f2f2f2; /* Colore originale mantenuto */
+}
+
+.table_s tr:hover {
+    background-color: #e2e8e8; /* Colore originale mantenuto */
+    /*cursor: pointer;*/
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<caricamento_forniture>
+  <fornitura>
+    <anno_rif>@attachments.anno_rif@</anno_rif>
+    <natura_giurid>@fornitura.natura_giurid@</natura_giurid>
+    <utente_cogn_rag_soc></utente_cogn_rag_soc>
+    <utente_nome></utente_nome>
+    <utente_cf></utente_cf>
+    <utente_piva></utente_piva>
+    <toponimo_tipo></toponimo_tipo>
+    <toponimo_nome></toponimo_nome>
+    <toponimo_civico></toponimo_civico>
+    <toponimo_cap></toponimo_cap>
+    <comune_nome></comune_nome>
+    <comune_istat></comune_istat>
+    <catasto_sezione></catasto_sezione>
+    <catasto_foglio></catasto_foglio>
+    <catasto_particella></catasto_particella>
+    <catasto_subalterno></catasto_subalterno>
+    <pdr></pdr>
+    <pod></pod>
+    <stato_pdr></stato_pdr>
+    <matr_contatore></matr_contatore>
+    <contratto_tipo></contratto_tipo>
+    <combustibile_tipo></combustibile_tipo>
+    <combustibile_consumo></combustibile_consumo>
+    <combustibile_um></combustibile_um>
+    <combustibile_anno></combustibile_anno>
+  </fornitura>
+</caricamento_forniture>

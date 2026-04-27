@@ -1,0 +1,21 @@
+/authority-delete.tcl/1.3/Wed Jan 10 21:22:00 2007//Toacs-5-8
+/authority-oracle.xql/1.3/Thu Jan 13 13:54:41 2005//Toacs-5-8
+/authority-parameters.adp/1.3.22.1/Wed Sep 11 18:40:06 2013//Toacs-5-8
+/authority-parameters.tcl/1.4/Wed Oct  8 09:58:01 2003//Toacs-5-8
+/authority-postgresql.xql/1.2/Thu Jan 13 13:54:41 2005//Toacs-5-8
+/authority-registration-select.tcl/1.2/Wed Jan 10 21:22:00 2007//Toacs-5-8
+/authority-set-enabled-p.tcl/1.3/Wed Jan 10 21:22:00 2007//Toacs-5-8
+/authority-set-sort-order.tcl/1.3/Wed Jan 10 21:22:00 2007//Toacs-5-8
+/authority.adp/1.8.22.1/Wed Sep 11 18:40:06 2013//Toacs-5-8
+/authority.tcl/1.21.10.1/Tue Aug 27 11:44:43 2013//Toacs-5-8
+/batch-action.adp/1.2.22.1/Wed Sep 11 18:40:06 2013//Toacs-5-8
+/batch-action.tcl/1.5/Wed Jan 10 21:22:00 2007//Toacs-5-8
+/batch-document-download.tcl/1.1/Wed Sep 10 14:32:47 2003//Toacs-5-8
+/batch-job-run.adp/1.2.22.1/Wed Sep 11 18:40:06 2013//Toacs-5-8
+/batch-job-run.tcl/1.2/Tue Sep 16 13:04:12 2003//Toacs-5-8
+/batch-job.adp/1.3.22.1/Wed Sep 11 18:40:07 2013//Toacs-5-8
+/batch-job.tcl/1.12/Mon May 14 20:30:17 2007//Toacs-5-8
+/batch-job.xql/1.1/Tue Oct 28 14:32:12 2003//Toacs-5-8
+/index.adp/1.4.8.1/Wed Sep 11 18:40:07 2013//Toacs-5-8
+/index.tcl/1.9/Tue Apr 14 11:06:37 2009//Toacs-5-8
+D

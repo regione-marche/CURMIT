@@ -1,0 +1,23 @@
+D/upgrade////
+/citizen_documents.sql/1.1/Wed Aug 28 09:42:53 2019//
+/coimlott.sql/1.1/Wed Aug 28 09:42:53 2019//
+/coimplic.sql/1.1/Wed Aug 28 09:42:53 2019//
+/coimtarg.sql/1.1/Wed Aug 28 09:42:53 2019//
+/iter-portal-create.sql/1.10/Wed Aug 28 09:42:53 2019//
+/iter-portal-drop.sql/1.2/Wed Aug 28 09:42:53 2019//
+/iter_ordtarg.sql/1.2/Wed Aug 28 09:42:53 2019//
+/mpay_enti_destinatari.sql/1.1/Wed Aug 28 09:42:53 2019//
+/mpay_paymentdata.sql/1.1/Wed Aug 28 09:42:53 2019//
+/mpay_paymentrequest.sql/1.1/Wed Aug 28 09:42:53 2019//
+/ordplic.sql/1.1/Wed Aug 28 09:42:53 2019//
+/sync-add.sql/1.1/Wed Aug 28 09:42:53 2019//
+/sync-maintainers-to-adjust.sql/1.2/Wed Aug 28 09:42:53 2019//
+/sync.sql/1.2/Wed Aug 28 09:42:53 2019//
+/mpay_enti_portafogli_abilitati.sql/1.2/Mon Jan 13 16:06:04 2020//
+/iter_smtp_configuration.sql/1.1/Fri Feb 28 11:04:38 2020//
+/iter_software_houses.sql/1.1/Wed Nov  3 08:21:38 2021//
+/iter_combustibili.sql/1.1/Mon Mar 11 09:36:25 2024//
+/iter_contratti.sql/1.1/Mon Mar 11 09:37:11 2024//
+/iter_toponimi.sql/1.1/Mon Mar 11 09:28:27 2024//
+/toponimi-2024-03-06.csv/1.2/Thu Jun  6 09:33:16 2024//
+/iter_supplies_sync.sql/1.2/Thu Apr 10 07:24:05 2025//
